@@ -1,6 +1,14 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import {useCounterStore} from '@/stores/counter.js'
+const store = useCounterStore()
+console.log(store.count)
+setInterval(()=>{
+  store.increment()
+  console.log(store.count)
+  console.log("double count:",store.doubleCount)
+}, 1000)
 </script>
 
 <template>
