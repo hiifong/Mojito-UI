@@ -1,9 +1,9 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import IconNotFound from "@/components/icons/IconNotFound.vue"
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <IconNotFound />
   </main>
 </template>
