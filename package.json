@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "axios": "^1.6.7",
-    "element-plus": "^2.5.6",
+    "element-plus": "^2.6.0",
     "md-editor-v3": "^4.11.3",
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.7",
