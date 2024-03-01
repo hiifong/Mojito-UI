@@ -11,7 +11,9 @@ const route = useRoute()
 
 const form = ref({
   username: '',
-  password: ''
+  email: '',
+  password: '',
+  checkPass: ''
 })
 
 // 登录事件处理
@@ -52,10 +54,14 @@ const rules = ref({
     { pattern: /^[A-Za-z0-9]+$/, message: "用户名必须为2-10位的字母", trigger: "blur" },
     { min: 2, max: 10, message: "用户名必须为2-10位的字母数字组合", trigger: "blur"}
   ],
+  email: [
+    { required: true, message: "邮箱不能为空", trigger: "blur" },
+    { min: 2, max: 20, message: "邮箱长度必须在2-20位", trigger: "blur"}
+  ],
   password: [
     { required: true, message: "密码不能为空", trigger: "blur" },
     { min: 6, max: 18, message: "密码长度需要6~18位", trigger: "blur" },
-  ],
+  ]
 })
 
 // 定义是否登录加载中
@@ -73,18 +79,21 @@ const formRef = ref('')
       label-position="top"
       size="large"
     >
-      <h2>登录</h2>
+      <h2>注册</h2>
       <el-form-item label="用户名" prop="username">
         <el-input v-model="form.username" />
+      </el-form-item>
+      <el-form-item label="邮箱" prop="email">
+        <el-input v-model="form.email" />
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="form.password" type="password" show-password />
       </el-form-item>
       <el-form-item>
-        <el-link type="primary" @click="$router.push({name: 'register'})" >没有账号，去注册？</el-link>
+        <el-link type="primary" @click="$router.push({name: 'login'})" >已有账号，去登录？</el-link>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit" :loading="isLoading">登录</el-button>
+        <el-button type="primary" @click="onSubmit" :loading="isLoading">注册</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -93,26 +102,27 @@ const formRef = ref('')
 
 <style lang="scss" scoped>
 .login {
-  background-color: #fff;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
-  .el-form {
-    width: 300px;
     background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px gray;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
 
-    .el-form-item {
-      margin-top: 20px;
-    }
+    .el-form {
+        width: 300px;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px gray;
 
-    .el-button {
-      width: 100%;
+        .el-form-item {
+            margin-top: 20px;
+        }
+
+        .el-button {
+            width: 100%;
+        }
     }
-  }
 }
 </style>

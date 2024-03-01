@@ -5,6 +5,7 @@ export const useTokenStore = defineStore(
   'token',
   () => {
     const token = ref('')
+    const isAdmin = ref(false)
 
     function getToken() {
       return token
@@ -14,7 +15,7 @@ export const useTokenStore = defineStore(
       token.value = tokenStr
     }
 
-    return { token, getToken, setToken }
+    return { token, isAdmin, getToken, setToken }
   },
   {
     persist: true
