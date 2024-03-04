@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import Article from '@/components/Article.vue'
 
 const text = ref(`# 🎄 md-editor-v3
 

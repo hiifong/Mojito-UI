@@ -44,7 +44,7 @@ const onSubmit = async () => {
 
   ElMessage.success('登录成功!')
 
-  router.push(route.query.redirect || '/')
+  router.push(route.query.redirect || '/login')
 }
 
 // 定义表单校验规则
