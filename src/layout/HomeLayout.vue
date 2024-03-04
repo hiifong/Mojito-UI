@@ -1,12 +1,12 @@
 <script setup>
-import Header from '@/components/Header.vue'
+import GitNoHeader from '@/components/GitNoHeader.vue'
 </script>
 
 <template>
   <div class="home-layout">
     <el-container>
       <el-header>
-        <Header />
+        <GitNoHeader />
       </el-header>
       <el-main>
         <router-view />

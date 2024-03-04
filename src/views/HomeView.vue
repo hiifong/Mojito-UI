@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import Article from '@/components/Article.vue'
+import GitNoArticle from '@/components/GitNoArticle.vue'
 
 const text = ref(`# 🎄 md-editor-v3
 
@@ -52,7 +52,7 @@ For more ways to use or contribute, please refer to: [md-editor-extension](https
 </script>
 
 <template>
-  <Article :text="text" />
+  <GitNoArticle :text="text" />
 </template>
 
 <style scoped></style>
