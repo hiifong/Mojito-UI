@@ -11,7 +11,7 @@ const request = axios.create({
 })
 
 // 请求拦截器
-request.interceptors.request.use(config => {
+request.interceptors.request.use((config) => {
   if (!config.headers) {
     config.headers = {}
   }
@@ -22,15 +22,15 @@ request.interceptors.request.use(config => {
 
 // 响应拦截器
 request.interceptors.response.use(
-  response => response,
-  async error => {
+  (response) => response,
+  async (error) => {
     if (error.response.status === 401) {
-      ElMessage.error("Token失效, 需要重新登录才可以!")
-      router.push({ name: "login" })
+      ElMessage.error('Token失效, 需要重新登录才可以!')
+      router.push({ name: 'login' })
       return
     } else if (error.response.status === 403) {
-      ElMessage.error("当前操作权限不足")
-      return { data: { code: "123456" } }
+      ElMessage.error('当前操作权限不足')
+      return { data: { code: '123456' } }
     }
     return Promise.reject(error)
   }

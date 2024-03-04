@@ -11,11 +11,11 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver()]
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
-    }),
+      resolvers: [ElementPlusResolver()]
+    })
   ],
   resolve: {
     alias: {
@@ -24,9 +24,9 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/api": {
-        target: "http://localhost:8080",
-        changeOrigin: true,
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
       }
     }
   }

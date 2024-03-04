@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 const text = ref(`# 🎄 md-editor-v3
 
@@ -47,13 +47,11 @@ Use existing components of toolbar, such as exporting content as PDF
 yarn add @vavt/v3-extension
 \`\`\`
 
-For more ways to use or contribute, please refer to: [md-editor-extension](https://github.com/imzbf/md-editor-extension)`);
+For more ways to use or contribute, please refer to: [md-editor-extension](https://github.com/imzbf/md-editor-extension)`)
 </script>
 
 <template>
-  <Article :text="text"></Article>
+  <Article :text="text" />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

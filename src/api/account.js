@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 import { useTokenStore } from '@/stores/token'
 
-export const login = data => {
+export const login = (data) => {
   return request({
     method: 'POST',
     url: '/api/login',
@@ -11,8 +11,8 @@ export const login = data => {
 
 export const logout = () => {
   return request({
-    method: "POST",
-    url: "/api/logout"
+    method: 'POST',
+    url: '/api/logout'
   })
 }
 
@@ -24,8 +24,8 @@ export const refreshToken = () => {
   }
   isRefreshing = true
   promiseRT = request({
-    method: "POST",
-    url: "/api/refresh_token",
+    method: 'POST',
+    url: '/api/refresh_token',
     params: {
       refreshtoken: useTokenStore().token?.refresh_token
     }
