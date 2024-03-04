@@ -1,9 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { MdPreview, MdCatalog } from 'md-editor-v3';
-import 'md-editor-v3/lib/preview.css';
 
-const id = 'preview-only';
 const text = ref(`# 🎄 md-editor-v3
 
 ![](https://img.shields.io/github/package-json/v/imzbf/md-editor-v3) ![](https://img.shields.io/npm/dm/md-editor-v3) ![](https://img.shields.io/github/license/imzbf/md-editor-v3) ![](https://img.shields.io/badge/ssr-%3E1.6.0-brightgreen)
@@ -51,29 +48,12 @@ yarn add @vavt/v3-extension
 \`\`\`
 
 For more ways to use or contribute, please refer to: [md-editor-extension](https://github.com/imzbf/md-editor-extension)`);
-const scrollElement = document.documentElement;
 </script>
 
 <template>
-  <el-row justify="center">
-    <el-col :span="12">
-      <MdPreview :editorId="id" :modelValue="text" />
-    </el-col>
-    <el-col :span="4">
-      <MdCatalog :editorId="id" :scrollElement="scrollElement" />
-    </el-col>
-  </el-row>
+  <Article :text="text"></Article>
 </template>
 
 <style scoped>
-.el-row {
-  margin-bottom: 20px;
-}
-.el-row:last-child {
-  margin-bottom: 0;
-}
-.el-col {
-  margin-top: 50px;
-  border-radius: 4px;
-}
+
 </style>
