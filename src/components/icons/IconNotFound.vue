@@ -1,13 +1,13 @@
 <template>
   <svg
-    height="1024"
+    height="480"
     node-id="1"
     sillyvg="true"
     template-height="1024"
     template-width="1024"
     version="1.1"
     viewBox="0 0 1024 1024"
-    width="1024"
+    width="480"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
   >

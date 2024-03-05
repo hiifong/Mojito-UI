@@ -6,6 +6,9 @@ import IconNotFound from './icons/IconNotFound.vue'
   <div class="not-found">
     <IconNotFound />
   </div>
+  <div class="go-home">
+    <el-link href="/" type="primary">返回首页</el-link>
+  </div>
 </template>
 
 <style scoped>
@@ -13,5 +16,10 @@ import IconNotFound from './icons/IconNotFound.vue'
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.go-home{
+  display: flex;
+  justify-content: center;
 }
 </style>

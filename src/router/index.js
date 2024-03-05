@@ -29,6 +29,11 @@ const router = createRouter({
       ]
     },
     {
+      path: '/upload',
+      name: 'upload',
+      component: () => import('@/components/GitNoUploadImage.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('@/views/AboutView.vue')
