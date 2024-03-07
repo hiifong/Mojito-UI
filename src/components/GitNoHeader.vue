@@ -15,7 +15,7 @@ const errorHandler = () => true
     @select="handleSelect"
   >
     <el-menu-item>
-      <img style="width: 50px" src="@/assets/logo.svg" alt="Element logo" />
+      <img style="width: 80px; height: 40px;" src="@/assets/logo.svg" alt="Element logo" />
     </el-menu-item>
     <div class="flex-grow" />
     <el-menu-item index="1" @click="$router.push({ name: 'home' })">首页</el-menu-item>
