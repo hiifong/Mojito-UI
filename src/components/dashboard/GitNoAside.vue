@@ -14,6 +14,14 @@ const handleClose = (key, keyPath) => {
 <template>
   <el-aside>
     <el-scrollbar>
+      <div class="logo" align="center">
+        <img
+          src="@/assets/logo.svg"
+          alt="GitNo Logo"
+          style="width: 90px; height: 40px"
+          @click="$router.push({ name: 'home' })"
+        />
+      </div>
       <el-menu
         default-active="2"
         class="el-menu-vertical-demo"
@@ -52,7 +60,7 @@ const handleClose = (key, keyPath) => {
 
           <template #title>Navigator Three</template>
         </el-menu-item>
-        <el-menu-item index="4">
+        <el-menu-item index="4" @click="$router.push({name: 'four'})">
           <el-icon>
             <setting />
           </el-icon>
@@ -70,5 +78,12 @@ const handleClose = (key, keyPath) => {
   height: 100vh;
   width: auto;
   border-right: 1px solid #eee;
+}
+
+.logo {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

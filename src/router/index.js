@@ -12,7 +12,26 @@ const router = createRouter({
         {
           path: '',
           name: 'home',
-          component: HomeView
+          component: HomeView,
+          meta: {
+            title: '首页'
+          }
+        },
+        {
+          path: '/comment',
+          name: 'comment',
+          component: () => import('@/components/comment/Comment.vue'),
+          meta: {
+            title: 'comment'
+          }
+        },
+        {
+          path: '/todo',
+          name: 'todo',
+          component: () => import('@/components/todo/Todo.vue'),
+          meta: {
+            title: 'todo'
+          }
         }
       ]
     },
@@ -24,29 +43,50 @@ const router = createRouter({
         {
           path: '',
           name: 'dashboard',
-          component: () => import('@/views/dashboard/Index.vue')
+          component: () => import('@/views/dashboard/Index.vue'),
+          meta: { title: 'dashboard' }
+        },
+        {
+          path: '/dashboard/four',
+          name: 'four',
+          component: () => import('@/views/dashboard/Index.vue'),
+          meta: {
+            title: 'four'
+          }
         }
       ]
     },
     {
       path: '/upload',
       name: 'upload',
-      component: () => import('@/components/GitNoUploadImage.vue')
+      component: () => import('@/components/GitNoUploadImage.vue'),
+      meta: {
+        title: 'upload'
+      }
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('@/views/AboutView.vue')
+      component: () => import('@/views/AboutView.vue'),
+      meta: {
+        title: 'about'
+      }
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/account/LoginView.vue')
+      component: () => import('@/views/account/LoginView.vue'),
+      meta: {
+        title: 'login'
+      }
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('@/views/account/RegisterView.vue')
+      component: () => import('@/views/account/RegisterView.vue'),
+      meta: {
+        title: 'register'
+      }
     },
     {
       path: '/:pathMatch(.*)*',
@@ -54,6 +94,13 @@ const router = createRouter({
       component: () => import('@/components/GitNoNotFound.vue')
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
 })
 
 export default router

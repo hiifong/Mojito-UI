@@ -8,6 +8,7 @@ const activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
   console.log(key, keyPath)
 }
+const errorHandler = () => {}
 </script>
 <template>
   <el-header>

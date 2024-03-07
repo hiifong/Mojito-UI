@@ -18,7 +18,7 @@ import IconNotFound from './icons/IconNotFound.vue'
   align-items: center;
 }
 
-.go-home{
+.go-home {
   display: flex;
   justify-content: center;
 }
