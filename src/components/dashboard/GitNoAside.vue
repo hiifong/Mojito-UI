@@ -17,6 +17,7 @@ const handleClose = (key, keyPath) => {
       <el-menu
         default-active="2"
         class="el-menu-vertical-demo"
+        background-color="#eee"
         :collapse="isCollapse"
         @open="handleOpen"
         @close="handleClose"
@@ -65,7 +66,7 @@ const handleClose = (key, keyPath) => {
 
 <style>
 .el-aside {
-  background-color: #fff;
+  background-color: #eee;
   height: 100vh;
   width: auto;
   border-right: 1px solid #eee;

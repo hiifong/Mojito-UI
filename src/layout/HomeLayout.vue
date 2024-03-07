@@ -14,3 +14,9 @@ import GitNoHeader from '@/components/GitNoHeader.vue'
     </el-container>
   </div>
 </template>
+
+<style scoped>
+.el-header {
+  padding: 0;
+}
+</style>

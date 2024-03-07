@@ -32,6 +32,7 @@ const handleSelect = (key, keyPath) => {
       <el-menu
         :default-active="activeIndex"
         class="right-menu"
+        background-color="#eee"
         mode="horizontal"
         :ellipsis="false"
         @select="handleSelect"
@@ -42,12 +43,8 @@ const handleSelect = (key, keyPath) => {
               <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
             </el-avatar>
           </template>
-          <el-menu-item index="1-1" @click="$router.push({ name: 'home' })"
-            >首页</el-menu-item
-          >
-          <el-menu-item index="1-1" @click=""
-            >退出登录</el-menu-item
-          >
+          <el-menu-item index="1-1" @click="$router.push({ name: 'home' })">首页</el-menu-item>
+          <el-menu-item index="1-1" @click="">退出登录</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </div>
@@ -59,6 +56,7 @@ const handleSelect = (key, keyPath) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #eee;
 }
 
 .left {
