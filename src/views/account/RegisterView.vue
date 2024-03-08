@@ -126,4 +126,8 @@ const formRef = ref('')
     }
   }
 }
+
+.ElMessage{
+  display: flex;
+}
 </style>

@@ -9,7 +9,9 @@ import GitNoHeader from '@/components/GitNoHeader.vue'
         <GitNoHeader />
       </el-header>
       <el-main>
-        <router-view />
+        <el-scrollbar>
+          <router-view />
+        </el-scrollbar>
       </el-main>
     </el-container>
   </div>

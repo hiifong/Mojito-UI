@@ -18,6 +18,14 @@ const router = createRouter({
           }
         },
         {
+          path: '/explore',
+          name: 'explore',
+          component: () => import('@/components/article/ArticleList.vue'),
+          meta: {
+            title: '探索'
+          }
+        },
+        {
           path: '/comment',
           name: 'comment',
           component: () => import('@/components/comment/Comment.vue'),
@@ -31,6 +39,14 @@ const router = createRouter({
           component: () => import('@/components/todo/Todo.vue'),
           meta: {
             title: 'todo'
+          }
+        },
+        {
+          path: '/list',
+          name: 'list',
+          component: () => import('@/components/article/ArticleList.vue'),
+          meta: {
+            title: 'list'
           }
         }
       ]

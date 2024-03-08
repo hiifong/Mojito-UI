@@ -60,7 +60,7 @@ const handleClose = (key, keyPath) => {
 
           <template #title>Navigator Three</template>
         </el-menu-item>
-        <el-menu-item index="4" @click="$router.push({name: 'four'})">
+        <el-menu-item index="4" @click="$router.push({ name: 'four' })">
           <el-icon>
             <setting />
           </el-icon>
