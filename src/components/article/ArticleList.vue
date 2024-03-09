@@ -76,7 +76,7 @@ const articelList = ref([
     <ul>
       <h1>列表</h1>
       <li v-for="(item, index) in articelList" :key="index">
-        <ArticleItem :article="item"/>
+        <ArticleItem :article="item" />
       </li>
     </ul>
   </div>

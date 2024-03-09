@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 let activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
-  console.log(key,'=====', keyPath)
-  activeIndex = key
-  console.log("activeIndex: ", activeIndex)
+  console.log(key, '=====', keyPath)
+  activeIndex.value = key
+  console.log('activeIndex: ', activeIndex)
 }
 const errorHandler = () => true
 </script>
@@ -17,7 +17,12 @@ const errorHandler = () => true
     @select="handleSelect"
   >
     <el-menu-item>
-      <img @click="$router.push({ name: 'home' })" style="width: 80px; height: 40px" src="@/assets/logo.svg" alt="Element logo" />
+      <img
+        @click="$router.push({ name: 'home' })"
+        style="width: 80px; height: 40px"
+        src="@/assets/logo.svg"
+        alt="Element logo"
+      />
     </el-menu-item>
     <div class="flex-grow" />
     <el-menu-item index="1" @click="$router.push({ name: 'home' })">首页</el-menu-item>

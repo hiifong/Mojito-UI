@@ -117,7 +117,7 @@ const formRef = ref('')
   }
 }
 
-.ElMessage{
+.ElMessage {
   display: flex;
 }
 </style>

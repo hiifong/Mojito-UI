@@ -45,7 +45,7 @@ const errorHandler = () => {}
             </el-avatar>
           </template>
           <el-menu-item index="1-1" @click="$router.push({ name: 'home' })">首页</el-menu-item>
-          <el-menu-item index="1-1" @click="">退出登录</el-menu-item>
+          <el-menu-item index="1-1">退出登录</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </div>
