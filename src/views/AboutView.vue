@@ -1,15 +1,20 @@
+<script setup>
+import Comment from '@/components/comment/Comment.vue'
+</script>
+
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <Comment class="comment" />
   </div>
 </template>
+<style lang="scss" scoped>
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+  .comment {
+    width: 50%;
   }
 }
 </style>
