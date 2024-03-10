@@ -25,7 +25,7 @@ defineProps({
     </div>
     <div class="content">
       <div class="note-content-user" v-for="(user, index) in comment.at_users" :key="index">
-        @{{ user.nickname }}
+        回复 @{{ user.nickname }}
       </div>
       {{ comment.content }}
     </div>

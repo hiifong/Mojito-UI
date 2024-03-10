@@ -1,15 +1,14 @@
 <script setup>
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { useTokenStore } from '@/stores/token.js'
 import { useRoute, useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
 import { login } from '@/api/account.js'
 
 const store = useTokenStore()
 const router = useRouter()
 const route = useRoute()
 
-const form = ref({
+const form = reactive({
   username: '',
   password: ''
 })
@@ -26,17 +25,17 @@ const onSubmit = async () => {
 
   // 正式发送登录请求
   const data = await login(form).then((res) => {
-    if (!res.data.success) {
-      ElMessage.error('登录信息有误!')
+    if (res.data.code !== 1) {
+      ElMessage.error(res.data.msg)
       isLoading.value = false
       throw new Error('登录信息有误')
     }
-    return res.data
+    return res.data.data
   })
 
-  console.log(data)
+  console.log('data: ', data)
   // 保存token信息
-  store.setToken(data.content)
+  store.setToken(data)
 
   isLoading.value = false
 
@@ -82,8 +81,8 @@ const formRef = ref('')
       </el-form-item>
       <el-form-item>
         <el-link type="primary" @click="$router.push({ name: 'register' })"
-          >没有账号，去注册？</el-link
-        >
+          >没有账号，去注册？
+        </el-link>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit" :loading="isLoading">登录</el-button>
@@ -100,6 +99,7 @@ const formRef = ref('')
   justify-content: center;
   align-items: center;
   background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+
   .el-form {
     width: 300px;
     background-color: #fff;
@@ -115,9 +115,5 @@ const formRef = ref('')
       width: 100%;
     }
   }
-}
-
-.ElMessage {
-  display: flex;
 }
 </style>

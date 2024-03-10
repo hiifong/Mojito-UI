@@ -4,7 +4,6 @@ import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const store = useTokenStore()
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_API_URL
@@ -12,10 +11,11 @@ const request = axios.create({
 
 // 请求拦截器
 request.interceptors.request.use((config) => {
+  const store = useTokenStore()
   if (!config.headers) {
     config.headers = {}
   }
-  config.headers.Authorization = store.token?.access_token
+  config.headers.Authorization = store.token?.token
 
   return config
 })

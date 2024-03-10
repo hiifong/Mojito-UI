@@ -1,22 +1,18 @@
 <script setup>
-import { ref } from 'vue'
-import { useTokenStore } from '@/stores/token.js'
+import { reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
-import { login } from '@/api/account.js'
+import { register } from '@/api/account.js'
 
-const store = useTokenStore()
 const router = useRouter()
 const route = useRoute()
 
-const form = ref({
+const form = reactive({
   username: '',
   email: '',
-  password: '',
-  checkPass: ''
+  password: ''
 })
 
-// 登录事件处理
+// 注册事件处理
 const onSubmit = async () => {
   isLoading.value = true
   // 表单校验
@@ -26,25 +22,23 @@ const onSubmit = async () => {
     return new Promise(() => {})
   })
 
-  // 正式发送登录请求
-  const data = await login(form).then((res) => {
-    if (!res.data.success) {
-      ElMessage.error('登录信息有误!')
+  // 正式发送注册请求
+  const data = await register(form).then((res) => {
+    if (res.data.code !== 1) {
+      ElMessage.error(res.data.msg)
       isLoading.value = false
-      throw new Error('登录信息有误')
+      throw new Error('注册信息有误')
     }
     return res.data
   })
 
-  console.log(data)
-  // 保存token信息
-  store.setToken(data.content)
+  console.log('response:', data)
 
   isLoading.value = false
 
-  ElMessage.success('登录成功!')
+  ElMessage.success('注册成功!')
 
-  router.push(route.query.redirect || '/login')
+  await router.push(route.query.redirect || '/login')
 }
 
 // 定义表单校验规则
@@ -56,7 +50,7 @@ const rules = ref({
   ],
   email: [
     { required: true, message: '邮箱不能为空', trigger: 'blur' },
-    { min: 2, max: 20, message: '邮箱长度必须在2-20位', trigger: 'blur' }
+    { min: 2, max: 30, message: '邮箱长度必须在2-20位', trigger: 'blur' }
   ],
   password: [
     { required: true, message: '密码不能为空', trigger: 'blur' },
@@ -64,7 +58,7 @@ const rules = ref({
   ]
 })
 
-// 定义是否登录加载中
+// 定义是否注册加载中
 const isLoading = ref(false)
 
 const formRef = ref('')
@@ -91,8 +85,8 @@ const formRef = ref('')
       </el-form-item>
       <el-form-item>
         <el-link type="primary" @click="$router.push({ name: 'login' })"
-          >已有账号，去登录？</el-link
-        >
+          >已有账号，去登录？
+        </el-link>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit" :loading="isLoading">注册</el-button>
@@ -115,7 +109,7 @@ const formRef = ref('')
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px gray;
+    box-shadow: 0 4px 10px gray;
 
     .el-form-item {
       margin-top: 20px;
@@ -125,9 +119,5 @@ const formRef = ref('')
       width: 100%;
     }
   }
-}
-
-.ElMessage {
-  display: flex;
 }
 </style>
