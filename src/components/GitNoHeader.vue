@@ -30,15 +30,15 @@ const errorHandler = () => true
     <el-menu-item index="3" @click="$router.push({ name: 'home' })">分类</el-menu-item>
     <el-menu-item index="4" @click="$router.push({ name: 'home' })">话题</el-menu-item>
     <el-menu-item index="5">
-      <el-button color="#5FBDFF" @click="$router.push({ name: 'login' })" plain>登录</el-button>
+      <el-button color="#5FBDFF" @click="$router.push({ name: 'login' })" round>登录</el-button>
     </el-menu-item>
     <el-menu-item index="6">
-      <el-button color="#AA77FF" @click="$router.push({ name: 'register' })" plain>注册</el-button>
+      <el-button color="#AA77FF" @click="$router.push({ name: 'register' })" round>注册</el-button>
     </el-menu-item>
     <el-sub-menu index="7">
       <template #title>
         <el-avatar :size="40" src="https://hiif.ong/logo.png" @error="errorHandler">
-          <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
+          <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
         </el-avatar>
       </template>
       <el-menu-item index="7-1" @click="$router.push({ name: 'dashboard' })"

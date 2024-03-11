@@ -1,8 +1,20 @@
 <script setup>
-import { ref } from 'vue'
-import { Document, Menu as IconMenu, Location, Setting } from '@element-plus/icons-vue'
 import { isCollapse } from '@/layout/isCollapse'
+import {
+  CollectionTag,
+  Comment,
+  Delete,
+  Edit,
+  Management,
+  Notebook,
+  Plus,
+  Promotion,
+  Setting,
+  UserFilled
+} from '@element-plus/icons-vue'
+import { useUserStore } from '@/stores/user'
 
+const userStore = useUserStore()
 const handleOpen = (key, keyPath) => {
   console.log(key, keyPath)
 }
@@ -23,49 +35,115 @@ const handleClose = (key, keyPath) => {
         />
       </div>
       <el-menu
-        default-active="2"
-        class="el-menu-vertical-demo"
+        default-active="1"
+        class="aside-menu"
         background-color="#eee"
         :collapse="isCollapse"
         @open="handleOpen"
         @close="handleClose"
       >
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon><location /></el-icon>
-            <span>Navigator One</span>
-          </template>
-          <el-menu-item-group>
-            <template #title><span>Group One</span></template>
-            <el-menu-item index="1-1">item one</el-menu-item>
-            <el-menu-item index="1-2">item two</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group Two">
-            <el-menu-item index="1-3">item three</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="1-4">
-            <template #title><span>item four</span></template>
-            <el-menu-item index="1-4-1">item one</el-menu-item>
-          </el-sub-menu>
-        </el-sub-menu>
-        <el-menu-item index="2">
-          <el-icon><icon-menu /></el-icon>
-
-          <template #title>Navigator Two</template>
-        </el-menu-item>
-        <el-menu-item index="3" disabled>
-          <el-icon>
-            <document />
-          </el-icon>
-
-          <template #title>Navigator Three</template>
-        </el-menu-item>
-        <el-menu-item index="4" @click="$router.push({ name: 'four' })">
+        <el-menu-item index="1" @click="$router.push({ name: 'dashboard' })">
           <el-icon>
             <setting />
           </el-icon>
 
-          <template #title>Navigator Four</template>
+          <template #title>概览</template>
+        </el-menu-item>
+        <el-sub-menu index="2">
+          <template #title>
+            <el-icon>
+              <Notebook />
+            </el-icon>
+            <span>版本库管理</span>
+          </template>
+          <el-menu-item index="2-1">
+            <el-icon>
+              <Plus />
+            </el-icon>
+            <span>创建版本库</span>
+          </el-menu-item>
+          <el-menu-item index="2-2">
+            <el-icon>
+              <Edit />
+            </el-icon>
+            <span>编辑版本库</span>
+          </el-menu-item>
+          <el-menu-item index="2-3">
+            <el-icon>
+              <Delete />
+            </el-icon>
+            <span>删除版本库</span>
+          </el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu index="3">
+          <template #title>
+            <el-icon>
+              <CollectionTag />
+            </el-icon>
+            <span>分类管理</span>
+          </template>
+          <el-menu-item index="3-1">
+            <el-icon>
+              <Plus />
+            </el-icon>
+            <span>创建分类</span>
+          </el-menu-item>
+          <el-menu-item index="3-2">
+            <el-icon>
+              <Edit />
+            </el-icon>
+            <span>编辑编辑</span>
+          </el-menu-item>
+          <el-menu-item index="3-3">
+            <el-icon>
+              <Delete />
+            </el-icon>
+            <span>删除分类</span>
+          </el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu index="4">
+          <template #title>
+            <el-icon>
+              <Promotion />
+            </el-icon>
+            <span>话题管理</span>
+          </template>
+          <el-menu-item index="4-1">
+            <el-icon>
+              <Plus />
+            </el-icon>
+            <span>创建话题</span>
+          </el-menu-item>
+          <el-menu-item index="4-2">
+            <el-icon>
+              <Edit />
+            </el-icon>
+            <span>编辑话题</span>
+          </el-menu-item>
+          <el-menu-item index="4-3">
+            <el-icon>
+              <Delete />
+            </el-icon>
+            <span>删除话题</span>
+          </el-menu-item>
+        </el-sub-menu>
+        <el-menu-item index="5">
+          <el-icon>
+            <Comment />
+          </el-icon>
+          <template #title>评论列表</template>
+        </el-menu-item>
+        <el-menu-item index="6" @click="$router.push({ name: 'four' })">
+          <el-icon>
+            <UserFilled />
+          </el-icon>
+          <template #title>个人中心</template>
+        </el-menu-item>
+        <el-menu-item index="7" v-if="userStore.user.isAdmin">
+          <el-icon>
+            <Management />
+          </el-icon>
+          <template #title>用户管理</template>
         </el-menu-item>
       </el-menu>
     </el-scrollbar>
