@@ -40,7 +40,7 @@ const scrollElement = document.documentElement
     width: auto;
     height: 70%;
     position: fixed;
-    top: 10%;
+    top: 180px;
     border-radius: 15px;
     .icon-toc {
       display: flex;

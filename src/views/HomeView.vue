@@ -5,6 +5,7 @@ import GitNoArticle from '@/components/GitNoArticle.vue'
 import { useTokenStore } from '@/stores/token.js'
 import { useUserStore } from '@/stores/user'
 import { getUserInfo } from '@/api/user'
+import Readme from '@/components/article/Readme.vue'
 
 const tokenStore = useTokenStore()
 const userStore = useUserStore()
@@ -43,7 +44,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <GitNoArticle :text="text" />
+  <Readme :text="text" />
   <el-pagination
     :default-page-size="10"
     :pager-count="5"

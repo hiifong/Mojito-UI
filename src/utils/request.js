@@ -24,13 +24,10 @@ request.interceptors.request.use((config) => {
 request.interceptors.response.use(
   (response) => response,
   async (error) => {
-    if (error.response.status === 401) {
-      ElMessage.error('Token失效, 需要重新登录才可以!')
-      router.push({ name: 'login' })
+    if (error.response.status !== 200) {
+      ElMessage.error(error.response.data.msg)
+      await router.push({ name: 'login' })
       return
-    } else if (error.response.status === 403) {
-      ElMessage.error('当前操作权限不足')
-      return { data: { code: '123456' } }
     }
     return Promise.reject(error)
   }
