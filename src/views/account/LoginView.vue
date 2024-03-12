@@ -105,7 +105,7 @@ const formRef = ref('')
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px gray;
+    box-shadow: 0 4px 10px gray;
 
     .el-form-item {
       margin-top: 20px;
