@@ -3,8 +3,11 @@ import { reactive, ref } from 'vue'
 import { useTokenStore } from '@/stores/token.js'
 import { useRoute, useRouter } from 'vue-router'
 import { login } from '@/api/account.js'
+import { getUserInfo } from '@/api/user.js'
+import { useUserStore } from '@/stores/user.js'
 
-const store = useTokenStore()
+const tokenStore = useTokenStore()
+const userStore = useUserStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -35,12 +38,26 @@ const onSubmit = async () => {
 
   console.log('data: ', data)
   // 保存token信息
-  store.setToken(data)
+  tokenStore.setToken(data)
 
   isLoading.value = false
 
-  ElMessage.success('登录成功!')
+  const token = tokenStore.getToken()
 
+  console.log('token: ', token)
+  console.log('username: ', token.username)
+
+  ElMessage.success('登录成功!')
+  const info = await getUserInfo(token.username).then((res) => {
+    if (res.data.code !== 1) {
+      ElMessage.error(res.data.msg)
+      throw new Error('获取用户信息失败')
+    }
+    return res.data.data
+  })
+
+  console.log('userinfo: ', info)
+  userStore.setUserInfo(info.user)
   router.push(route.query.redirect || '/')
 }
 
@@ -59,7 +76,6 @@ const rules = ref({
 
 // 定义是否登录加载中
 const isLoading = ref(false)
-
 const formRef = ref('')
 </script>
 <template>

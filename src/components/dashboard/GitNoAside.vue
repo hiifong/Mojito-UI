@@ -133,13 +133,17 @@ const handleClose = (key, keyPath) => {
           </el-icon>
           <template #title>评论列表</template>
         </el-menu-item>
-        <el-menu-item index="6" @click="$router.push({ name: 'four' })">
+        <el-menu-item index="6" @click="$router.push({ name: 'user-info' })">
           <el-icon>
             <UserFilled />
           </el-icon>
           <template #title>个人中心</template>
         </el-menu-item>
-        <el-menu-item index="7" v-if="userStore.user.isAdmin">
+        <el-menu-item
+          index="7"
+          v-if="userStore.user.isAdmin"
+          @click="$router.push({ name: 'user-list' })"
+        >
           <el-icon>
             <Management />
           </el-icon>

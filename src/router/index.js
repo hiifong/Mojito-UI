@@ -63,11 +63,20 @@ const router = createRouter({
           meta: { title: 'dashboard' }
         },
         {
-          path: '/dashboard/four',
-          name: 'four',
-          component: () => import('@/views/dashboard/Index.vue'),
+          path: '/dashboard/user-info',
+          name: 'user-info',
+          component: () => import('@/views/dashboard/UserInfo.vue'),
           meta: {
-            title: 'four'
+            title: '个人中心'
+          }
+        },
+        {
+          path: '/dashboard/user-list',
+          name: 'user-list',
+          component: () => import('@/views/dashboard/UserList.vue'),
+          meta: {
+            title: '用户管理',
+            requiresAuth: true
           }
         }
       ]

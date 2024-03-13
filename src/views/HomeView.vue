@@ -24,22 +24,6 @@ onMounted(async () => {
     .catch(function (err) {
       console.log('error:', err)
     })
-
-  const token = tokenStore.getToken()
-
-  console.log('token: ', token)
-  console.log('username: ', token.username)
-
-  const data = await getUserInfo(token.username).then((res) => {
-    if (res.data.code !== 1) {
-      ElMessage.error(res.data.msg)
-      throw new Error('获取用户信息失败')
-    }
-    return res.data.data
-  })
-
-  console.log('userinfo: ', data)
-  userStore.setUserInfo(data.user)
 })
 </script>
 

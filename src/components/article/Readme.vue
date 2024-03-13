@@ -25,7 +25,6 @@ defineProps({
 
 <style lang="scss" scoped>
 .readme {
-
   .divider {
     width: 60%;
     margin: auto;
