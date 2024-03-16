@@ -1,14 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
-import GitNoArticle from '@/components/GitNoArticle.vue'
-import { useTokenStore } from '@/stores/token.js'
-import { useUserStore } from '@/stores/user'
-import { getUserInfo } from '@/api/user'
 import Readme from '@/components/article/Readme.vue'
-
-const tokenStore = useTokenStore()
-const userStore = useUserStore()
 
 const total = ref(10000)
 const text = ref('')
