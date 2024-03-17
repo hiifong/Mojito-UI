@@ -2,7 +2,6 @@ import request from '@/utils/request'
 import { useTokenStore } from '@/stores/token'
 
 export const register = (data) => {
-  console.log('register data:', data)
   return request({
     method: 'POST',
     url: '/register',
@@ -20,8 +19,16 @@ export const login = (data) => {
 
 export const logout = () => {
   return request({
-    method: 'POST',
+    method: 'GET',
     url: '/logout'
+  })
+}
+
+export const forgetPassword = (data) => {
+  return request({
+    method: 'POST',
+    url: 'forgetPassword',
+    data: data
   })
 }
 

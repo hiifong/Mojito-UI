@@ -48,7 +48,7 @@ const onSubmit = async () => {
   console.log('username: ', token.username)
 
   ElMessage.success('登录成功!')
-  const info = await getUserInfo(token.username).then((res) => {
+  const info = await getUserInfo().then((res) => {
     if (res.data.code !== 1) {
       ElMessage.error(res.data.msg)
       throw new Error('获取用户信息失败')
