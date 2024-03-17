@@ -11,6 +11,7 @@ let form = reactive({
   id: 0,
   username: '',
   lowerName: '',
+  password: '',
   bio: '',
   avatar: '',
   primaryEmail: '',
@@ -102,6 +103,9 @@ const resetForm = (formEl) => {
       </el-form-item>
       <el-form-item prop="lowerName" label="用户名(小写)">
         <el-input v-model="form.lowerName" disabled />
+      </el-form-item>
+      <el-form-item prop="password" label="密码">
+        <el-input v-model="form.password" type="password" show-password />
       </el-form-item>
       <el-form-item prop="bio" label="简介">
         <el-input v-model="form.bio" type="textarea" />
