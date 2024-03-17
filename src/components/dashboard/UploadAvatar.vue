@@ -72,7 +72,7 @@ const beforeAvatarUpload = (rawFile) => {
     :show-file-list="false"
     :before-upload="beforeAvatarUpload"
   >
-    <el-avatar v-if="avatar" :src="avatar" class="avatar">
+    <el-avatar v-if="avatar" :src="avatar" fit="fill" class="avatar">
       <img :src="avatar" alt="默认头像" />
     </el-avatar>
     <el-icon v-else class="avatar-icon">

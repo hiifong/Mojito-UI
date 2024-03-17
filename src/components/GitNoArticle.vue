@@ -1,7 +1,9 @@
 <script setup>
-import { MdPreview, MdCatalog } from 'md-editor-v3'
+import { MdCatalog, MdPreview } from 'md-editor-v3'
 import 'md-editor-v3/lib/preview.css'
+import { useUserStore } from '@/stores/user.js'
 
+const userStore = useUserStore()
 const id = 'preview-only'
 
 const props = defineProps({
@@ -13,7 +15,12 @@ const scrollElement = document.documentElement
 <template>
   <el-row justify="center">
     <el-col :span="12">
-      <MdPreview :editorId="id" :modelValue="text" />
+      <MdPreview :editorId="id" :modelValue="text"
+                 :theme="userStore.user.setting.defaultTheme"
+                 :show-code-row-number="userStore.user.setting.showCodeRowNumber"
+                 :code-theme="userStore.user.setting.codeTheme"
+                 :preview-theme="userStore.user.setting.previewTheme"
+      />
     </el-col>
     <el-col :span="3">
       <el-scrollbar>
@@ -36,18 +43,21 @@ const scrollElement = document.documentElement
   border-radius: 4px;
   display: flex;
   align-items: center;
+
   .el-scrollbar {
     width: auto;
     height: 70%;
     position: fixed;
     top: 180px;
     border-radius: 15px;
+
     .icon-toc {
       display: flex;
       justify-content: center;
       width: 40px;
       height: 40px;
     }
+
     .toc {
       background-color: #eee;
     }

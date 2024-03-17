@@ -20,7 +20,14 @@ request.interceptors.request.use((config) => {
 
 // 响应拦截器
 request.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    let data = response.data
+    console.log(data)
+    if (data.code === 1 ) {
+      ElMessage.success(data.msg)
+    }
+    return response
+  },
   async (error) => {
     if (error.response.status !== 200) {
       ElMessage.error(error.response.data.msg)

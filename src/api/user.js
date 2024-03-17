@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export const updateUser = (data) => {
   return request({
-    method: 'PUT',
+    method: 'POST',
     url: '/user',
     data: data
   })

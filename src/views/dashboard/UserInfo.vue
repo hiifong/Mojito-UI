@@ -1,9 +1,12 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import dayjs from 'dayjs'
-import { getUserInfo } from '@/api/user.js'
+import { getUserInfo, updateUser } from '@/api/user.js'
 import UploadAvatar from '@/components/dashboard/UploadAvatar.vue'
+import { useUserStore } from '@/stores/user.js'
 
+
+const userStore = useUserStore()
 let form = reactive({
   id: 0,
   username: '',
@@ -15,12 +18,22 @@ let form = reactive({
   lastLoginAt: '',
   defaultBranch: '',
   defaultTheme: '',
+  previewTheme: '',
   codeTheme: '',
   showCodeRowNumber: false
 })
 const formRef = ref()
 
 const themes = ref(['light', 'dark'])
+
+const previewThemes = ref([
+  'default',
+  'github',
+  'vuepress',
+  'mk-cute',
+  'smart-blue',
+  'cyanosis'
+])
 
 const codeThemes = ref([
   'atom',
@@ -33,28 +46,35 @@ const codeThemes = ref([
   'stackoverflow'
 ])
 
-getUserInfo().then(resp => {
-  const data = resp.data.data.user
-  form.id = data.id
-  form.username = data.username
-  form.lowerName = data.lowerName
-  form.bio = data.bio
-  form.avatar = data.avatar
-  form.primaryEmail = data.primaryEmail
-  form.emails = data.emails
-  form.lastLoginAt = data.lastLoginAt
-  form.defaultBranch = data.setting.defaultBranch
-  form.defaultTheme = data.setting.defaultTheme
-  form.codeTheme = data.setting.codeTheme
-  form.showCodeRowNumber = data.setting.showCodeRowNumber
-})
+const GetUserInfo = async () => {
+  await getUserInfo().then(resp => {
+    const data = resp.data.data.user
+    userStore.user = data
+    form.id = data.id
+    form.username = data.username
+    form.lowerName = data.lowerName
+    form.bio = data.bio
+    form.avatar = data.avatar
+    form.primaryEmail = data.primaryEmail
+    form.emails = data.emails
+    form.lastLoginAt = data.lastLoginAt
+    form.defaultBranch = data.setting.defaultBranch
+    form.defaultTheme = data.setting.defaultTheme
+    form.previewTheme = data.setting.previewTheme
+    form.codeTheme = data.setting.codeTheme
+    form.showCodeRowNumber = data.setting.showCodeRowNumber
+  })
+}
+
+GetUserInfo()
 
 const updateAvatar = (url) => {
   form.avatar = url
 }
 
-const onSubmit = () => {
-  console.log('submit!')
+const onSubmit = async (form) => {
+  await updateUser(form)
+  await GetUserInfo()
 }
 const resetForm = (formEl) => {
   if (!formEl) return
@@ -102,6 +122,11 @@ const resetForm = (formEl) => {
           <el-option v-for="theme in themes" :label="theme" :value="theme" :key="theme" />
         </el-select>
       </el-form-item>
+      <el-form-item prop="previewTheme" label="预览主题">
+        <el-select v-model="form.previewTheme" placeholder="请选择你的主题">
+          <el-option v-for="theme in previewThemes" :label="theme" :value="theme" :key="theme" />
+        </el-select>
+      </el-form-item>
       <el-form-item prop="codeTheme" label="代码主题">
         <el-select v-model="form.codeTheme" placeholder="请选择你的代码主题">
           <el-option v-for="theme in codeThemes" :label="theme" :value="theme" :key="theme" />
@@ -111,7 +136,7 @@ const resetForm = (formEl) => {
         <el-switch v-model="form.showCodeRowNumber" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">更新</el-button>
+        <el-button type="primary" @click="onSubmit(form)">更新</el-button>
         <el-button @click="resetForm(formRef)">重置</el-button>
         <el-button type="danger">删除账号</el-button>
       </el-form-item>
