@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import { useUserStore } from '@/stores/user.js'
+
+const userStore = useUserStore()
 let activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
   console.log(key, '=====', keyPath)
@@ -21,7 +24,7 @@ const errorHandler = () => true
         @click="$router.push({ name: 'home' })"
         style="width: 80px; height: 40px"
         src="@/assets/logo.svg"
-        alt="Element logo"
+        alt="GitNo logo"
       />
     </el-menu-item>
     <div class="flex-grow" />
@@ -37,7 +40,7 @@ const errorHandler = () => true
     </el-menu-item>
     <el-sub-menu index="7">
       <template #title>
-        <el-avatar :size="40" src="https://hiif.ong/logo.png" @error="errorHandler">
+        <el-avatar :size="40" :src="userStore.user.avatar" @error="errorHandler">
           <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
         </el-avatar>
       </template>

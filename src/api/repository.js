@@ -52,7 +52,7 @@ export const getRepositoryByName = (name) => {
   })
 }
 
-export const updateDefaultBranch = (name,data) => {
+export const updateDefaultBranch = (name, data) => {
   return request({
     method: 'PUT',
     url: `/repository/${name}/branch`,

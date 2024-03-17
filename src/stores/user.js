@@ -4,22 +4,14 @@ import { defineStore } from 'pinia'
 export const useUserStore = defineStore(
   'user',
   () => {
-    const user = ref({
-      id: 0,
-      username: '',
-      bio: '',
-      isAdmin: false
-    })
+    const user = ref({})
 
     function getUserInfo() {
       return user.value
     }
 
     function setUserInfo(info) {
-      user.value.id = info.id
-      user.value.username = info.username
-      user.value.bio = info.bio
-      user.value.isAdmin = info.isAdmin
+      user.value = info
     }
 
     return { user, getUserInfo, setUserInfo }

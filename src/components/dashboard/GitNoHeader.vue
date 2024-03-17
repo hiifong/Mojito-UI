@@ -3,7 +3,9 @@ import { ref } from 'vue'
 import { Expand, Fold } from '@element-plus/icons-vue'
 import { ArrowRight } from '@element-plus/icons-vue'
 import { isCollapse } from '@/layout/isCollapse'
+import { useUserStore } from '@/stores/user.js'
 
+const userStore = useUserStore()
 const activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
   console.log(key, keyPath)
@@ -40,7 +42,7 @@ const errorHandler = () => {}
       >
         <el-sub-menu index="1">
           <template #title>
-            <el-avatar :size="40" src="https://hiif.ong/logo.png" @error="errorHandler">
+            <el-avatar :size="40" :src="userStore.user.avatar" @error="errorHandler">
               <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
             </el-avatar>
           </template>

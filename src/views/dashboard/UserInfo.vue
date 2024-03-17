@@ -1,21 +1,21 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import dayjs from 'dayjs'
-import { Plus } from '@element-plus/icons-vue'
+import { getUserInfo } from '@/api/user.js'
+import UploadAvatar from '@/components/dashboard/UploadAvatar.vue'
 
-// do not use same name with ref
-const form = reactive({
+let form = reactive({
   id: 0,
-  username: 'hiifong',
-  lowerName: 'hiifong',
-  bio: "I'm hiifong",
-  avatar: 'https://hiif.ong/logo.png',
-  primaryEmail: 'i@hiif.ong',
-  emails: ['i@hiif.ong', 'hiifog@qq.com', 'hiifong.dev@gamil.com'],
-  lastLoginAt: '1710222722',
-  defaultBranch: 'main',
-  defaultTheme: 'aa',
-  codeTheme: 'github',
+  username: '',
+  lowerName: '',
+  bio: '',
+  avatar: '',
+  primaryEmail: '',
+  emails: [],
+  lastLoginAt: '',
+  defaultBranch: '',
+  defaultTheme: '',
+  codeTheme: '',
   showCodeRowNumber: false
 })
 const formRef = ref()
@@ -33,28 +33,32 @@ const codeThemes = ref([
   'stackoverflow'
 ])
 
+getUserInfo().then(resp => {
+  const data = resp.data.data.user
+  form.id = data.id
+  form.username = data.username
+  form.lowerName = data.lowerName
+  form.bio = data.bio
+  form.avatar = data.avatar
+  form.primaryEmail = data.primaryEmail
+  form.emails = data.emails
+  form.lastLoginAt = data.lastLoginAt
+  form.defaultBranch = data.setting.defaultBranch
+  form.defaultTheme = data.setting.defaultTheme
+  form.codeTheme = data.setting.codeTheme
+  form.showCodeRowNumber = data.setting.showCodeRowNumber
+})
+
+const updateAvatar = (url) => {
+  form.avatar = url
+}
+
 const onSubmit = () => {
   console.log('submit!')
 }
 const resetForm = (formEl) => {
   if (!formEl) return
   formEl.resetFields()
-}
-
-const handleAvatarSuccess = (response, uploadFile) => {
-  form.avatar = URL.createObjectURL(uploadFile.raw)
-}
-
-const beforeAvatarUpload = (rawFile) => {
-  console.log(rawFile.type)
-  if (!(rawFile.type !== 'image/jpeg' || rawFile.type !== 'image/png')) {
-    ElMessage.error('不允许的图片格式')
-    return false
-  } else if (rawFile.size / 1024 / 1024 > 2) {
-    ElMessage.error('图片大小不能超过2M!')
-    return false
-  }
-  return true
 }
 </script>
 
@@ -68,21 +72,7 @@ const beforeAvatarUpload = (rawFile) => {
       class="user-form"
     >
       <el-form-item prop="avatar">
-        <el-upload
-          class="avatar"
-          action=""
-          :show-file-list="false"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload"
-        >
-          <el-avatar v-if="form.avatar" :src="form.avatar" class="avatar">
-            <img :src="form.avatar" alt="默认头像" />
-          </el-avatar>
-          <el-icon v-else class="avatar-icon">
-            <Plus />
-            上传头像
-          </el-icon>
-        </el-upload>
+        <UploadAvatar :avatar="form.avatar" @updateAvatar="updateAvatar" />
       </el-form-item>
       <el-form-item prop="id" label="用户ID">
         <el-input v-model="form.id" disabled />
@@ -98,7 +88,7 @@ const beforeAvatarUpload = (rawFile) => {
       </el-form-item>
       <el-form-item prop="primaryEmail" label="主邮箱">
         <el-select v-model="form.primaryEmail" placeholder="请选择你的主要邮箱">
-          <el-option v-for="email in form.emails" :label="email" :value="email" :key="email" />
+          <el-option v-for="e in form.emails" :label="e.email" :value="e.email" :key="e.email" />
         </el-select>
       </el-form-item>
       <el-form-item label="最近一次登录">
@@ -135,18 +125,6 @@ const beforeAvatarUpload = (rawFile) => {
 
   .user-form {
     margin: auto;
-
-    .avatar {
-      width: 200px;
-      height: 200px;
-      margin: auto;
-
-      .avatar-icon {
-        width: 200px;
-        height: 200px;
-        margin: auto;
-      }
-    }
   }
 }
 </style>
