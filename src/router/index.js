@@ -60,7 +60,31 @@ const router = createRouter({
           path: '',
           name: 'dashboard',
           component: () => import('@/views/dashboard/Index.vue'),
-          meta: { title: 'dashboard' }
+          meta: { title: '概览' }
+        },
+        {
+          path: '/dashboard/repository',
+          name: 'repository',
+          component: () => import('@/views/dashboard/Repository.vue'),
+          meta: {
+            title: '版本库管理'
+          }
+        },
+        {
+          path: '/dashboard/category',
+          name: 'category',
+          component: () => import('@/views/dashboard/Category.vue'),
+          meta: {
+            title: '分类管理'
+          }
+        },
+        {
+          path: '/dashboard/comment',
+          name: 'comment',
+          component: () => import('@/views/dashboard/Comment.vue'),
+          meta: {
+            title: '评论管理'
+          }
         },
         {
           path: '/dashboard/user-info',
