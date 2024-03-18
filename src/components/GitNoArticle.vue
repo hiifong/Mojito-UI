@@ -15,11 +15,13 @@ const scrollElement = document.documentElement
 <template>
   <el-row justify="center">
     <el-col :span="12">
-      <MdPreview :editorId="id" :modelValue="text"
-                 :theme="userStore.user.setting.defaultTheme"
-                 :show-code-row-number="userStore.user.setting.showCodeRowNumber"
-                 :code-theme="userStore.user.setting.codeTheme"
-                 :preview-theme="userStore.user.setting.previewTheme"
+      <MdPreview
+        :editorId="id"
+        :modelValue="text"
+        :theme="userStore.user.setting.defaultTheme"
+        :show-code-row-number="userStore.user.setting.showCodeRowNumber"
+        :code-theme="userStore.user.setting.codeTheme"
+        :preview-theme="userStore.user.setting.previewTheme"
       />
     </el-col>
     <el-col :span="3">

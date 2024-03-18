@@ -23,7 +23,7 @@ request.interceptors.response.use(
   (response) => {
     let data = response.data
     console.log(data)
-    if (data.code === 1 ) {
+    if (data.code === 1) {
       ElMessage.success(data.msg)
     }
     return response

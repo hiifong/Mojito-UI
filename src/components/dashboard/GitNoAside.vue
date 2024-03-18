@@ -15,6 +15,10 @@ import {
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
+
+const handleSelect = (index, indexPath, item, routeResult) => {
+  console.log(index)
+}
 const handleOpen = (key, keyPath) => {
   console.log(key, keyPath)
 }
@@ -39,6 +43,7 @@ const handleClose = (key, keyPath) => {
         class="aside-menu"
         background-color="#eee"
         :collapse="isCollapse"
+        @select="handleSelect"
         @open="handleOpen"
         @close="handleClose"
       >

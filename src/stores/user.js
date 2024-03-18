@@ -4,7 +4,15 @@ import { defineStore } from 'pinia'
 export const useUserStore = defineStore(
   'user',
   () => {
-    const user = ref({})
+    const user = ref({
+      setting: {
+        defaultBranch: 'main',
+        defaultTheme: 'light',
+        previewTheme: 'default',
+        codeTheme: 'atom',
+        showCodeRowNumber: true
+      }
+    })
 
     function getUserInfo() {
       return user.value

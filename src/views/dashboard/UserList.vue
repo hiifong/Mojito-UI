@@ -1,369 +1,81 @@
 <script setup>
 import { ref } from 'vue'
+import { getUserList } from '@/api/user'
+import dayjs from 'dayjs'
+import { Delete, Edit, Mute } from '@element-plus/icons-vue'
 
-const userList = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  }
-]
+let userList = ref([])
 
-const current = ref(1)
-const total = ref(1000)
-const pageSize = ref(10)
+const paginationData = ref({
+  page: 1,
+  total: 0,
+  pageSize: 10
+})
 
-const handleEdit = (index, row) => {
-  console.log(index, row)
+const GetUserList = async (data) => {
+  await getUserList(data).then((res) => {
+    const data = res.data.data
+    console.log(data)
+    userList.value = data.list
+    paginationData.value.total = data.count
+  })
 }
-const handleDelete = (index, row) => {
-  console.log(index, row.date)
+
+GetUserList(paginationData.value)
+
+const timeFormat = (row, column, cellValue, index) => {
+  if (cellValue > 0) {
+    return dayjs.unix(cellValue).format('YYYY/MM/DD HH:mm:ss')
+  }
+  return ''
+}
+
+const handleEdit = (id) => {
+  console.log('handleEdit:', id)
+}
+const handleDisable = (id) => {
+  console.log('handleDisable:', id)
+}
+const handleDelete = (id) => {
+  console.log('handleDelete:', id)
 }
 
 const handleSizeChange = (val) => {
   console.log(`${val} items per page`)
-  pageSize.value = val
+  paginationData.value.pageSize = val
+  GetUserList(paginationData.value)
 }
 const handleCurrentChange = (val) => {
   console.log(`current page: ${val}`)
+  paginationData.value.page = val
+  GetUserList(paginationData.value)
 }
 </script>
 
 <template>
   <div class="user-list">
     <div class="table">
-      <el-table
-        :data="userList"
-        :default-sort="{ prop: 'date', order: 'descending' }"
-        max-height="980"
-        stripe
-        border
-        style="width: 100%"
-      >
-        <el-table-column fixed prop="date" label="Date" sortable width="180" />
-        <el-table-column prop="name" label="Name" width="180" />
-        <el-table-column prop="address" label="Address" />
-        <el-table-column fixed="right" label="Operations" width="150">
+      <el-table :data="userList" max-height="980" stripe border style="width: 100%">
+        <el-table-column fixed prop="id" label="ID" sortable />
+        <el-table-column prop="username" label="用户名" />
+        <el-table-column prop="bio" label="简介" />
+        <el-table-column prop="isAdmin" label="是否是管理员" />
+        <el-table-column prop="isActive" label="是否已激活账号" />
+        <el-table-column prop="disable" label="是否禁用账号" />
+        <el-table-column prop="lastLoginAt" label="最后一次登录时间" :formatter="timeFormat" />
+        <el-table-column fixed="right" label="操作">
           <template #default="scope">
-            <el-button size="small" type="warning" @click="handleEdit(scope.$index, scope.row)"
+            <el-button size="small" type="primary" @click="handleEdit(scope.row.id)" :icon="Edit"
+              >编辑
+            </el-button>
+            <el-button size="small" type="warning" @click="handleDisable(scope.row.id)" :icon="Mute"
               >禁用
             </el-button>
-            <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)"
+            <el-button
+              size="small"
+              type="danger"
+              @click="handleDelete(scope.$index, scope.row)"
+              :icon="Delete"
               >删除
             </el-button>
           </template>
@@ -373,8 +85,9 @@ const handleCurrentChange = (val) => {
         <el-pagination
           background
           layout="prev, pager, next, total, sizes"
-          :total="total"
-          v-model:page-size="pageSize"
+          :total="paginationData.total"
+          v-model:page-size="paginationData.pageSize"
+          v-model:current-page="paginationData.page"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
         />
@@ -389,9 +102,11 @@ const handleCurrentChange = (val) => {
   height: 100%;
   margin: auto;
 
-  .pagination {
-    width: 50%;
-    margin: 10px auto;
+  .table {
+    .pagination {
+      width: 50%;
+      margin: 10px auto;
+    }
   }
 }
 </style>

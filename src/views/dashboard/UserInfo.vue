@@ -5,7 +5,6 @@ import { getUserInfo, updateUser } from '@/api/user.js'
 import UploadAvatar from '@/components/dashboard/UploadAvatar.vue'
 import { useUserStore } from '@/stores/user.js'
 
-
 const userStore = useUserStore()
 let form = reactive({
   id: 0,
@@ -27,14 +26,7 @@ const formRef = ref()
 
 const themes = ref(['light', 'dark'])
 
-const previewThemes = ref([
-  'default',
-  'github',
-  'vuepress',
-  'mk-cute',
-  'smart-blue',
-  'cyanosis'
-])
+const previewThemes = ref(['default', 'github', 'vuepress', 'mk-cute', 'smart-blue', 'cyanosis'])
 
 const codeThemes = ref([
   'atom',
@@ -48,7 +40,7 @@ const codeThemes = ref([
 ])
 
 const GetUserInfo = async () => {
-  await getUserInfo().then(resp => {
+  await getUserInfo().then((resp) => {
     const data = resp.data.data.user
     userStore.user = data
     form.id = data.id
@@ -77,9 +69,9 @@ const onSubmit = async (form) => {
   await updateUser(form)
   await GetUserInfo()
 }
-const resetForm = (formEl) => {
-  if (!formEl) return
-  formEl.resetFields()
+const resetForm = () => {
+  form.password = ''
+  GetUserInfo()
 }
 </script>
 

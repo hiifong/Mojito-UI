@@ -36,8 +36,6 @@ const onSubmit = async () => {
 
   isLoading.value = false
 
-  ElMessage.success('注册成功!')
-
   await router.push(route.query.redirect || '/login')
 }
 

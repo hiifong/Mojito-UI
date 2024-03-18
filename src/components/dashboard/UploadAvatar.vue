@@ -12,6 +12,7 @@ const emits = defineEmits(['updateAvatar'])
 const host = 'https://qiniu.hiif.ong/'
 const multiple = ref(false)
 const token = ref('')
+let url = ref('')
 let putExtra = {}
 let config = {
   //   useCdnDomain: true,
@@ -42,7 +43,7 @@ const UploadImage = async (param) => {
     complete(res) {
       // ...
       console.log('complete', res)
-      emits('updateAvatar', host+res.key)
+      url.value = host + res.key
     }
   }
   qiniu.getUploadUrl(config, token.value).then((res) => {
@@ -50,6 +51,10 @@ const UploadImage = async (param) => {
   })
   const subscription = observable.subscribe(observer)
   console.log(subscription)
+}
+
+const handleAvatarSuccess = async () => {
+  emits('updateAvatar', url)
 }
 
 const beforeAvatarUpload = (rawFile) => {
@@ -68,8 +73,10 @@ const beforeAvatarUpload = (rawFile) => {
   <el-upload
     class="avatar"
     action=""
+    :multiple="multiple"
     :http-request="UploadImage"
     :show-file-list="false"
+    :on-success="handleAvatarSuccess"
     :before-upload="beforeAvatarUpload"
   >
     <el-avatar v-if="avatar" :src="avatar" fit="fill" class="avatar">
@@ -87,7 +94,8 @@ const beforeAvatarUpload = (rawFile) => {
   width: 200px;
   height: 200px;
   margin: auto;
-
+  border: 1px solid #eee;
+  border-radius: 50%;
   .avatar-icon {
     width: 200px;
     height: 200px;
