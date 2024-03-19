@@ -81,17 +81,17 @@ const handleCurrentChange = (val) => {
           </template>
         </el-table-column>
       </el-table>
-      <div class="pagination">
-        <el-pagination
-          background
-          layout="prev, pager, next, total, sizes"
-          :total="paginationData.total"
-          v-model:page-size="paginationData.pageSize"
-          v-model:current-page="paginationData.page"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
-      </div>
+    </div>
+    <div class="pagination">
+      <el-pagination
+        background
+        layout="prev, pager, next, total, sizes"
+        :total="paginationData.total"
+        v-model:page-size="paginationData.pageSize"
+        v-model:current-page="paginationData.page"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      />
     </div>
   </div>
 </template>
@@ -103,10 +103,10 @@ const handleCurrentChange = (val) => {
   margin: auto;
 
   .table {
-    .pagination {
-      width: 50%;
-      margin: 10px auto;
-    }
+  }
+
+  .pagination {
+    margin-top: 20px;
   }
 }
 </style>

@@ -26,14 +26,14 @@ export const getCategoryList = (data) => {
 
 export const getCategory = (id) => {
   return request({
-    method: 'POST',
+    method: 'GET',
     url: `/category/${id}`
   })
 }
 
 export const deleteCategory = (id) => {
   return request({
-    method: 'POST',
+    method: 'DELETE',
     url: `/category/${id}`
   })
 }
