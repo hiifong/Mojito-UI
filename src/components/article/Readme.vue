@@ -48,5 +48,3 @@ defineProps({
   }
 }
 </style>
-
-

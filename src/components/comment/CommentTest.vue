@@ -18,7 +18,8 @@ const config = reactive({
   user: {
     id: 1,
     username: 'jack',
-    avatar: 'https://static.juzicon.com/avatars/avatar-200602130320-HMR2.jpeg?x-oss-process=image/resize,w_100',
+    avatar:
+      'https://static.juzicon.com/avatars/avatar-200602130320-HMR2.jpeg?x-oss-process=image/resize,w_100',
     // 评论id数组 建议:存储方式用户uid和评论id组成关系,根据用户uid来获取对应点赞评论id,然后加入到数组中返回
     likeIds: [1, 2, 3]
   },
@@ -30,13 +31,13 @@ const config = reactive({
 let temp_id = 100
 // 提交评论事件
 const submit = ({ content, parentId, files, finish, reply }) => {
-    let str = '提交评论:' + content + ';\t父id: ' + parentId + ';\t图片:' + files + ';\t被回复评论:'
+  let str = '提交评论:' + content + ';\t父id: ' + parentId + ';\t图片:' + files + ';\t被回复评论:'
   console.log(str, reply)
 
   /**
    * 上传文件后端返回图片访问地址，格式以'||'为分割; 如:  '/static/img/program.gif||/static/img/normal.webp'
    */
-  let contentImg = files.map(e => createObjectURL(e)).join('||')
+  let contentImg = files.map((e) => createObjectURL(e)).join('||')
 
   const comment = {
     id: String((temp_id += 1)),
@@ -81,7 +82,8 @@ config.comments = [
     createTime: '1分钟前',
     user: {
       username: '落🤍尘',
-      avatar: 'https://static.juzicon.com/avatars/avatar-200602130320-HMR2.jpeg?x-oss-process=image/resize,w_100',
+      avatar:
+        'https://static.juzicon.com/avatars/avatar-200602130320-HMR2.jpeg?x-oss-process=image/resize,w_100',
       level: 6,
       homeLink: '/1'
     }

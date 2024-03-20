@@ -188,7 +188,7 @@ const handleCurrentChange = async (val) => {
       <template #footer>
         <div class="dialog-footer">
           <el-button @click="editCategoryVisible = false">取消</el-button>
-          <el-button type="primary" @click="editCategory(updateForm)" :isLoadin="isLoading"
+          <el-button type="primary" @click="editCategory(updateForm)" :loading="isLoading"
             >更新</el-button
           >
         </div>

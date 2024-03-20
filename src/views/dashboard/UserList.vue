@@ -50,7 +50,7 @@ const codeThemes = ref([
 const GetUserInfo = async (id) => {
   await getUserInfo(id).then((resp) => {
     const data = resp.data.data.user
-    console.log('user: ', data);
+    console.log('user: ', data)
     form.id = data.id
     form.username = data.username
     form.lowerName = data.lowerName
