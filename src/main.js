@@ -3,6 +3,8 @@ import '@/assets/scss/main.scss'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import UndrawUi from 'undraw-ui'
+import 'undraw-ui/dist/style.css'
 
 import App from './App.vue'
 import router from './router'
@@ -14,5 +16,6 @@ pinia.use(piniaPluginPersistedstate)
 
 app.use(pinia)
 app.use(router)
+app.use(UndrawUi)
 
 app.mount('#app')

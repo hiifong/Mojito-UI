@@ -27,8 +27,8 @@ const router = createRouter({
         },
         {
           path: '/comment',
-          name: 'comment',
-          component: () => import('@/components/comment/Comment.vue'),
+          name: 'comment1',
+          component: () => import('@/components/comment/CommentTest.vue'),
           meta: {
             title: 'comment'
           }
