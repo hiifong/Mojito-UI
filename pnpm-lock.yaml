@@ -19,7 +19,7 @@ dependencies:
     version: 2.6.1(vue@3.4.21)
   md-editor-v3:
     specifier: ^4.12.1
-    version: 4.12.1(@codemirror/view@6.26.0)(@lezer/common@1.2.1)(vue@3.4.21)
+    version: 4.12.2(@codemirror/view@6.26.0)(@lezer/common@1.2.1)(vue@3.4.21)
   normalize.css:
     specifier: ^8.0.1
     version: 8.0.1
@@ -1948,8 +1948,8 @@ packages:
       uc.micro: 2.1.0
     dev: false
 
-  /md-editor-v3@4.12.1(@codemirror/view@6.26.0)(@lezer/common@1.2.1)(vue@3.4.21):
-    resolution: {integrity: sha512-TbGsqWTnKQkQWnm1oAGm8yH+OD5zHTa49Um6WMcS+Y+M4fLl0gWZbz7NzeyOPtrEU13NlPY6c3IZcWAwdmZdiA==}
+  /md-editor-v3@4.12.2(@codemirror/view@6.26.0)(@lezer/common@1.2.1)(vue@3.4.21):
+    resolution: {integrity: sha512-Ko0MFPDShU5bC34fnMYOCeLsKKaFyBBBsbnusg9weV+tr3jxGfPap7J463SKgtZb76IwRyp1lAlt9NOXbAqEuA==}
     peerDependencies:
       vue: ^3.2.47
     dependencies:
