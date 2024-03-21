@@ -18,11 +18,11 @@ export const useTokenStore = defineStore(
       token.value.username = data.username
     }
 
-    function isLoggedIn() {
+    function isLogin() {
       return !!token.value.token
     }
 
-    return { token, getToken, setToken, isLoggedIn }
+    return { token, getToken, setToken, isLogin }
   },
   {
     persist: true

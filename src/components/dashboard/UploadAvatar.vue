@@ -26,7 +26,7 @@ const UploadImage = async (param) => {
   })
   const observable = await qiniu.upload(
     param.file,
-    'images/' + param.file.name,
+    'avatar/' + param.file.name,
     token.value,
     putExtra,
     config

@@ -134,10 +134,12 @@ const handleDelete = async (id) => {
 const handleSizeChange = async (val) => {
   console.log(`${val} items per page`)
   paginationData.value.pageSize = val
+  await getRepoTableData(paginationData.value)
 }
 const handleCurrentChange = async (val) => {
   console.log(`current page: ${val}`)
   paginationData.value.page = val
+  await getRepoTableData(paginationData.value)
 }
 </script>
 
@@ -181,7 +183,7 @@ const handleCurrentChange = async (val) => {
         <el-form-item prop="description" label="描述" :label-width="formLabelWidth">
           <el-input v-model="repoForm.description" type="textarea" />
         </el-form-item>
-        <el-form-item prop="isPin" label="置顶" :label-width="formLabelWidth">
+        <el-form-item prop="isPin" label="置顶"  :label-width="formLabelWidth">
           <el-switch v-model="repoForm.isPin" />
         </el-form-item>
         <el-form-item prop="isPrivate" label="私有" :label-width="formLabelWidth">
@@ -280,7 +282,7 @@ const handleCurrentChange = async (val) => {
         <el-table-column prop="description" label="描述" />
         <el-table-column prop="isPin" label="置顶" />
         <el-table-column prop="isPrivate" label="私有" />
-        <el-table-column prop="cover" label="封面" />
+        <el-table-column prop="cover" min-width="200" label="封面" />
         <el-table-column prop="defaultBranch" label="默认分支" />
         <el-table-column prop="createdAt" label="创建时间" :formatter="timeFormat" />
         <el-table-column prop="updatedAt" label="更新时间" :formatter="timeFormat" />
