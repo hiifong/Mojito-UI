@@ -11,7 +11,6 @@ onMounted(async () => {
   axios
     .get('https://raw.githubusercontent.com/imzbf/md-editor-v3/develop/README.md')
     .then(function (resp) {
-      console.log('==> data:', resp.data)
       text.value = resp.data
     })
     .catch(function (err) {
@@ -22,7 +21,7 @@ onMounted(async () => {
 
 <template>
   <Readme :text="text" />
-  
+
   <el-pagination
     :default-page-size="10"
     :pager-count="5"

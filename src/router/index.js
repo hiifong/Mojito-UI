@@ -27,18 +27,10 @@ const router = createRouter({
         },
         {
           path: '/comment',
-          name: 'comment1',
-          component: () => import('@/components/comment/CommentTest.vue'),
+          name: 'comment',
+          component: () => import('@/components/comment/Comment.vue'),
           meta: {
             title: 'comment'
-          }
-        },
-        {
-          path: '/todo',
-          name: 'todo',
-          component: () => import('@/components/todo/Todo.vue'),
-          meta: {
-            title: 'todo'
           }
         },
         {
@@ -80,7 +72,7 @@ const router = createRouter({
         },
         {
           path: '/dashboard/comment',
-          name: 'comment',
+          name: 'comment-manager',
           component: () => import('@/views/dashboard/Comment.vue'),
           meta: {
             title: '评论管理'

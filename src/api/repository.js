@@ -18,7 +18,7 @@ export const updateRepository = (data) => {
 
 export const getRepository = (id) => {
   return request({
-    method: 'PUT',
+    method: 'GET',
     url: `/repository/id/${id}`
   })
 }

@@ -1,4 +1,4 @@
-const raw = '/static'
+const raw = import.meta.env.VITE_EMOJI_URL
 
 const faceList = [`${raw}/emoji/smile.webp`, `${raw}/emoji/tv/tv.webp`]
 
