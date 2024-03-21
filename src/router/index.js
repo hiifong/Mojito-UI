@@ -14,15 +14,17 @@ const router = createRouter({
           name: 'home',
           component: HomeView,
           meta: {
-            title: '首页'
+            title: '首页',
+            requiresAuth: true
           }
         },
         {
           path: '/explore',
           name: 'explore',
-          component: () => import('@/components/article/ArticleList.vue'),
+          component: () => import('@/components/repository/RepositoryList.vue'),
           meta: {
-            title: '探索'
+            title: '探索',
+            requiresAuth: true
           }
         },
         {
@@ -30,15 +32,8 @@ const router = createRouter({
           name: 'comment',
           component: () => import('@/components/comment/Comment.vue'),
           meta: {
-            title: 'comment'
-          }
-        },
-        {
-          path: '/list',
-          name: 'list',
-          component: () => import('@/components/article/ArticleList.vue'),
-          meta: {
-            title: 'list'
+            title: 'comment',
+            requiresAuth: true
           }
         }
       ]
@@ -52,14 +47,18 @@ const router = createRouter({
           path: '',
           name: 'dashboard',
           component: () => import('@/views/dashboard/Index.vue'),
-          meta: { title: '概览' }
+          meta: {
+            title: '概览',
+            requiresAuth: true
+          }
         },
         {
           path: '/dashboard/repository',
           name: 'repository',
           component: () => import('@/views/dashboard/Repository.vue'),
           meta: {
-            title: '版本库管理'
+            title: '版本库管理',
+            requiresAuth: true
           }
         },
         {
@@ -67,7 +66,8 @@ const router = createRouter({
           name: 'category',
           component: () => import('@/views/dashboard/Category.vue'),
           meta: {
-            title: '分类管理'
+            title: '分类管理',
+            requiresAuth: true
           }
         },
         {
@@ -75,7 +75,8 @@ const router = createRouter({
           name: 'comment-manager',
           component: () => import('@/views/dashboard/Comment.vue'),
           meta: {
-            title: '评论管理'
+            title: '评论管理',
+            requiresAuth: true
           }
         },
         {
@@ -83,7 +84,8 @@ const router = createRouter({
           name: 'user-info',
           component: () => import('@/views/dashboard/UserInfo.vue'),
           meta: {
-            title: '个人中心'
+            title: '个人中心',
+            requiresAuth: true
           }
         },
         {
@@ -102,7 +104,8 @@ const router = createRouter({
       name: 'upload',
       component: () => import('@/components/GitNoUploadImage.vue'),
       meta: {
-        title: 'upload'
+        title: 'upload',
+        requiresAuth: true
       }
     },
     {
@@ -110,7 +113,8 @@ const router = createRouter({
       name: 'about',
       component: () => import('@/views/AboutView.vue'),
       meta: {
-        title: 'about'
+        title: 'about',
+        requiresAuth: true
       }
     },
     {

@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
-import Readme from '@/components/article/Readme.vue'
+import Readme from '@/components/repository/Readme.vue'
 
 const total = ref(10000)
 const text = ref('')
