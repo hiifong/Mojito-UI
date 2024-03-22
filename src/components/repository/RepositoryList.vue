@@ -38,9 +38,9 @@ const handleCurrentChange = async (val) => {
 <template>
   <div class="repository">
     <div class="container">
+      <h1>版本库列表</h1>
       <div class="repository-list">
         <ul>
-          <h1>版本库列表</h1>
           <li v-for="(item, index) in articelList" :key="index">
             <RepositoryItem :article="item" />
           </li>
@@ -70,6 +70,7 @@ const handleCurrentChange = async (val) => {
     .repository-list {
       display: flex;
       justify-content: center;
+      width: 100%;
     }
     .pagination {
       display: flex;
@@ -78,8 +79,16 @@ const handleCurrentChange = async (val) => {
   }
 }
 
-ul li {
-  list-style: none;
-  margin-bottom: 20px;
+ul {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  // gap: 10px;s
+  li {
+    list-style: none;
+    margin-bottom: 20px;
+    flex-basis: 20%;
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <script setup>
 import IconPicture from '@/components/icons/Picture.vue'
-import dayjs from 'dayjs';
+import dayjs from 'dayjs'
 const props = defineProps({
   article: {}
 })
@@ -9,22 +9,41 @@ const props = defineProps({
 <template>
   <div class="repository-card">
     <div class="repository-cover">
-      <el-image :src="article.cover" fit="fill" lazy>
+      <!-- <el-image :src="article.cover" fit="fill" lazy>
         <template #error>
           <div class="image-slot">
             <IconPicture />
           </div>
         </template>
-      </el-image>
+      </el-image> -->
+
+      <div
+        class="repository-cover-divbg"
+        :style="`background:url('${article.cover}') no-repeat;background-size: cover;`"
+      />
     </div>
     <div class="repository-info">
-      <div class="repository-title">{{ article.title }}</div>
-      <div class="repository-header">
-        <el-tag type="success">{{ article.category.name }}</el-tag>
-        <div class="date">更新于{{ dayjs.unix(article.updatedAt).format('YYYY/MM/DD HH:mm:ss') }}</div>
+      <div class="date">
+        更新于 {{ dayjs.unix(article.updatedAt).format('YYYY/MM/DD HH:mm:ss') }}
       </div>
-      <div class="body">
+      <div class="repository-title">{{ article.title }}</div>
+      <div class="repository-tips">
+        <p class="stars">
+          star: <span>{{ article.numStars }}</span>
+        </p>
+        <p class="defualt-branch" v-if="article.defaultBranch">
+          defualt branch: <span>{{ article.defaultBranch }}</span>
+        </p>
+      </div>
+
+      <div class="description">
         {{ article.description }}
+      </div>
+
+      <div class="repository-tags">
+        <div class="repository-header">
+          <el-tag type="success">{{ article.category.name }}</el-tag>
+        </div>
       </div>
     </div>
   </div>
@@ -32,43 +51,78 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .repository-card {
-  width: 80%;
   border-radius: 15px;
   display: flex;
   justify-content: center;
+  width: 507px;
+  // width: 80%;
+  flex-direction: column;
   box-shadow: 5px 5px 5px 5px #eee;
   .repository-cover {
-    width: 400px;
     overflow: hidden;
     transform: rotate(0deg);
-    .el-image {
+    border-radius: 15px 15px 0 0;
+    overflow: hidden;
+
+    &-divbg {
       width: 100%;
-      height: 100%;
-      border-radius: 15px;
-    }
-    .el-image:hover {
-      transition: all 0.5s;
-      transform: scale(1.2);
+      height: 173px;
+
+      &:hover {
+        transition: all 0.5s;
+        transform: scale(1.2);
+        border-radius: 15px 15px 0 0;
+      }
     }
   }
   .repository-info {
-    width: 80%;
-    height: 100%;
-    padding: 10px;
+    position: relative;
+    // width: 80%;
+    box-sizing: border-box;
+    height: 172px;
+    padding: 10px 15px;
+    padding-bottom: 35px;
+
+    .date {
+      color: #797979;
+      font-size: 12px;
+      grid-area: auto;
+    }
     .repository-title {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 800;
-      text-align: center;
-      .date {
-        font-size: 16px;
-        color: #9a9595;
+
+      margin: 15px 0;
+    }
+
+    .repository-tips {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Helvet';
+      p {
+        font-size: 12px;
+        font-weight: 400;
+        span {
+          font-size: 15px;
+        }
       }
     }
-    .repository-header {
-      height: 25px;
-      display: flex;
-      justify-content: center;
-      margin: 10px auto;
+    .description {
+      margin-top: 10px;
+      font-size: 13px;
+      font-family: 'Helvetica Neue';
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 30px;
+    }
+
+    .repository-tags {
+      position: absolute;
+      bottom: 10px;
     }
   }
 }
