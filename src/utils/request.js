@@ -22,6 +22,8 @@ request.interceptors.request.use((config) => {
 request.interceptors.response.use(
   (response) => {
     let data = response.data
+    // eslint-disable-next-line no-debugger
+    // debugger
     console.log(data)
     if (data.code === 1) {
       ElMessage.success(data.msg)
@@ -29,8 +31,8 @@ request.interceptors.response.use(
     return response
   },
   async (error) => {
+    ElMessage.error(error.response.data.msg)
     if (error.response.status === 401) {
-      ElMessage.error(error.response.data.msg)
       await router.push({ name: 'login' })
       return
     }

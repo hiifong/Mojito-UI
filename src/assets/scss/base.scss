@@ -1,3 +1,10 @@
 /* color palette from <https://github.com/vuejs/theme> */
-:root {
+
+* {
+  margin: 0;
+  padding: 0;
+}
+@font-face {
+  font-family: SmileySans;
+  src: url('./../fonts/SmileySans.otf');
 }
