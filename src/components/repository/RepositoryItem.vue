@@ -7,7 +7,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="repository-card">
+  <div class="repository-card" @click="$router.push({name: 'repository-detail', params: {id: article.id}})">
     <div class="repository-cover">
       <!-- <el-image :src="article.cover" fit="fill" lazy>
         <template #error>

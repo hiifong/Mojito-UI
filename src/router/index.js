@@ -28,6 +28,11 @@ const router = createRouter({
           }
         },
         {
+          path: '/:id',
+          name: 'repository-detail',
+          component: () => import('@/components/repository/RepositoryDetail.vue')
+        },
+        {
           path: '/comment',
           name: 'comment',
           component: () => import('@/components/comment/Comment.vue'),
