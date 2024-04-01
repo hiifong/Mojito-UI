@@ -8,5 +8,4 @@ import RepositoryList from '@/components/repository/RepositoryList.vue'
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

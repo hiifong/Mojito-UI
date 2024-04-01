@@ -10,7 +10,6 @@ const id = 'preview-only'
 defineProps({
   repo: Object
 })
-
 </script>
 <template>
   <div class="main">
@@ -41,5 +40,4 @@ defineProps({
     margin: auto;
   }
 }
-
 </style>

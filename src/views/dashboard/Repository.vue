@@ -184,7 +184,7 @@ const handleCurrentChange = async (val) => {
         <el-form-item prop="description" label="描述" :label-width="formLabelWidth">
           <el-input v-model="repoForm.description" type="textarea" />
         </el-form-item>
-        <el-form-item prop="isPin" label="置顶"  :label-width="formLabelWidth">
+        <el-form-item prop="isPin" label="置顶" :label-width="formLabelWidth">
           <el-switch v-model="repoForm.isPin" />
         </el-form-item>
         <el-form-item prop="isPrivate" label="私有" :label-width="formLabelWidth">
