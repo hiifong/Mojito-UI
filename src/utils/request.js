@@ -22,12 +22,7 @@ request.interceptors.request.use((config) => {
 request.interceptors.response.use(
   (response) => {
     let data = response.data
-    // eslint-disable-next-line no-debugger
-    // debugger
     console.log(data)
-    if (data.code === 1) {
-      ElMessage.success(data.msg)
-    }
     return response
   },
   async (error) => {

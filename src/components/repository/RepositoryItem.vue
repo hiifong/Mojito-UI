@@ -1,15 +1,14 @@
 <script setup>
-import IconPicture from '@/components/icons/Picture.vue'
 import dayjs from 'dayjs'
 const props = defineProps({
-  article: {}
+  repository: {}
 })
 </script>
 
 <template>
-  <div class="repository-card" @click="$router.push({name: 'repository-detail', params: {id: article.id}})">
+  <div class="repository-card" @click="$router.push({name: 'repository-detail', params: {id: repository.id}})">
     <div class="repository-cover">
-      <!-- <el-image :src="article.cover" fit="fill" lazy>
+      <!-- <el-image :src="repository.cover" fit="fill" lazy>
         <template #error>
           <div class="image-slot">
             <IconPicture />
@@ -19,30 +18,30 @@ const props = defineProps({
 
       <div
         class="repository-cover-divbg"
-        :style="`background:url('${article.cover}') no-repeat;background-size: cover;`"
+        :style="`background:url('${repository.cover}') no-repeat;background-size: cover;`"
       />
     </div>
     <div class="repository-info">
       <div class="date">
-        更新于 {{ dayjs.unix(article.updatedAt).format('YYYY/MM/DD HH:mm:ss') }}
+        更新于 {{ dayjs.unix(repository.updatedAt).format('YYYY/MM/DD HH:mm:ss') }}
       </div>
-      <div class="repository-title">{{ article.title }}</div>
+      <div class="repository-title">{{ repository.title }}</div>
       <div class="repository-tips">
         <p class="stars">
-          star: <span>{{ article.numStars }}</span>
+          star: <span>{{ repository.numStars }}</span>
         </p>
-        <p class="defualt-branch" v-if="article.defaultBranch">
-          defualt branch: <span>{{ article.defaultBranch }}</span>
+        <p class="defualt-branch" v-if="repository.defaultBranch">
+          defualt branch: <span>{{ repository.defaultBranch }}</span>
         </p>
       </div>
 
       <div class="description">
-        {{ article.description }}
+        {{ repository.description }}
       </div>
 
       <div class="repository-tags">
         <div class="repository-header">
-          <el-tag type="success">{{ article.category.name }}</el-tag>
+          <el-tag type="success">{{ repository.category.name }}</el-tag>
         </div>
       </div>
     </div>

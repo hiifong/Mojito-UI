@@ -5,7 +5,7 @@ import { getRepositoryList } from '@/api/repository'
 import RepositoryItem from '@/components/repository/RepositoryItem.vue'
 
 const userStore = useUserStore()
-let articelList = ref()
+let repositoryList = ref()
 const paginationData = ref({
   page: 1,
   total: 0,
@@ -16,7 +16,7 @@ const paginationData = ref({
 const getRepoList = async (data) => {
   await getRepositoryList(data).then((res) => {
     console.log('data: ', res.data)
-    articelList.value = res.data.data.list
+    repositoryList.value = res.data.data.list
     paginationData.value.total = res.data.data.count
   })
 }
@@ -41,8 +41,8 @@ const handleCurrentChange = async (val) => {
       <h1>版本库列表</h1>
       <div class="repository-list">
         <ul>
-          <li v-for="(item, index) in articelList" :key="index">
-            <RepositoryItem :article="item" />
+          <li v-for="(item, index) in repositoryList" :key="index">
+            <RepositoryItem :repository="item" />
           </li>
         </ul>
       </div>

@@ -13,6 +13,7 @@ import {
   getBranchList,
   deleteRepository
 } from '@/api/repository.js'
+import { ElMessage } from 'element-plus'
 
 const userStore = useUserStore()
 const addRepositoryVisible = ref(false)
@@ -70,7 +71,7 @@ const addRepository = async (form) => {
     if (res.data.code !== 1) {
       isLoading.value = false
       addRepositoryVisible.value = false
-      throw new Error('创建失败')
+      ElMessage.error(res.data.msg)
     }
     return res
   })

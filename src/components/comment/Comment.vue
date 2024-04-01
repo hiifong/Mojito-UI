@@ -3,9 +3,11 @@ import { reactive, ref } from 'vue'
 import { useUserStore } from '@/stores/user'
 import emoji from '@/assets/emoji/emoji'
 import { UToast, createObjectURL } from 'undraw-ui'
-
-defineProps({})
 const user = useUserStore().user
+
+defineProps({
+  RepoID: Number
+})
 
 const config = reactive({
   user: {
