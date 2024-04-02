@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/user.js'
 import { getCategoryList } from '@/api/category.js'
-import { Delete, Edit } from '@element-plus/icons-vue'
+import { Reading, Delete, Edit } from '@element-plus/icons-vue'
 import {
   createRepository,
   updateRepository,
@@ -273,6 +273,7 @@ const handleCurrentChange = async (val) => {
         border
         scrollbar-always-on
         style="width: 100%"
+        show-overflow-tooltip
       >
         <el-table-column fixed prop="id" label="ID" sortable />
         <el-table-column prop="uid" label="用户ID" />
@@ -283,12 +284,15 @@ const handleCurrentChange = async (val) => {
         <el-table-column prop="description" label="描述" />
         <el-table-column prop="isPin" label="置顶" />
         <el-table-column prop="isPrivate" label="私有" />
-        <el-table-column prop="cover" min-width="200" label="封面" />
+        <el-table-column prop="cover" label="封面" />
         <el-table-column prop="defaultBranch" label="默认分支" />
         <el-table-column prop="createdAt" label="创建时间" :formatter="timeFormat" />
         <el-table-column prop="updatedAt" label="更新时间" :formatter="timeFormat" />
-        <el-table-column fixed="right" label="操作">
+        <el-table-column fixed="right" label="操作" min-width="150" align="center">
           <template #default="scope">
+            <el-button size="small" type="success" @click="$router.push({ name: 'repository-detail', params: { id: scope.row.id } })" :icon="Reading"
+              >查看
+            </el-button>
             <el-button size="small" type="primary" @click="handleEdit(scope.row.id)" :icon="Edit"
               >编辑
             </el-button>
