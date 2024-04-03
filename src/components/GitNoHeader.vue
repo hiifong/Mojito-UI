@@ -1,8 +1,13 @@
 <script setup>
-import { ref } from 'vue'
-import { useUserStore } from '@/stores/user.js'
+import { ref, computed } from 'vue'
+import { useTokenStore } from '@/stores/token'
+import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
+const tokenStore = useTokenStore()
+const isLogin = computed(() => {
+  return tokenStore.token?.length > 0
+})
 let activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
   console.log(key, '=====', keyPath)
@@ -14,7 +19,7 @@ const errorHandler = () => true
 <template>
   <el-menu
     :default-active="activeIndex"
-    class="el-menu-demo"
+    class="gitno-menu"
     mode="horizontal"
     :ellipsis="false"
     @select="handleSelect"
@@ -32,13 +37,13 @@ const errorHandler = () => true
     <el-menu-item index="2" @click="$router.push({ name: 'explore' })">探索</el-menu-item>
     <el-menu-item index="3" @click="$router.push({ name: 'home' })">分类</el-menu-item>
     <el-menu-item index="4" @click="$router.push({ name: 'home' })">话题</el-menu-item>
-    <el-menu-item index="5">
+    <el-menu-item index="5" v-if="!isLogin">
       <el-button color="#5FBDFF" @click="$router.push({ name: 'login' })" round>登录</el-button>
     </el-menu-item>
-    <el-menu-item index="6">
+    <el-menu-item index="6" v-if="!isLogin">
       <el-button color="#AA77FF" @click="$router.push({ name: 'register' })" round>注册</el-button>
     </el-menu-item>
-    <el-sub-menu index="7">
+    <el-sub-menu index="7" v-if="isLogin">
       <template #title>
         <el-avatar :size="40" :src="userStore.user.avatar" @error="errorHandler">
           <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
@@ -49,6 +54,11 @@ const errorHandler = () => true
       >
       <el-menu-item index="7-2" @click="$router.push({ name: 'logout' })">退出登录</el-menu-item>
     </el-sub-menu>
+    <el-menu-item index="7" v-else>
+      <el-avatar :size="40" :src="userStore.user.avatar" @error="errorHandler">
+        <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+      </el-avatar>
+    </el-menu-item>
   </el-menu>
 </template>
 

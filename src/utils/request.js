@@ -13,7 +13,7 @@ request.interceptors.request.use((config) => {
   if (!config.headers) {
     config.headers = {}
   }
-  config.headers.Authorization = store.token?.token
+  config.headers.Authorization = store?.token
 
   return config
 })

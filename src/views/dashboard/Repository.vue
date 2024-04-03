@@ -56,13 +56,13 @@ const isLoading = ref(false)
 const getRepoTableData = async (data) => {
   const list = await getRepositoryList(data).then((res) => {
     if (res.data.code !== 1) {
-      throw new Error('获取用户信息失败')
+      ElMessage.error('获取用户信息失败')
+      return
     }
     return res.data.data
   })
-  console.log('list:', list)
-  paginationData.value.total = list.count
-  tableData.value = list.list
+  paginationData.value.total = list?.count || 0
+  tableData.value = list?.list
 }
 getRepoTableData(paginationData.value)
 const addRepository = async (form) => {

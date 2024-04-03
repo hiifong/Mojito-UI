@@ -4,25 +4,21 @@ import { defineStore } from 'pinia'
 export const useTokenStore = defineStore(
   'token',
   () => {
-    const token = ref({
-      token: '',
-      username: ''
-    })
-
-    function getToken() {
-      return token.value
-    }
+    const token = ref()
 
     function setToken(data) {
-      token.value.token = data.token
-      token.value.username = data.username
+      token.value = data.token
     }
 
     function isLogin() {
-      return !!token.value.token
+      if (token !== "") {
+        return true
+      }else {
+        return false
+      }
     }
 
-    return { token, getToken, setToken, isLogin }
+    return { token, setToken, isLogin }
   },
   {
     persist: true

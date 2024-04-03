@@ -42,10 +42,9 @@ const onSubmit = async () => {
 
   isLoading.value = false
 
-  const token = tokenStore.getToken()
+  const token = tokenStore.token
 
   console.log('token: ', token)
-  console.log('username: ', token.username)
 
   const info = await getUserInfo().then((res) => {
     if (res.data.code !== 1) {
@@ -57,6 +56,7 @@ const onSubmit = async () => {
 
   console.log('userinfo: ', info)
   userStore.setUserInfo(info.user)
+  ElMessage.success('登录成功')
   router.push(route.query.redirect || '/')
 }
 
