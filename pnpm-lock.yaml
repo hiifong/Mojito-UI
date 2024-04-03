@@ -19,7 +19,7 @@ dependencies:
     version: 2.6.3(vue@3.4.21)
   md-editor-v3:
     specifier: ^4.12.3
-    version: 4.12.3(@codemirror/view@6.26.1)(@lezer/common@1.2.1)(vue@3.4.21)
+    version: 4.12.4(@codemirror/view@6.26.1)(@lezer/common@1.2.1)(vue@3.4.21)
   normalize.css:
     specifier: ^8.0.1
     version: 8.0.1
@@ -1044,8 +1044,8 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@vavt/util@1.5.0:
-    resolution: {integrity: sha512-GJ3q7yJp4mjVVjT1PgbyayJu8q6dYpS0H2ojIcd3k7fEyG4sZhjepjmtA12J1n8Cs5HtkHtqdewCH4U5owytQw==}
+  /@vavt/util@1.5.1:
+    resolution: {integrity: sha512-/q/ilzRwZZJlnDAl6DGZ8pinOSAjR91dcck79bi1ujrqYlPaFVHnbmkDeGPuLub6A821rXvtPXVRXULrfMN03Q==}
     dev: false
 
   /@vitejs/plugin-vue@5.0.4(vite@5.2.7)(vue@3.4.21):
@@ -1972,15 +1972,15 @@ packages:
       uc.micro: 2.1.0
     dev: false
 
-  /md-editor-v3@4.12.3(@codemirror/view@6.26.1)(@lezer/common@1.2.1)(vue@3.4.21):
-    resolution: {integrity: sha512-jnQCC/iUsvIBagfzelS4h2Wn0Ft106tKdS2Oo9KFQT7CcItSFb8ci+eZI6skAbcyo/URi32o07MtwmZL63eBJw==}
+  /md-editor-v3@4.12.4(@codemirror/view@6.26.1)(@lezer/common@1.2.1)(vue@3.4.21):
+    resolution: {integrity: sha512-1RN8h2wnkYNEQ9hRdN7myc/wy1g57FyqtypX0dB11hUxRH0Z0PYmlo6gTgAzk3YFxwjjdMTXnZRUckpOvj+/jw==}
     peerDependencies:
       vue: ^3.2.47
     dependencies:
       '@codemirror/lang-markdown': 6.2.4
       '@codemirror/language-data': 6.4.1(@codemirror/view@6.26.1)
       '@types/markdown-it': 13.0.7
-      '@vavt/util': 1.5.0
+      '@vavt/util': 1.5.1
       codemirror: 6.0.1(@lezer/common@1.2.1)
       copy-to-clipboard: 3.3.3
       lru-cache: 10.2.0
