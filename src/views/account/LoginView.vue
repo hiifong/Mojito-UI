@@ -1,10 +1,11 @@
 <script setup>
 import { reactive, ref } from 'vue'
-import { useTokenStore } from '@/stores/token.js'
+import { useTokenStore } from '@/stores/token'
 import { useRoute, useRouter } from 'vue-router'
-import { login } from '@/api/account.js'
-import { getUserInfo } from '@/api/user.js'
-import { useUserStore } from '@/stores/user.js'
+import { login } from '@/api/account'
+import { getUserInfo } from '@/api/user'
+import { useUserStore } from '@/stores/user'
+import { getCaptchaID } from '@/api/captcha'
 
 const tokenStore = useTokenStore()
 const userStore = useUserStore()
@@ -13,8 +14,23 @@ const route = useRoute()
 
 const form = reactive({
   username: '',
-  password: ''
+  password: '',
+  code: '',
+  id: ''
 })
+
+const GetCaptcha = async () => {
+  await getCaptchaID().then(res => {
+    form.id = res.data.data.captchaID
+    console.log('captcha id', form.id)
+  })
+}
+
+GetCaptcha()
+
+const reload = async () => {
+  await GetCaptcha()
+}
 
 // 登录事件处理
 const onSubmit = async () => {
@@ -70,7 +86,11 @@ const rules = ref({
   password: [
     { required: true, message: '密码不能为空', trigger: 'blur' },
     { min: 6, max: 18, message: '密码长度需要6~18位', trigger: 'blur' }
-  ]
+  ],
+  code: [
+    { required: true, message: '验证码不能为空', trigger: 'blur' },
+    { len: 6, message: '验证码为6位', trigger: 'blur' }
+  ],
 })
 
 // 定义是否登录加载中
@@ -93,6 +113,15 @@ const formRef = ref('')
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="form.password" type="password" show-password />
+      </el-form-item>
+      <el-form-item label="验证码" prop="code">
+        <el-input v-model="form.code" />
+      </el-form-item>
+      <el-form-item>
+        <el-image v-if="form.id" :src="`https://vlv.lol/api/v1/captcha/${form.id}.png`"  style="width: 150px; height: 30px;" lazy></el-image>
+        <el-link type="primary" @click="reload"
+        >看不清换一张。
+        </el-link>
       </el-form-item>
       <el-form-item>
         <el-link type="primary" @click="$router.push({ name: 'register' })"
