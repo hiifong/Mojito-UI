@@ -24,6 +24,7 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
           trust_level: 5
+      - name: Update GitNo
         run: |
           git config --global user.name "hiifong"
           git config --global user.email "i@hiifong"
