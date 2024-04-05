@@ -4,22 +4,14 @@ import { Expand, Fold } from '@element-plus/icons-vue'
 import { ArrowRight } from '@element-plus/icons-vue'
 import { isCollapse } from '@/layout/isCollapse'
 import { useUserStore } from '@/stores/user'
-import { logout } from '@/api/account'
-import { useTokenStore } from '@/stores/token'
 import { useRouter } from 'vue-router'
+import { Logout } from '@/utils/logout.js'
 
 const router = useRouter()
-const tokenStore = useTokenStore()
 const userStore = useUserStore()
 const activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
   console.log(key, keyPath)
-}
-
-const onSubmit = async () => {
-  await logout()
-  await tokenStore.setToken({})
-  await router.push({ name: 'login' })
 }
 
 const errorHandler = () => {}
@@ -59,7 +51,7 @@ const errorHandler = () => {}
             </el-avatar>
           </template>
           <el-menu-item index="1-1" @click="$router.push({ name: 'home' })">首页</el-menu-item>
-          <el-menu-item index="1-1" @click="onSubmit">退出登录</el-menu-item>
+          <el-menu-item index="1-1" @click="Logout">退出登录</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </div>
