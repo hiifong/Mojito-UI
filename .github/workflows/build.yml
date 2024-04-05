@@ -29,6 +29,7 @@ jobs:
           git config --global user.email "i@hiifong"
           cd gitno
           cd ui
+          git checkout main
           git fetch
           cd ..
           git add ui
