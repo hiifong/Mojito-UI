@@ -3,13 +3,19 @@ import { ref } from 'vue'
 import { Expand, Fold } from '@element-plus/icons-vue'
 import { ArrowRight } from '@element-plus/icons-vue'
 import { isCollapse } from '@/layout/isCollapse'
-import { useUserStore } from '@/stores/user.js'
+import { useUserStore } from '@/stores/user'
+import { logout } from '@/api/account'
 
 const userStore = useUserStore()
 const activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
   console.log(key, keyPath)
 }
+
+const onSubmit = async () => {
+  await logout()
+}
+
 const errorHandler = () => {}
 </script>
 <template>
@@ -47,7 +53,7 @@ const errorHandler = () => {}
             </el-avatar>
           </template>
           <el-menu-item index="1-1" @click="$router.push({ name: 'home' })">首页</el-menu-item>
-          <el-menu-item index="1-1">退出登录</el-menu-item>
+          <el-menu-item index="1-1" @click="onSubmit">退出登录</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </div>

@@ -20,7 +20,7 @@ const form = reactive({
 })
 
 const GetCaptcha = async () => {
-  await getCaptchaID().then(res => {
+  await getCaptchaID().then((res) => {
     form.id = res.data.data.captchaID
     console.log('captcha id', form.id)
   })
@@ -90,7 +90,7 @@ const rules = ref({
   code: [
     { required: true, message: '验证码不能为空', trigger: 'blur' },
     { len: 6, message: '验证码为6位', trigger: 'blur' }
-  ],
+  ]
 })
 
 // 定义是否登录加载中
@@ -118,10 +118,13 @@ const formRef = ref('')
         <el-input v-model="form.code" />
       </el-form-item>
       <el-form-item>
-        <el-image v-if="form.id" :src="`https://vlv.lol/api/v1/captcha/${form.id}.png`"  style="width: 150px; height: 30px;" lazy></el-image>
-        <el-link type="primary" @click="reload"
-        >看不清换一张。
-        </el-link>
+        <el-image
+          v-if="form.id"
+          :src="`https://vlv.lol/api/v1/captcha/${form.id}.png`"
+          style="width: 150px; height: 30px"
+          lazy
+        />
+        <el-link type="primary" @click="reload">看不清换一张。 </el-link>
       </el-form-item>
       <el-form-item>
         <el-link type="primary" @click="$router.push({ name: 'register' })"

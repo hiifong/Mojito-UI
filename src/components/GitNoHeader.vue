@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { useTokenStore } from '@/stores/token'
 import { useUserStore } from '@/stores/user'
+import { logout } from '@/api/account'
 
 const userStore = useUserStore()
 const tokenStore = useTokenStore()
@@ -14,6 +15,11 @@ const handleSelect = (key, keyPath) => {
   activeIndex.value = key
   console.log('activeIndex: ', activeIndex)
 }
+
+const onSubmit = async () => {
+  await logout()
+}
+
 const errorHandler = () => true
 </script>
 <template>
@@ -52,7 +58,7 @@ const errorHandler = () => true
       <el-menu-item index="7-1" @click="$router.push({ name: 'dashboard' })"
         >Dashboard</el-menu-item
       >
-      <el-menu-item index="7-2" @click="$router.push({ name: 'logout' })">退出登录</el-menu-item>
+      <el-menu-item index="7-2" @click="onSubmit">退出登录</el-menu-item>
     </el-sub-menu>
     <el-menu-item index="7" v-else>
       <el-avatar :size="40" :src="userStore.user.avatar" @error="errorHandler">

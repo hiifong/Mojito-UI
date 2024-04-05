@@ -11,9 +11,9 @@ export const useTokenStore = defineStore(
     }
 
     function isLogin() {
-      if (token !== "") {
+      if (token.value !== '') {
         return true
-      }else {
+      } else {
         return false
       }
     }

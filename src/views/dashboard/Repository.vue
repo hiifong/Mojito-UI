@@ -290,7 +290,11 @@ const handleCurrentChange = async (val) => {
         <el-table-column prop="updatedAt" label="更新时间" :formatter="timeFormat" />
         <el-table-column fixed="right" label="操作" min-width="150" align="center">
           <template #default="scope">
-            <el-button size="small" type="success" @click="$router.push({ name: 'repository-detail', params: { id: scope.row.id } })" :icon="Reading"
+            <el-button
+              size="small"
+              type="success"
+              @click="$router.push({ name: 'repository-detail', params: { id: scope.row.id } })"
+              :icon="Reading"
               >查看
             </el-button>
             <el-button size="small" type="primary" @click="handleEdit(scope.row.id)" :icon="Edit"
