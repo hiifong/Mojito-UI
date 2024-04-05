@@ -26,7 +26,7 @@ jobs:
       - name: Update GitNo
         run: |
           git config --global user.name "hiifong"
-          git config --global user.email "i@hiifong"
+          git config --global user.email "i@hiif.ong"
           cd gitno
           cd ui
           git checkout main
