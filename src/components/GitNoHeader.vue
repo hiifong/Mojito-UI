@@ -18,6 +18,8 @@ const handleSelect = (key, keyPath) => {
 
 const onSubmit = async () => {
   await logout()
+  await tokenStore.setToken({})
+  this.$router.push({name: 'login'})
 }
 
 const errorHandler = () => true

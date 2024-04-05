@@ -7,15 +7,11 @@ export const useTokenStore = defineStore(
     const token = ref()
 
     function setToken(data) {
-      token.value = data.token
+      token.value = data?.token || ''
     }
 
     function isLogin() {
-      if (token.value !== '') {
-        return true
-      } else {
-        return false
-      }
+      return token.value !== '';
     }
 
     return { token, setToken, isLogin }

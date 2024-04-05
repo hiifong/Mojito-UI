@@ -5,7 +5,9 @@ import { ArrowRight } from '@element-plus/icons-vue'
 import { isCollapse } from '@/layout/isCollapse'
 import { useUserStore } from '@/stores/user'
 import { logout } from '@/api/account'
+import { useTokenStore } from '@/stores/token'
 
+const tokenStore = useTokenStore()
 const userStore = useUserStore()
 const activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
@@ -14,7 +16,8 @@ const handleSelect = (key, keyPath) => {
 
 const onSubmit = async () => {
   await logout()
-  $router.push({name: 'login'})
+  await tokenStore.setToken({})
+  this.$router.push({name: 'login'})
 }
 
 const errorHandler = () => {}
