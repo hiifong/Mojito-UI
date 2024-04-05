@@ -11,7 +11,7 @@ export const useTokenStore = defineStore(
     }
 
     function isLogin() {
-      return token.value !== '';
+      return token.value !== ''
     }
 
     return { token, setToken, isLogin }

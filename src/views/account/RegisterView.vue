@@ -1,7 +1,8 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { register } from '@/api/account.js'
+import { register } from '@/api/account'
+import { getCaptchaID } from '@/api/captcha'
 
 const router = useRouter()
 const route = useRoute()
@@ -9,8 +10,23 @@ const route = useRoute()
 const form = reactive({
   username: '',
   email: '',
-  password: ''
+  password: '',
+  id: '',
+  code: ''
 })
+
+const GetCaptcha = async () => {
+  await getCaptchaID().then((res) => {
+    form.id = res.data.data.captchaID
+    console.log('captcha id', form.id)
+  })
+}
+
+GetCaptcha()
+
+const reload = async () => {
+  await GetCaptcha()
+}
 
 // 注册事件处理
 const onSubmit = async () => {
@@ -53,6 +69,10 @@ const rules = ref({
   password: [
     { required: true, message: '密码不能为空', trigger: 'blur' },
     { min: 6, max: 18, message: '密码长度需要6~18位', trigger: 'blur' }
+  ],
+  code: [
+    { required: true, message: '验证码不能为空', trigger: 'blur' },
+    { len: 6, message: '验证码为6位', trigger: 'blur' }
   ]
 })
 
@@ -80,6 +100,18 @@ const formRef = ref('')
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="form.password" type="password" show-password />
+      </el-form-item>
+      <el-form-item label="验证码" prop="code">
+        <el-input v-model="form.code" />
+      </el-form-item>
+      <el-form-item>
+        <el-image
+          v-if="form.id"
+          :src="`https://vlv.lol/api/v1/captcha/${form.id}.png`"
+          style="width: 150px; height: 30px"
+          lazy
+        />
+        <el-link type="primary" @click="reload">看不清换一张。 </el-link>
       </el-form-item>
       <el-form-item>
         <el-link type="primary" @click="$router.push({ name: 'login' })"
