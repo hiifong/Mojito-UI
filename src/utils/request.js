@@ -26,7 +26,6 @@ request.interceptors.response.use(
     return response
   },
   async (error) => {
-    ElMessage.error(error.response.data.msg)
     if (error.response.status === 401) {
       await router.push({ name: 'login' })
       return

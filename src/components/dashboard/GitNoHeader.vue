@@ -14,6 +14,7 @@ const handleSelect = (key, keyPath) => {
 
 const onSubmit = async () => {
   await logout()
+  $router.push({name: 'login'})
 }
 
 const errorHandler = () => {}
