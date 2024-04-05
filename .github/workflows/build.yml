@@ -1,0 +1,32 @@
+name: docker build and push
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          repository: hiifong/gitno
+          submodules: true
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+          trust_level: 5
+        run: |
+          git config --global user.name "hiifong"
+          git config --global user.email "i@hiifong"
+          git add ui
+          git commit -m "Update UI"
+          git push origin main
