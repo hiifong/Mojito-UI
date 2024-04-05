@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { useTokenStore } from '@/stores/token.js'
-import { ElMessage } from 'element-plus'
+import { useTokenStore } from '@/stores/token'
 import router from '@/router'
 
 const request = axios.create({
@@ -14,7 +13,6 @@ request.interceptors.request.use((config) => {
     config.headers = {}
   }
   config.headers.Authorization = store?.token
-
   return config
 })
 
