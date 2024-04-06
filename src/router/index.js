@@ -139,6 +139,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/forget',
+      name: 'forget',
+      component: () => import('@/views/account/ForgetView.vue'),
+      meta: {
+        title: 'forget'
+      }
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: () => import('@/components/GitNoNotFound.vue')

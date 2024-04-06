@@ -1,38 +1,32 @@
 <script setup>
 import { reactive, ref } from 'vue'
-import { useTokenStore } from '@/stores/token'
 import { useRoute, useRouter } from 'vue-router'
-import { login } from '@/api/account'
-import { getUserInfo } from '@/api/user'
-import { useUserStore } from '@/stores/user'
-import { getCaptchaID } from '@/api/captcha'
+import { getCode, forgetPassword } from '@/api/account'
+import { ElMessage } from 'element-plus'
 
-const tokenStore = useTokenStore()
-const userStore = useUserStore()
 const router = useRouter()
 const route = useRoute()
 
 const form = reactive({
   username: '',
   password: '',
-  code: '',
-  id: ''
+  email: '',
+  code: ''
 })
 
-const GetCaptcha = async () => {
-  await getCaptchaID().then((res) => {
-    form.id = res.data.data.captchaID
-    console.log('captcha id', form.id)
+const GetCode = async (data) => {
+  isLoading.value = true
+  await getCode(data).then((res) => {
+    if (res.data.code === 1) {
+      ElMessage.success('验证码已发送至' + data.email + '邮箱，请注意查收！')
+    } else {
+      ElMessage.error(res.data.msg)
+    }
   })
+  isLoading.value = false
 }
 
-GetCaptcha()
-
-const reload = async () => {
-  await GetCaptcha()
-}
-
-// 登录事件处理
+// 重置密码事件处理
 const onSubmit = async () => {
   isLoading.value = true
   // 表单校验
@@ -42,38 +36,18 @@ const onSubmit = async () => {
     return new Promise(() => {})
   })
 
-  // 正式发送登录请求
-  const data = await login(form).then((res) => {
+  // 正式发送重置密码请求
+  await forgetPassword(form).then((res) => {
     if (res.data.code !== 1) {
       ElMessage.error(res.data.msg)
       isLoading.value = false
-      throw new Error('登录信息有误')
+      throw new Error('用户名、邮箱、或验证码有误')
     }
-    return res.data.data
   })
-
-  console.log('data: ', data)
-  // 保存token信息
-  tokenStore.setToken(data)
 
   isLoading.value = false
-
-  const token = tokenStore.token
-
-  console.log('token: ', token)
-
-  const info = await getUserInfo().then((res) => {
-    if (res.data.code !== 1) {
-      ElMessage.error(res.data.msg)
-      throw new Error('获取用户信息失败')
-    }
-    return res.data.data
-  })
-
-  console.log('userinfo: ', info)
-  userStore.setUserInfo(info.user)
-  ElMessage.success('登录成功')
-  router.push(route.query.redirect || '/')
+  ElMessage.success('重置成功')
+  router.push(route.query.redirect || { name: 'login' })
 }
 
 // 定义表单校验规则
@@ -87,18 +61,19 @@ const rules = ref({
     { required: true, message: '密码不能为空', trigger: 'blur' },
     { min: 6, max: 18, message: '密码长度需要6~18位', trigger: 'blur' }
   ],
-  code: [
-    { required: true, message: '验证码不能为空', trigger: 'blur' },
-    { len: 6, message: '验证码为6位', trigger: 'blur' }
-  ]
+  email: [
+    { required: true, message: '邮箱不能为空', trigger: 'blur' },
+    { min: 7, max: 30, message: '邮箱长度需要7~30位', trigger: 'blur' }
+  ],
+  code: [{ len: 6, message: '验证码为6位', trigger: 'blur' }]
 })
 
-// 定义是否登录加载中
+// 定义是否重置密码加载中
 const isLoading = ref(false)
 const formRef = ref('')
 </script>
 <template>
-  <div class="login">
+  <div class="forget">
     <el-form
       :model="form"
       :rules="rules"
@@ -107,40 +82,34 @@ const formRef = ref('')
       label-position="top"
       size="large"
     >
-      <h2>登录</h2>
+      <h2>重置密码</h2>
       <el-form-item label="用户名" prop="username">
         <el-input v-model="form.username" />
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="form.password" type="password" show-password />
       </el-form-item>
-      <el-form-item label="验证码" prop="code">
-        <el-input v-model="form.code" />
+      <el-form-item label="邮箱" prop="email">
+        <el-input v-model="form.email" />
       </el-form-item>
-      <el-form-item>
-        <el-image
-          v-if="form.id"
-          :src="`https://vlv.lol/api/v1/captcha/${form.id}.png`"
-          style="width: 150px; height: 30px"
-          lazy
-        />
-        <el-link type="primary" @click="reload">看不清换一张。 </el-link>
+      <el-form-item label="邮箱验证码" prop="code">
+        <el-input v-model="form.code" />
       </el-form-item>
       <el-form-item>
         <el-link type="primary" @click="$router.push({ name: 'register' })"
           >没有账号，去注册？
         </el-link>
-        <el-link type="primary" @click="$router.push({ name: 'forget' })">忘记密码？ </el-link>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit" :loading="isLoading">登录</el-button>
+        <el-button type="primary" @click="GetCode(form)" :loading="isLoading">获取验证码</el-button>
+        <el-button type="danger" @click="onSubmit" :loading="isLoading">重置密码</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.login {
+.forget {
   background-color: #fff;
   height: 100vh;
   display: flex;
@@ -157,10 +126,6 @@ const formRef = ref('')
 
     .el-form-item {
       margin-top: 20px;
-    }
-
-    .el-button {
-      width: 100%;
     }
   }
 }

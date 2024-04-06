@@ -24,10 +24,18 @@ export const logout = () => {
   })
 }
 
+export const getCode = (data) => {
+  return request({
+    method: 'POST',
+    url: '/code',
+    data: data
+  })
+}
+
 export const forgetPassword = (data) => {
   return request({
     method: 'POST',
-    url: 'forgetPassword',
+    url: '/forgetPassword',
     data: data
   })
 }
