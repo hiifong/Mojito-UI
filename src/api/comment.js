@@ -1,4 +1,4 @@
-import request from '@/utils/request.js'
+import request from '@/utils/request'
 
 export const createComment = (data) => {
   return request({
@@ -16,10 +16,11 @@ export const updateComment = (data) => {
   })
 }
 
-export const getComment = (id) => {
+export const getComment = (id, data) => {
   return request({
-    method: 'GET',
-    url: `/comment/${id}`
+    method: 'POST',
+    url: `/comment/${id}`,
+    data: data
   })
 }
 
