@@ -3,11 +3,32 @@ import { reactive, ref } from 'vue'
 import { useUserStore } from '@/stores/user'
 import emoji from '@/assets/emoji/emoji'
 import { UToast, createObjectURL } from 'undraw-ui'
+import { getComment } from '@/api/comment'
+import { ElMessage } from 'element-plus'
 const user = useUserStore().user
 
 defineProps({
-  RepoID: Number
+  repoId: Number
 })
+
+let form = ref({
+  content: '',
+  page: 0,
+  pageSize: 0,
+  parentID: 0,
+  repoID: 0,
+  uid: user.id
+})
+
+const getCommentList = async (id, data) => {
+  await getComment(id, data).then((res) => {
+    if (res.data.msg !== 1) {
+      ElMessage.error('获取评论失败')
+    }
+  })
+}
+
+getCommentList(3, form.value)
 
 const config = reactive({
   user: {

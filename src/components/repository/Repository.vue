@@ -22,7 +22,7 @@ defineProps({
       :code-theme="setting.codeTheme"
       :preview-theme="setting.previewTheme"
     />
-    <Comment class="comment" :RepoID="repo.id" />
+    <Comment class="comment" :repoId="repo.id" />
   </div>
 </template>
 
