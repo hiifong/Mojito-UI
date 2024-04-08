@@ -1,10 +1,10 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, provide } from 'vue'
 import { useRoute } from 'vue-router'
 import { getRepository } from '@/api/repository.js'
 import Repository from '@/components/repository/Repository.vue'
 
-let repo = ref({})
+const repo = ref({})
 const route = useRoute()
 
 const getRepoDetail = async (id) => {
@@ -16,11 +16,13 @@ const getRepoDetail = async (id) => {
 }
 
 getRepoDetail(route.params.id)
+
+provide('repo', repo)
 </script>
 
 <template>
   <div class="detail">
-    <Repository :repo="repo" />
+    <Repository />
   </div>
 </template>
 

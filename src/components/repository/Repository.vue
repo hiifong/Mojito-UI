@@ -1,15 +1,13 @@
 <script setup>
+import { inject } from 'vue'
 import { MdPreview } from 'md-editor-v3'
 import Comment from '@/components/comment/Comment.vue'
 import 'md-editor-v3/lib/preview.css'
-import { useUserStore } from '@/stores/user.js'
+import { useUserStore } from '@/stores/user'
 
+const repo = inject('repo')
 const setting = useUserStore().user.setting
 const id = 'preview-only'
-
-defineProps({
-  repo: Object
-})
 </script>
 <template>
   <div class="main">
@@ -22,7 +20,7 @@ defineProps({
       :code-theme="setting.codeTheme"
       :preview-theme="setting.previewTheme"
     />
-    <Comment class="comment" :repoId="repo.id" />
+    <Comment class="comment" />
   </div>
 </template>
 
