@@ -1,16 +1,17 @@
 <script setup>
-import { reactive, ref, inject, toRaw } from 'vue'
+import { reactive, ref, inject } from 'vue'
 import { useUserStore } from '@/stores/user'
 import emoji from '@/assets/emoji/emoji'
-import { UToast } from 'undraw-ui'
+import { UToast, UCommentScroll } from 'undraw-ui'
 import { getComment, createComment } from '@/api/comment'
 import { useRoute } from 'vue-router'
 import dayjs from 'dayjs'
 
 const route = useRoute()
 const user = useUserStore().user
-const repo = inject('repo')
+const { repo } = inject('repo')
 console.log('repo', repo)
+console.log('repo id', repo.id)
 
 const config = reactive({
   user: {
@@ -23,15 +24,14 @@ const config = reactive({
   showLevel: false,
   showHomeLink: false,
   showAddress: false,
-  showLikes: false,
-  total: 10
+  showLikes: false
 })
 
 let pageNum = ref(1)
 let pageSize = ref(10)
 // 是否禁用滚动加载评论
 const disable = ref(false)
-let total = ref(100)
+let total = ref(10)
 
 // 加载更多评论
 const more = () => {
@@ -48,10 +48,12 @@ const more = () => {
         let commentList = res.commentList
         console.log('count: ', count)
         console.log('commentList: ', commentList)
-        config.comments.push(commentList)
+        commentList.forEach((el) => {
+          config.comments.push(el)
+        })
         total.value = count
       })
-      pageNum++
+      pageNum.value++
     }, 200)
   } else {
     disable.value = true
@@ -98,8 +100,7 @@ const handleUser = (user) => {
   const id = user.id
   const username = user.username
   const avatar = user.avatar
-  const homeLink = ''
-  return { id, username, avatar, homeLink }
+  return { id, username, avatar }
 }
 
 // const firstPageCommentList = async () => {
@@ -120,21 +121,18 @@ const handleUser = (user) => {
 
 // firstPageCommentList()
 
-//排序
-const latest = ref(true)
-const sorted = (latest) => {
-  console.log(latest)
-  // latest.value = false
-}
-
-let temp_id = 100
 // 提交评论事件
 const submit = async ({ content, parentId, files, finish, reply }) => {
   let str = '提交评论:' + content + ';\t父id: ' + parentId + ';\t图片:' + files + ';\t被回复评论:'
   console.log(str, reply)
-  form.value.content = content
-  form.value.parentId = parseInt(parentId)
-  const result = await createComment(form.value).then((res) => {
+  let form = {
+    id: 0,
+    repoID: parseInt(route.params.id),
+    parentID: parseInt(parentId),
+    content: content,
+    uid: user.id
+  }
+  const result = await createComment(form).then((res) => {
     return res.data
   })
   console.log('sr', result)
@@ -142,11 +140,8 @@ const submit = async ({ content, parentId, files, finish, reply }) => {
     ElMessage.error()
     return
   }
-  form.value.content = ''
-  form.value.parentID = 0
   setTimeout(() => {
-    finish()
-    getCommentList(repo.value.id, form.value)
+    finish(form)
     UToast({ message: '评论成功!', type: 'info' })
   }, 200)
 }

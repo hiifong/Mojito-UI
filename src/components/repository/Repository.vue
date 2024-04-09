@@ -5,7 +5,7 @@ import Comment from '@/components/comment/Comment.vue'
 import 'md-editor-v3/lib/preview.css'
 import { useUserStore } from '@/stores/user'
 
-const repo = inject('repo')
+const { repo } = inject('repo')
 const setting = useUserStore().user.setting
 const id = 'preview-only'
 </script>

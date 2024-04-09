@@ -17,7 +17,7 @@ const getRepoDetail = async (id) => {
 
 getRepoDetail(route.params.id)
 
-provide('repo', repo)
+provide('repo', { repo })
 </script>
 
 <template>
