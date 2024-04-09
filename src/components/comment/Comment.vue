@@ -1,16 +1,16 @@
 <script setup>
-import { reactive, ref, inject } from 'vue'
+import { reactive, ref, inject, toRaw } from 'vue'
 import { useUserStore } from '@/stores/user'
 import emoji from '@/assets/emoji/emoji'
 import { UToast } from 'undraw-ui'
 import { getComment, createComment } from '@/api/comment'
-import { ElMessage } from 'element-plus'
 import { useRoute } from 'vue-router'
 import dayjs from 'dayjs'
 
 const route = useRoute()
 const user = useUserStore().user
 const repo = inject('repo')
+console.log('repo', repo)
 
 const config = reactive({
   user: {
@@ -98,7 +98,7 @@ const handleUser = (user) => {
   const id = user.id
   const username = user.username
   const avatar = user.avatar
-  const homeLink = null
+  const homeLink = ''
   return { id, username, avatar, homeLink }
 }
 
@@ -119,8 +119,6 @@ const handleUser = (user) => {
 // }
 
 // firstPageCommentList()
-
-console.log('repo id', repo.id)
 
 //排序
 const latest = ref(true)
