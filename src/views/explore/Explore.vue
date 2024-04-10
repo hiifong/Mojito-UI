@@ -9,7 +9,7 @@ const paginationData = ref({
   page: 1,
   total: 0,
   pageSize: 10,
-  isPrivate: false,
+  isPrivate: [false],
 })
 
 const getRepoList = async (data) => {
