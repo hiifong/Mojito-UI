@@ -28,10 +28,10 @@ const config = reactive({
 })
 
 let pageNum = ref(2)
-let pageSize = ref(1)
+let pageSize = ref(5)
 // 是否禁用滚动加载评论
 const disable = ref(false)
-let total = ref(10)
+let total = ref(0)
 
 // 加载更多评论
 const more = () => {
@@ -60,7 +60,15 @@ const more = () => {
   }
 }
 
-const getCommentList = async (id = route.params.id, data) => {
+const getCommentList = async (
+  id = route.params.id,
+  data = {
+    page: 1,
+    pageSize: 5,
+    parentID: 0,
+    repoID: parseInt(route.params.id)
+  }
+) => {
   const result = await getComment(id, data).then((res) => {
     return res.data
   })
@@ -105,23 +113,20 @@ const handleUser = (user) => {
   return { id, username, avatar }
 }
 
-// const firstPageCommentList = async () => {
-//   let form = ref({
-//     page: pageNum.value,
-//     pageSize: pageSize.value,
-//     repoID: parseInt(route.params.id)
-//   })
-//   await getCommentList(form.value.repoID, form.value).then((res) => {
-//     let count = res.count
-//     let commentList = res.commentList
-//     console.log('count: ', count)
-//     console.log('commentList: ', commentList)
-//     config.comments.push(commentList)
-//     total.value = count
-//   })
-// }
+const firstPageCommentList = async () => {
+  await getCommentList().then((res) => {
+    let count = res.count
+    let commentList = res.commentList
+    console.log('count: ', count)
+    console.log('commentList: ', commentList)
+    commentList.forEach((el) => {
+      config.comments.push(el)
+    })
+    total.value = count
+  })
+}
 
-// firstPageCommentList()
+firstPageCommentList()
 
 // 提交评论事件
 const submit = async ({ content, parentId, files, finish, reply }) => {
@@ -154,6 +159,9 @@ const submit = async ({ content, parentId, files, finish, reply }) => {
 
 <template>
   <u-comment-scroll :disable="disable" @more="more">
-    <u-comment :config="config" @submit="submit" relative-time> </u-comment>
+    <u-comment :config="config" @submit="submit" relative-time />
   </u-comment-scroll>
 </template>
+
+<style lang="scss" scoped>
+</style>

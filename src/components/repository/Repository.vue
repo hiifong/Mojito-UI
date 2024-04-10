@@ -27,7 +27,6 @@ const id = 'preview-only'
 <style lang="scss" scoped>
 .main {
   width: 100%;
-  min-height: auto;
 
   .content {
     width: 980px;
