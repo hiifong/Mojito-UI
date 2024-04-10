@@ -27,8 +27,8 @@ const config = reactive({
   showLikes: false
 })
 
-let pageNum = ref(1)
-let pageSize = ref(10)
+let pageNum = ref(2)
+let pageSize = ref(1)
 // 是否禁用滚动加载评论
 const disable = ref(false)
 let total = ref(10)
@@ -84,12 +84,14 @@ const getCommentList = async (id = route.params.id, data) => {
 const handleReply = (replys) => {
   let count = 0
   let list = []
-  replys.forEach((el) => {
-    count++
-    el.createTime = dayjs.unix(el.createTime)
-    el.user = handleUser(el.user)
-    list.push(el)
-  })
+  if (replys !== null) {
+    replys.forEach((el) => {
+      count++
+      el.createTime = dayjs.unix(el.createTime)
+      el.user = handleUser(el.user)
+      list.push(el)
+    })
+  }
   if (count === 0) {
     return null
   }
@@ -126,7 +128,6 @@ const submit = async ({ content, parentId, files, finish, reply }) => {
   let str = '提交评论:' + content + ';\t父id: ' + parentId + ';\t图片:' + files + ';\t被回复评论:'
   console.log(str, reply)
   let form = {
-    id: 0,
     repoID: parseInt(route.params.id),
     parentID: parseInt(parentId),
     content: content,
@@ -140,8 +141,12 @@ const submit = async ({ content, parentId, files, finish, reply }) => {
     ElMessage.error()
     return
   }
+  result.data.createTime = dayjs.unix(result.data.createTime)
+  result.data.user = handleUser(result.data.user)
+  result.data.reply = handleReply(result.data.reply)
+  console.log('res', result.data)
   setTimeout(() => {
-    finish(form)
+    finish(result.data)
     UToast({ message: '评论成功!', type: 'info' })
   }, 200)
 }
