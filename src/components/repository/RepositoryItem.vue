@@ -11,14 +11,6 @@ const props = defineProps({
     @click="$router.push({ name: 'repository-detail', params: { id: repository.id } })"
   >
     <div class="repository-cover">
-      <!-- <el-image :src="repository.cover" fit="fill" lazy>
-        <template #error>
-          <div class="image-slot">
-            <IconPicture />
-          </div>
-        </template>
-      </el-image> -->
-
       <div
         class="repository-cover-divbg"
         :style="`background:url('${repository.cover}') no-repeat;background-size: cover;`"

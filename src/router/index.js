@@ -21,7 +21,7 @@ const router = createRouter({
         {
           path: '/explore',
           name: 'explore',
-          component: () => import('@/components/repository/RepositoryList.vue'),
+          component: () => import('@/views/explore/Explore.vue'),
           meta: {
             title: '探索',
             requiresAuth: true

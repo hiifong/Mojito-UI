@@ -1,8 +1,8 @@
 <script setup>
 import dayjs from 'dayjs'
 import { ref } from 'vue'
-import { useUserStore } from '@/stores/user.js'
-import { getCategoryList } from '@/api/category.js'
+import { useUserStore } from '@/stores/user'
+import { getCategoryList } from '@/api/category'
 import { Reading, Delete, Edit } from '@element-plus/icons-vue'
 import {
   createRepository,
@@ -12,8 +12,7 @@ import {
   getRepositoryList,
   getBranchList,
   deleteRepository
-} from '@/api/repository.js'
-import { ElMessage } from 'element-plus'
+} from '@/api/repository'
 
 const userStore = useUserStore()
 const addRepositoryVisible = ref(false)
