@@ -7,7 +7,7 @@ const tokenStore = useTokenStore()
 
 <template>
   <div class="home">
-    <div class="nologin" v-if="tokenStore.isLogin">
+    <div class="nologin" v-if="!tokenStore.isLogin">
       <div class="content">您需要登录后才可以使用！</div>
     </div>
     <RepositoryList v-else />
