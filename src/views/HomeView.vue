@@ -3,12 +3,14 @@ import RepositoryList from '@/components/repository/RepositoryList.vue'
 import { useTokenStore } from '@/stores/token'
 
 const tokenStore = useTokenStore()
-let login = tokenStore.isLogin
+const isLogin = computed(() => {
+  return tokenStore.token?.length > 0
+})
 </script>
 
 <template>
   <div class="home">
-    <RepositoryList v-if="login" />
+    <RepositoryList v-if="isLogin" />
     <div class="nologin" v-else>
       <div class="content">您需要登录后才可以使用！</div>
     </div>
