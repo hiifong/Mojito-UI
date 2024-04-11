@@ -21,9 +21,7 @@ clipboard.on('success', function (e) {
 clipboard.on('error', function (e) {
   ElMessage.warn('复制失败')
 })
-const errorHandler = () => {
-  console.log('error----> repo')
-}
+const errorHandler = () => true
 </script>
 <template>
   <div class="main">

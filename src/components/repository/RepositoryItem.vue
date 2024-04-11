@@ -3,6 +3,8 @@ import dayjs from 'dayjs'
 const props = defineProps({
   repository: {}
 })
+
+const errorHandler = () => true
 </script>
 
 <template>
@@ -18,15 +20,22 @@ const props = defineProps({
     </div>
     <div class="repository-info">
       <div class="date">
-        更新于 {{ dayjs.unix(repository.updatedAt).format('YYYY/MM/DD HH:mm:ss') }}
+        <el-avatar :size="20" :src="repository.user?.avatar" @error="errorHandler" lazy>
+          <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
+        </el-avatar>
+        <span>{{ repository.user?.username }}</span>
+        <span>更新于 {{ dayjs.unix(repository.updatedAt).format('YYYY/MM/DD HH:mm:ss') }}</span>
       </div>
-      <div class="repository-title">{{ repository.title }}</div>
+      <div class="repository-title">
+        {{ repository.title
+        }}<el-tag type="info" v-if="repository.isPrivate" style="margin-left: 10px">Private</el-tag>
+      </div>
       <div class="repository-tips">
         <p class="stars">
           star: <span>{{ repository.numStars }}</span>
         </p>
         <p class="defualt-branch" v-if="repository.defaultBranch">
-          defualt branch: <span>{{ repository.defaultBranch }}</span>
+          branch: <span>{{ repository.defaultBranch }}</span>
         </p>
       </div>
 
@@ -78,9 +87,16 @@ const props = defineProps({
     padding-bottom: 35px;
 
     .date {
+      display: flex;
+      justify-items: center;
+      align-items: center;
       color: #797979;
       font-size: 12px;
       grid-area: auto;
+
+      span {
+        margin-left: 10px;
+      }
     }
     .repository-title {
       font-size: 18px;
