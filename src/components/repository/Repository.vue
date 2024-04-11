@@ -1,6 +1,6 @@
 <script setup>
 import { inject } from 'vue'
-import { MdPreview } from 'md-editor-v3'
+import { MdPreview, MdCatalog } from 'md-editor-v3'
 import Comment from '@/components/comment/Comment.vue'
 import 'md-editor-v3/lib/preview.css'
 import { useUserStore } from '@/stores/user'
@@ -22,6 +22,8 @@ clipboard.on('error', function (e) {
   ElMessage.warn('复制失败')
 })
 const errorHandler = () => true
+
+const scrollElement = document.documentElement
 </script>
 <template>
   <div class="main">
@@ -58,6 +60,17 @@ const errorHandler = () => true
       :code-theme="setting.codeTheme"
       :preview-theme="setting.previewTheme"
     />
+    <div class="toc-wrap">
+      <div class="toc-title">目&nbsp;&nbsp;&nbsp;录</div>
+      <div class="toc">
+        <MdCatalog
+          :editorId="id"
+          :scrollElement="scrollElement"
+          class="catalog"
+          :theme="setting.defaultTheme"
+        />
+      </div>
+    </div>
     <Comment class="comment" />
   </div>
 </template>
@@ -103,6 +116,40 @@ const errorHandler = () => true
   .comment {
     width: 980px;
     margin: auto;
+  }
+
+  .toc-wrap {
+    position: fixed;
+    height: 80vh;
+    top: 10%;
+    left: 20%;
+    width: 200px;
+    background-color: #eee;
+    border-radius: 15px;
+
+    .toc-title {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 20px;
+    }
+
+    .toc {
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      position: relative;
+      top: 10px;
+      left: 0;
+      padding-left: 10px;
+      padding-right: 10px;
+
+      .catalog {
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
   }
 }
 </style>
