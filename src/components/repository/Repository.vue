@@ -4,13 +4,53 @@ import { MdPreview } from 'md-editor-v3'
 import Comment from '@/components/comment/Comment.vue'
 import 'md-editor-v3/lib/preview.css'
 import { useUserStore } from '@/stores/user'
+import dayjs from 'dayjs'
+import Clipboard from 'clipboard'
+import CopyLink from '@/components/icons/CopyLink.vue'
 
 const { repo } = inject('repo')
+console.log('repo-->', repo)
 const setting = useUserStore().user.setting
 const id = 'preview-only'
+
+const clipboard = new Clipboard('.btn')
+clipboard.on('success', function (e) {
+  ElMessage.success('复制成功')
+  e.clearSelection()
+})
+clipboard.on('error', function (e) {
+  ElMessage.warn('复制失败')
+})
+const errorHandler = () => {
+  console.log('error----> repo')
+}
 </script>
 <template>
   <div class="main">
+    <div class="repo-header-wrap">
+      <div class="title">{{ repo?.title }}</div>
+      <el-divider border-style="dashed" />
+      <div class="header">
+        <el-avatar :size="30" :src="repo.user?.avatar" @error="errorHandler" lazy>
+          <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
+        </el-avatar>
+        <div class="info">
+          <span>{{ repo.user?.username }}</span>
+          <span>branch：{{ repo?.defaultBranch }}</span>
+          <span>更新于{{ dayjs.unix(repo?.updatedAt).format('YYYY/MM/DD HH:MM:ss') }}</span>
+          <span>发布于{{ dayjs.unix(repo?.createdAt).format('YYYY/MM/DD HH:MM:ss') }}</span>
+          <span class="git-url"
+            >Git URL：<span id="url"
+              >https://vlv.lol/{{ repo.user?.lowerName }}/{{ repo?.lowerName }}.git</span
+            >
+            <button class="btn" data-clipboard-target="#url">
+              <CopyLink />
+            </button>
+          </span>
+        </div>
+      </div>
+      <el-divider border-style="dashed" />
+    </div>
     <MdPreview
       class="content"
       :editorId="id"
@@ -28,6 +68,36 @@ const id = 'preview-only'
 .main {
   width: 100%;
 
+  .repo-header-wrap {
+    width: 980px;
+    margin: auto;
+
+    .title {
+      font-weight: bolder;
+      font-size: 32px;
+    }
+
+    .header {
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      color: #797979;
+
+      .info {
+        span {
+          margin-left: 10px;
+        }
+        .git-url {
+          color: black;
+
+          .btn {
+            margin-left: 5px;
+            border: none;
+          }
+        }
+      }
+    }
+  }
   .content {
     width: 980px;
     margin: auto;
