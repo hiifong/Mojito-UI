@@ -39,8 +39,8 @@ dependencies:
     specifier: ^1.74.1
     version: 1.75.0
   undraw-ui:
-    specifier: 1.0.82
-    version: 1.0.82
+    specifier: 1.0.83
+    version: 1.0.83
   vue:
     specifier: ^3.4.21
     version: 3.4.21
@@ -2463,8 +2463,8 @@ packages:
     resolution: {integrity: sha512-Y7HYmWaFwPUmkoQCUIAYpKqkOf+SbVj/2fJJZ4RJMCfZp0rTGwRbzQD+HghfnhKOjL9E01okqz+ncJskGYfBNw==}
     dev: true
 
-  /undraw-ui@1.0.82:
-    resolution: {integrity: sha512-k7AOzIvhIIqmKcS6zX+aatWRQO2s+LgnwGAvwALAbencRvPhXlsw8i17/Ss+rWoT0cp2J4KGAY6NsF3l4Kdvkw==}
+  /undraw-ui@1.0.83:
+    resolution: {integrity: sha512-Z69i7CmEdAFsly8eynBDHVbhnYjTlgqclkJmslcbTNP8i+8OIbTNxOPKiBe6Fuuaoq7ug1naQrEvvDmzdgtSeg==}
     dependencies:
       element-plus: 2.7.0(vue@3.4.21)
       vue: 3.4.21
