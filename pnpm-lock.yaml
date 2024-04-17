@@ -25,7 +25,7 @@ importers:
         version: 2.7.0(vue@3.4.23)
       md-editor-v3:
         specifier: ^4.13.0
-        version: 4.13.1(@codemirror/view@6.26.3)(@lezer/common@1.2.1)(vue@3.4.23)
+        version: 4.13.2(@codemirror/view@6.26.3)(@lezer/common@1.2.1)(vue@3.4.23)
       normalize.css:
         specifier: ^8.0.1
         version: 8.0.1
@@ -1082,8 +1082,8 @@ packages:
     resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
     hasBin: true
 
-  md-editor-v3@4.13.1:
-    resolution: {integrity: sha512-O/Y/cfcL3Fv4ACP6klFgIJbE9pONjnWzdSo8rjp4ikE4FVZ985TweShLoUNOHAJKLp9erai3tlAl/UrRaFFIdw==}
+  md-editor-v3@4.13.2:
+    resolution: {integrity: sha512-4y3gNqLaH9TviGW25u1VnFfS/Q4vZpE0uyYIkWAIrT8xznNOO/fhKMJ24X9tqbzEhjjIPijKx/QOgB68+aAvBw==}
     peerDependencies:
       vue: ^3.2.47
 
@@ -2661,7 +2661,7 @@ snapshots:
       punycode.js: 2.3.1
       uc.micro: 2.1.0
 
-  md-editor-v3@4.13.1(@codemirror/view@6.26.3)(@lezer/common@1.2.1)(vue@3.4.23):
+  md-editor-v3@4.13.2(@codemirror/view@6.26.3)(@lezer/common@1.2.1)(vue@3.4.23):
     dependencies:
       '@codemirror/lang-markdown': 6.2.5
       '@codemirror/language-data': 6.5.1(@codemirror/view@6.26.3)
