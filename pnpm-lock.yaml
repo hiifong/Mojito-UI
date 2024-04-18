@@ -42,8 +42,8 @@ importers:
         specifier: ^1.74.1
         version: 1.75.0
       undraw-ui:
-        specifier: 1.0.83
-        version: 1.0.83
+        specifier: 1.0.85
+        version: 1.0.85
       vue:
         specifier: ^3.4.21
         version: 3.4.23
@@ -1364,8 +1364,8 @@ packages:
   ufo@1.5.3:
     resolution: {integrity: sha512-Y7HYmWaFwPUmkoQCUIAYpKqkOf+SbVj/2fJJZ4RJMCfZp0rTGwRbzQD+HghfnhKOjL9E01okqz+ncJskGYfBNw==}
 
-  undraw-ui@1.0.83:
-    resolution: {integrity: sha512-Z69i7CmEdAFsly8eynBDHVbhnYjTlgqclkJmslcbTNP8i+8OIbTNxOPKiBe6Fuuaoq7ug1naQrEvvDmzdgtSeg==}
+  undraw-ui@1.0.85:
+    resolution: {integrity: sha512-BM1JLqyFk+1KFcQQE45hzVNmvJrzEimdjKaP2ieVQNtzUFaOBwW+xICJ0k2v1trp+/qbPBsankJ2g6wDNicaDQ==}
 
   unimport@3.7.1:
     resolution: {integrity: sha512-V9HpXYfsZye5bPPYUgs0Otn3ODS1mDUciaBlXljI4C2fTwfFpvFZRywmlOu943puN9sncxROMZhsZCjNXEpzEQ==}
@@ -2928,13 +2928,7 @@ snapshots:
 
   ufo@1.5.3: {}
 
-  undraw-ui@1.0.83:
-    dependencies:
-      element-plus: 2.7.0(vue@3.4.23)
-      vue: 3.4.23
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - typescript
+  undraw-ui@1.0.85: {}
 
   unimport@3.7.1(rollup@4.14.3):
     dependencies:
