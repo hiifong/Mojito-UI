@@ -15,7 +15,7 @@ const paginationData = ref({
 
 const getRepoList = async (data) => {
   await getRepositoryList(data).then((res) => {
-    console.log('data: ', res.data)
+    console.log('data: ', res?.data)
     repositoryList.value = res.data.data?.list
     paginationData.value.total = res.data.data?.count || 0
   })

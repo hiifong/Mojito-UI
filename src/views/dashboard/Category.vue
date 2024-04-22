@@ -204,7 +204,7 @@ const handleCurrentChange = async (val) => {
         <el-table-column prop="description" label="描述" />
         <el-table-column prop="createdAt" label="创建时间" :formatter="timeFormat" />
         <el-table-column prop="updatedAt" label="更新时间" :formatter="timeFormat" />
-        <el-table-column fixed="right" label="操作">
+        <el-table-column fixed="right" label="操作" min-width="130">
           <template #default="scope">
             <el-button size="small" type="primary" @click="handleEdit(scope.row.id)" :icon="Edit"
               >编辑

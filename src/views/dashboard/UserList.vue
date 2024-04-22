@@ -195,7 +195,7 @@ const handleCurrentChange = (val) => {
         <el-table-column prop="isActive" label="是否已激活账号" />
         <el-table-column prop="disable" label="是否禁用账号" />
         <el-table-column prop="lastLoginAt" label="最后一次登录时间" :formatter="timeFormat" />
-        <el-table-column fixed="right" label="操作">
+        <el-table-column fixed="right" label="操作" min-width="130">
           <template #default="scope">
             <el-button size="small" type="primary" @click="handleEdit(scope.row.id)" :icon="Edit"
               >编辑
