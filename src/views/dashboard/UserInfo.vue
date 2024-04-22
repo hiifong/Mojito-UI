@@ -48,7 +48,6 @@ const GetUserInfo = async () => {
     form.lowerName = data.lowerName
     form.bio = data.bio
     form.avatar = data.avatar
-    form.primaryEmail = data.primaryEmail
     form.emails = data.emails
     form.lastLoginAt = data.lastLoginAt
     form.defaultBranch = data.setting.defaultBranch
@@ -56,6 +55,14 @@ const GetUserInfo = async () => {
     form.previewTheme = data.setting.previewTheme
     form.codeTheme = data.setting.codeTheme
     form.showCodeRowNumber = data.setting.showCodeRowNumber
+
+    if (data.emails.length > 0){
+      data.emails.forEach(el => {
+        if (el.isPrimary) {
+          form.primaryEmail = el.email
+        }
+      })
+    }
   })
 }
 

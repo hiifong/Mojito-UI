@@ -23,7 +23,7 @@
     "pinia-plugin-persistedstate": "^3.2.1",
     "qiniu-js": "^3.4.2",
     "sass": "^1.74.1",
-    "undraw-ui": "1.0.89",
+    "undraw-ui": "1.0.82",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },

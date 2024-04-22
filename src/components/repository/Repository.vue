@@ -151,5 +151,11 @@ const scrollElement = document.documentElement
       }
     }
   }
+
+  @media (min-width: 1024px) {
+    .toc-wrap {
+      left: 20px;
+    }
+  }
 }
 </style>
