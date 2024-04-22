@@ -42,8 +42,8 @@ importers:
         specifier: ^1.74.1
         version: 1.75.0
       undraw-ui:
-        specifier: 1.0.82
-        version: 1.0.82
+        specifier: 1.0.89
+        version: 1.0.89
       vue:
         specifier: ^3.4.21
         version: 3.4.23
@@ -1372,8 +1372,17 @@ packages:
   ufo@1.5.3:
     resolution: {integrity: sha512-Y7HYmWaFwPUmkoQCUIAYpKqkOf+SbVj/2fJJZ4RJMCfZp0rTGwRbzQD+HghfnhKOjL9E01okqz+ncJskGYfBNw==}
 
-  undraw-ui@1.0.82:
-    resolution: {integrity: sha512-k7AOzIvhIIqmKcS6zX+aatWRQO2s+LgnwGAvwALAbencRvPhXlsw8i17/Ss+rWoT0cp2J4KGAY6NsF3l4Kdvkw==}
+  undraw-ui-components@1.0.0:
+    resolution: {integrity: sha512-YW7UXOOSYOschwq2DUAI7MMYsEXTIqLiUSzplKG21VEY+HUcE9JW5K9YN8A0SMS4+8cicbN6TS8E9sf5ud2p0A==}
+
+  undraw-ui@1.0.86:
+    resolution: {integrity: sha512-5Aq72rTWH1V/7r/Z4Mhip7m3uDiV2vXs+Wr6GcYBb8pRIBRm4CsD0QH1YFwIKhhV+H/1MCZgMjWcdpDhcMf4vw==}
+
+  undraw-ui@1.0.88:
+    resolution: {integrity: sha512-JSdZuzwuxTqQ3ddm3ELVUkPBMNe3z9ZVYDH8ifINSVq5Tn4vfyRygggV32a5gZzrcT6qjNGkCpJYc2fWPVnmXw==}
+
+  undraw-ui@1.0.89:
+    resolution: {integrity: sha512-uX/xyNRRhKecUWXaPwDGkVGVCZtBiUTqTEAi6AZADY5LqBT2CrprqAzuxulRMp4cbpbNkLc7gqgdmrr38ME5YQ==}
 
   unimport@3.7.1:
     resolution: {integrity: sha512-V9HpXYfsZye5bPPYUgs0Otn3ODS1mDUciaBlXljI4C2fTwfFpvFZRywmlOu943puN9sncxROMZhsZCjNXEpzEQ==}
@@ -2936,9 +2945,26 @@ snapshots:
 
   ufo@1.5.3: {}
 
-  undraw-ui@1.0.82:
+  undraw-ui-components@1.0.0: {}
+
+  undraw-ui@1.0.86: {}
+
+  undraw-ui@1.0.88:
     dependencies:
+      dayjs: 1.11.10
       element-plus: 2.7.1(vue@3.4.23)
+      undraw-ui: 1.0.86
+      vue: 3.4.23
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - typescript
+
+  undraw-ui@1.0.89:
+    dependencies:
+      dayjs: 1.11.10
+      element-plus: 2.7.1(vue@3.4.23)
+      undraw-ui: 1.0.88
+      undraw-ui-components: 1.0.0
       vue: 3.4.23
     transitivePeerDependencies:
       - '@vue/composition-api'
