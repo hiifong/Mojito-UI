@@ -7,7 +7,7 @@ import { getUserInfo } from '@/api/user'
 import { useUserStore } from '@/stores/user'
 import { getCaptchaID } from '@/api/captcha'
 
-const domain = import.meta.env.VITE_API_URL
+const api = import.meta.env.VITE_API_URL
 
 const tokenStore = useTokenStore()
 const userStore = useUserStore()
@@ -122,7 +122,7 @@ const formRef = ref('')
       <el-form-item>
         <el-image
           v-if="form.id"
-          :src="`${domain}/captcha/${form.id}.png`"
+          :src="`${api}/captcha/${form.id}.png`"
           style="width: 150px; height: 30px"
           lazy
         />

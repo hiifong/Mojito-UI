@@ -8,6 +8,8 @@ import dayjs from 'dayjs'
 import Clipboard from 'clipboard'
 import CopyLink from '@/components/icons/CopyLink.vue'
 
+const domain = import.meta.env.VITE_DOMAIN
+
 const { repo } = inject('repo')
 console.log('repo-->', repo)
 const setting = useUserStore().user.setting
@@ -41,7 +43,7 @@ const scrollElement = document.documentElement
           <span>发布于{{ dayjs.unix(repo?.createdAt).format('YYYY/MM/DD HH:MM:ss') }}</span>
           <span class="git-url"
             >Git URL：<span id="url"
-              >https://vlv.lol/{{ repo.user?.lowerName }}/{{ repo?.lowerName }}.git</span
+              >{{domain}}/{{ repo.user?.lowerName }}/{{ repo?.lowerName }}.git</span
             >
             <button class="btn" data-clipboard-target="#url">
               <CopyLink />
