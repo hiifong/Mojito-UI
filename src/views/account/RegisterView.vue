@@ -4,6 +4,8 @@ import { useRoute, useRouter } from 'vue-router'
 import { register } from '@/api/account'
 import { getCaptchaID } from '@/api/captcha'
 
+const domain = import.meta.env.VITE_API_URL
+
 const router = useRouter()
 const route = useRoute()
 
@@ -107,7 +109,7 @@ const formRef = ref('')
       <el-form-item>
         <el-image
           v-if="form.id"
-          :src="`https://vlv.lol/api/v1/captcha/${form.id}.png`"
+          :src="`${domain}/captcha/${form.id}.png`"
           style="width: 150px; height: 30px"
           lazy
         />
