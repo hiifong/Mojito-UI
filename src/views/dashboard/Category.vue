@@ -199,7 +199,6 @@ const handleCurrentChange = async (val) => {
         <el-table-column fixed prop="id" label="ID" sortable />
         <el-table-column prop="parentID" label="父分类ID" />
         <el-table-column prop="uid" label="用户ID" />
-        <el-table-column prop="user.id" label="用户名" />
         <el-table-column prop="name" label="分类名称" />
         <el-table-column prop="description" label="描述" />
         <el-table-column prop="createdAt" label="创建时间" :formatter="timeFormat" />

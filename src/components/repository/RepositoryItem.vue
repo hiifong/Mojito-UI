@@ -119,7 +119,6 @@ const errorHandler = () => true
     .description {
       margin-top: 10px;
       font-size: 13px;
-      font-family: 'Helvetica Neue';
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
