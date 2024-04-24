@@ -15,7 +15,7 @@ const errorHandler = () => true
     <div class="repository-cover">
       <div
         class="repository-cover-divbg"
-        :style="`background:url('${repository.cover}') no-repeat;background-size: cover;`"
+        :style="`background:url('${repository?.cover}') no-repeat;background-size: cover;`"
       />
     </div>
     <div class="repository-info">
@@ -24,28 +24,28 @@ const errorHandler = () => true
           <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
         </el-avatar>
         <span>{{ repository.user?.username }}</span>
-        <span>更新于 {{ dayjs.unix(repository.updatedAt).format('YYYY/MM/DD HH:mm:ss') }}</span>
+        <span>更新于 {{ dayjs.unix(repository?.updatedAt || 0).format('YYYY/MM/DD HH:mm:ss') }}</span>
       </div>
       <div class="repository-title">
         {{ repository.title
-        }}<el-tag type="info" v-if="repository.isPrivate" style="margin-left: 10px">Private</el-tag>
+        }}<el-tag type="info" v-if="repository?.isPrivate || false" style="margin-left: 10px">Private</el-tag>
       </div>
       <div class="repository-tips">
         <p class="stars">
-          star: <span>{{ repository.numStars }}</span>
+          star: <span>{{ repository?.numStars }}</span>
         </p>
-        <p class="defualt-branch" v-if="repository.defaultBranch">
+        <p class="defualt-branch" v-if="repository?.defaultBranch || false">
           branch: <span>{{ repository.defaultBranch }}</span>
         </p>
       </div>
 
       <div class="description">
-        {{ repository.description }}
+        {{ repository?.description }}
       </div>
 
       <div class="repository-tags">
         <div class="repository-header">
-          <el-tag type="success">{{ repository.category.name }}</el-tag>
+          <el-tag type="success">{{ repository.category?.name }}</el-tag>
         </div>
       </div>
     </div>

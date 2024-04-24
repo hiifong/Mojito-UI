@@ -1,42 +1,43 @@
 <script setup>
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/user'
-import { getRepositoryList } from '@/api/repository'
+import { getRepoList } from '@/components/repository/Repository'
 import RepositoryItem from '@/components/repository/RepositoryItem.vue'
 
 const userStore = useUserStore()
 let repositoryList = ref()
 const paginationData = ref({
+  isPin: [false],
   page: 1,
   total: 0,
   pageSize: 10,
   uid: userStore.user.id
 })
 
-const getRepoList = async (data) => {
-  await getRepositoryList(data).then((res) => {
-    console.log('data: ', res?.data)
-    repositoryList.value = res.data.data?.list
-    paginationData.value.total = res.data.data?.count || 0
-  })
+const GetRepoList = async (data) => {
+  const { list, total } = await getRepoList(data)
+  console.log('list===>', list)
+  console.log('total===>', total)
+  repositoryList.value = list
+  paginationData.total = total
 }
 
-getRepoList(paginationData.value)
+GetRepoList(paginationData.value)
 
 const handleSizeChange = async (val) => {
   console.log(`${val} items per page`)
   paginationData.value.pageSize = val
-  await getRepoList(paginationData.value)
+  await GetRepoList(paginationData.value)
 }
 const handleCurrentChange = async (val) => {
   console.log(`current page: ${val}`)
   paginationData.value.page = val
-  await getRepoList(paginationData.value)
+  await GetRepoList(paginationData.value)
 }
 </script>
 
 <template>
-  <div class="repository">
+  <div class="repository" v-if="repositoryList?.length > 0">
     <div class="container">
       <h1>版本库列表</h1>
       <div class="repository-list">
@@ -64,14 +65,17 @@ const handleCurrentChange = async (val) => {
 <style lang="scss" scoped>
 .repository {
   margin: auto;
+
   .container {
     width: 90%;
     margin: auto;
+
     .repository-list {
       display: flex;
       justify-content: center;
       width: 100%;
     }
+
     .pagination {
       display: flex;
       justify-content: center;
@@ -84,6 +88,7 @@ ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+
   // gap: 10px;s
   li {
     list-style: none;

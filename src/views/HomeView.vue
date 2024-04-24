@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue'
+import PinRepositoryList from '@/components/repository/PinRepositoryList.vue'
 import RepositoryList from '@/components/repository/RepositoryList.vue'
 import { useTokenStore } from '@/stores/token'
 
@@ -11,6 +12,7 @@ const isLogin = computed(() => {
 
 <template>
   <div class="home">
+    <PinRepositoryList v-if="isLogin" />
     <RepositoryList v-if="isLogin" />
     <div class="nologin" v-else>
       <div class="content">您需要登录后才可以使用！</div>

@@ -47,12 +47,6 @@ const handleClose = (key, keyPath) => {
         @open="handleOpen"
         @close="handleClose"
       >
-        <el-menu-item index="1" @click="$router.push({ name: 'dashboard' })">
-          <el-icon>
-            <setting />
-          </el-icon>
-          <template #title>概览</template>
-        </el-menu-item>
         <el-menu-item index="2" @click="$router.push({ name: 'repository' })">
           <el-icon>
             <Notebook />
@@ -65,26 +59,20 @@ const handleClose = (key, keyPath) => {
           </el-icon>
           <template #title> 分类管理 </template>
         </el-menu-item>
-        <el-menu-item index="4">
-          <el-icon>
-            <Promotion />
-          </el-icon>
-          <template #title> 话题管理 </template>
-        </el-menu-item>
-        <el-menu-item index="5" @click="$router.push({ name: 'comment' })">
+        <el-menu-item index="4" @click="$router.push({ name: 'comment-manager' })">
           <el-icon>
             <Comment />
           </el-icon>
           <template #title>评论管理</template>
         </el-menu-item>
-        <el-menu-item index="6" @click="$router.push({ name: 'user-info' })">
+        <el-menu-item index="5" @click="$router.push({ name: 'user-info' })">
           <el-icon>
             <UserFilled />
           </el-icon>
           <template #title>个人中心</template>
         </el-menu-item>
         <el-menu-item
-          index="7"
+          index="6"
           v-if="userStore.user.isAdmin"
           @click="$router.push({ name: 'user-list' })"
         >

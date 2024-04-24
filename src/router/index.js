@@ -31,15 +31,6 @@ const router = createRouter({
           path: '/:id',
           name: 'repository-detail',
           component: () => import('@/components/repository/RepositoryDetail.vue')
-        },
-        {
-          path: '/comment',
-          name: 'comment',
-          component: () => import('@/components/comment/Comment.vue'),
-          meta: {
-            title: 'comment',
-            requiresAuth: true
-          }
         }
       ]
     },
@@ -50,15 +41,6 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'dashboard',
-          component: () => import('@/views/dashboard/Index.vue'),
-          meta: {
-            title: '概览',
-            requiresAuth: true
-          }
-        },
-        {
-          path: '/dashboard/repository',
           name: 'repository',
           component: () => import('@/views/dashboard/Repository.vue'),
           meta: {
