@@ -26,7 +26,6 @@ GetRepoList(paginationData.value)
 <template>
   <div class="repository" v-if="repositoryList?.length>0">
     <div class="container">
-      <span><Pin></Pin>置顶</span>
       <div class="repository-list">
         <ul>
           <li v-for="(item, index) in repositoryList" :key="index">
@@ -35,6 +34,9 @@ GetRepoList(paginationData.value)
         </ul>
       </div>
     </div>
+    <el-divider>
+      <Pin></Pin>
+    </el-divider>
   </div>
 </template>
 

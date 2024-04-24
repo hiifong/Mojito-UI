@@ -31,9 +31,6 @@ const errorHandler = () => true
         }}<el-tag type="info" v-if="repository?.isPrivate || false" style="margin-left: 10px">Private</el-tag>
       </div>
       <div class="repository-tips">
-        <p class="stars">
-          star: <span>{{ repository?.numStars }}</span>
-        </p>
         <p class="defualt-branch" v-if="repository?.defaultBranch || false">
           branch: <span>{{ repository.defaultBranch }}</span>
         </p>
@@ -113,6 +110,7 @@ const errorHandler = () => true
       p {
         font-size: 12px;
         font-weight: 400;
+        color: #797979;
         span {
           font-size: 15px;
         }

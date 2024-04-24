@@ -19,7 +19,7 @@ const GetRepoList = async (data) => {
   console.log('list===>', list)
   console.log('total===>', total)
   repositoryList.value = list
-  paginationData.total = total
+  paginationData.value.total = total
 }
 
 GetRepoList(paginationData.value)
@@ -39,7 +39,6 @@ const handleCurrentChange = async (val) => {
 <template>
   <div class="repository" v-if="repositoryList?.length > 0">
     <div class="container">
-      <h1>版本库列表</h1>
       <div class="repository-list">
         <ul>
           <li v-for="(item, index) in repositoryList" :key="index">

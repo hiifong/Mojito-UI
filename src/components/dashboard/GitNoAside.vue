@@ -39,7 +39,7 @@ const handleClose = (key, keyPath) => {
         />
       </div>
       <el-menu
-        default-active="1"
+        default-active="2"
         class="aside-menu"
         background-color="#eee"
         :collapse="isCollapse"

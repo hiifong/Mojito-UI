@@ -39,25 +39,24 @@ const errorHandler = () => true
     <div class="flex-grow" />
     <el-menu-item index="1" @click="$router.push({ name: 'home' })">首页</el-menu-item>
     <el-menu-item index="2" @click="$router.push({ name: 'explore' })">探索</el-menu-item>
-    <el-menu-item index="3" @click="$router.push({ name: 'home' })">分类</el-menu-item>
-    <el-menu-item index="4" v-if="!isLogin">
+    <el-menu-item index="3" v-if="!isLogin">
       <el-button color="#5FBDFF" @click="$router.push({ name: 'login' })" round>登录</el-button>
     </el-menu-item>
-    <el-menu-item index="5" v-if="!isLogin">
+    <el-menu-item index="4" v-if="!isLogin">
       <el-button color="#AA77FF" @click="$router.push({ name: 'register' })" round>注册</el-button>
     </el-menu-item>
-    <el-sub-menu index="6" v-if="isLogin">
+    <el-sub-menu index="5" v-if="isLogin">
       <template #title>
         <el-avatar :size="40" :src="userStore.user.avatar" @error="errorHandler">
           <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
         </el-avatar>
       </template>
-      <el-menu-item index="6-1" @click="$router.push({ name: 'repository' })"
+      <el-menu-item index="5-1" @click="$router.push({ name: 'repository' })"
         >Dashboard</el-menu-item
       >
-      <el-menu-item index="6-2" @click="Logout">退出登录</el-menu-item>
+      <el-menu-item index="5-2" @click="Logout">退出登录</el-menu-item>
     </el-sub-menu>
-    <el-menu-item index="7" v-else>
+    <el-menu-item index="6" v-else>
       <el-avatar :size="40" :src="userStore.user.avatar" @error="errorHandler">
         <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
       </el-avatar>
