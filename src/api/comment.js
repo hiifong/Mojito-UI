@@ -8,11 +8,18 @@ export const createComment = (data) => {
   })
 }
 
-export const updateComment = (data) => {
+export const updateComment = (id, data) => {
   return request({
     method: 'PUT',
-    url: '/comment',
+    url: `/comment/${id}`,
     data: data
+  })
+}
+
+export const getCommentById = (id) => {
+  return request({
+    method: 'GET',
+    url: `/comment/${id}`
   })
 }
 
