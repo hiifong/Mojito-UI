@@ -219,7 +219,7 @@ const handleCurrentChange = (val) => {
               type="warning"
               @click="handleDisable(scope.row.id)"
               :icon="Mute"
-              >{{ form.disable == true ? '启用' : '禁用' }}
+              >{{ scope.row.disable == true ? '启用' : '禁用' }}
             </el-button>
             <el-button
               v-if="!scope.row.isAdmin"
