@@ -1,38 +1,32 @@
-# gitno-ui
+# GitNo
 
-> [Swagger API Docs](https://vlv.lol/swagger/index.html#/)
+> 一个基于Git的版本控制博客系统
 
+## Screenshot
 
-This template should help get you started developing with Vue 3 in Vite.
+![image](https://github.com/hiifong/gitno-ui/assets/89133723/498d3623-c8f8-4da4-b941-4fe8c0c8d208)
 
-## Recommended IDE Setup
+![image](https://github.com/hiifong/gitno-ui/assets/89133723/da021973-afcb-4884-a78f-4b04dfdb2423)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+![image](https://github.com/hiifong/gitno-ui/assets/89133723/36cdfe30-0aac-4e17-b374-1e2930fb1292)
 
-## Customize configuration
+![image](https://github.com/hiifong/gitno-ui/assets/89133723/111de545-feeb-4273-b59e-fe875c452533)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+![image](https://github.com/hiifong/gitno-ui/assets/89133723/de1ce43d-7426-4dc5-b09f-973930389987)
 
-## Project Setup
+![image](https://github.com/hiifong/gitno-ui/assets/89133723/a16f74d1-9f30-4abb-8aae-a3c4d1c2a0ec)
 
-```sh
-pnpm install
-```
+![image](https://github.com/hiifong/gitno-ui/assets/89133723/8832594b-f1a7-4789-9e1b-1c84abd8a988)
 
-### Compile and Hot-Reload for Development
+## Git相关的功能
 
-```sh
-pnpm dev
-```
+- 支持Git clone/push 通过HTTP协议同步代码
+- 支持从GitHub、Gitea、Gitlab等Git服务导入Git 仓库
+- 支持修改默认分支
+- ......
 
-### Compile and Minify for Production
+## Live Demo
 
-```sh
-pnpm build
-```
+[Live Demo](https://vlv.lol): https://vlv.lol
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
+测试账号：admin/12345678
