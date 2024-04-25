@@ -87,7 +87,7 @@ const rules = ref({
   ],
   password: [
     { required: true, message: '密码不能为空', trigger: 'blur' },
-    { min: 6, max: 18, message: '密码长度需要6~18位', trigger: 'blur' }
+    { min: 8, max: 18, message: '密码长度需要8~18位', trigger: 'blur' }
   ],
   code: [
     { required: true, message: '验证码不能为空', trigger: 'blur' },

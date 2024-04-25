@@ -56,8 +56,8 @@ const GetUserInfo = async () => {
     form.codeTheme = data.setting.codeTheme
     form.showCodeRowNumber = data.setting.showCodeRowNumber
 
-    if (data.emails.length > 0){
-      data.emails.forEach(el => {
+    if (data.emails.length > 0) {
+      data.emails.forEach((el) => {
         if (el.isPrimary) {
           form.primaryEmail = el.email
         }

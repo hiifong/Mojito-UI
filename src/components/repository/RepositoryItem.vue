@@ -24,11 +24,15 @@ const errorHandler = () => true
           <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
         </el-avatar>
         <span>{{ repository.user?.username }}</span>
-        <span>更新于 {{ dayjs.unix(repository?.updatedAt || 0).format('YYYY/MM/DD HH:mm:ss') }}</span>
+        <span
+          >更新于 {{ dayjs.unix(repository?.updatedAt || 0).format('YYYY/MM/DD HH:mm:ss') }}</span
+        >
       </div>
       <div class="repository-title">
         {{ repository.title
-        }}<el-tag type="info" v-if="repository?.isPrivate || false" style="margin-left: 10px">Private</el-tag>
+        }}<el-tag type="info" v-if="repository?.isPrivate || false" style="margin-left: 10px"
+          >Private</el-tag
+        >
       </div>
       <div class="repository-tips">
         <p class="defualt-branch" v-if="repository?.defaultBranch || false">

@@ -20,11 +20,10 @@ const GetRepoList = async (data) => {
 }
 
 GetRepoList(paginationData.value)
-
 </script>
 
 <template>
-  <div class="repository" v-if="repositoryList?.length>0">
+  <div class="repository" v-if="repositoryList?.length > 0">
     <div class="container">
       <div class="repository-list">
         <ul>
@@ -42,31 +41,31 @@ GetRepoList(paginationData.value)
 
 <style lang="scss" scoped>
 .repository {
+  margin: auto;
+
+  .container {
+    width: 90%;
     margin: auto;
 
-    .container {
-        width: 90%;
-        margin: auto;
-
-        .repository-list {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
+    .repository-list {
+      display: flex;
+      justify-content: center;
+      width: 100%;
     }
+  }
 }
 
 ul {
-    width: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 
-    // gap: 10px;s
-    li {
-        list-style: none;
-        margin-bottom: 20px;
-        flex-basis: 20%;
-    }
+  // gap: 10px;s
+  li {
+    list-style: none;
+    margin-bottom: 20px;
+    flex-basis: 20%;
+  }
 }
 </style>

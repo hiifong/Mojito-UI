@@ -3,6 +3,7 @@ import { reactive, ref } from 'vue'
 import { useUserStore } from '@/stores/user'
 import dayjs from 'dayjs'
 import { Delete, Edit } from '@element-plus/icons-vue'
+import { commentList } from '@/api/comment'
 import {
   createCategory,
   deleteCategory,
@@ -52,9 +53,9 @@ const timeFormat = (row, column, cellValue, index) => {
 }
 
 const GetTableData = async (data) => {
-  const list = await getCategoryList(data).then((res) => {
+  const list = await commentList(data).then((res) => {
     if (res.data.code !== 1) {
-      throw new Error('获取用户信息失败')
+      throw new Error('获取评论失败')
     }
     return res.data.data
   })

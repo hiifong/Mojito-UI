@@ -23,6 +23,7 @@ let form = reactive({
   avatar: '',
   primaryEmail: '',
   emails: [],
+  disable: false,
   lastLoginAt: '',
   defaultBranch: '',
   defaultTheme: '',
@@ -57,6 +58,7 @@ const GetUserInfo = async (id) => {
     form.bio = data.bio
     form.avatar = data.avatar
     form.emails = data.emails
+    form.disable = data.disable
     form.lastLoginAt = data.lastLoginAt
     form.defaultBranch = data.setting.defaultBranch
     form.defaultTheme = data.setting.defaultTheme
@@ -64,8 +66,8 @@ const GetUserInfo = async (id) => {
     form.codeTheme = data.setting.codeTheme
     form.showCodeRowNumber = data.setting.showCodeRowNumber
 
-    if (data.emails.length > 0){
-      data.emails.forEach(el => {
+    if (data.emails.length > 0) {
+      data.emails.forEach((el) => {
         if (el.isPrimary) {
           form.primaryEmail = el.email
         }
@@ -111,8 +113,12 @@ const handleEdit = async (id) => {
   editUserVisible.value = true
   await GetUserInfo(id)
 }
-const handleDisable = (id) => {
+const handleDisable = async (id) => {
   console.log('handleDisable:', id)
+  await GetUserInfo(id)
+  form.disable = !form.disable
+  await updateUser(form)
+  await GetUserList(paginationData.value)
 }
 const handleDelete = (id) => {
   console.log('handleDelete:', id)
@@ -207,10 +213,16 @@ const handleCurrentChange = (val) => {
             <el-button size="small" type="primary" @click="handleEdit(scope.row.id)" :icon="Edit"
               >编辑
             </el-button>
-            <el-button size="small" type="warning" @click="handleDisable(scope.row.id)" :icon="Mute"
-              >禁用
+            <el-button
+              v-if="!scope.row.isAdmin"
+              size="small"
+              type="warning"
+              @click="handleDisable(scope.row.id)"
+              :icon="Mute"
+              >{{ form.disable == true ? '启用' : '禁用' }}
             </el-button>
             <el-button
+              v-if="!scope.row.isAdmin"
               size="small"
               type="danger"
               @click="handleDelete(scope.$index, scope.row)"

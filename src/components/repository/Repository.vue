@@ -43,7 +43,7 @@ const scrollElement = document.documentElement
           <span>发布于{{ dayjs.unix(repo?.createdAt).format('YYYY/MM/DD HH:MM:ss') }}</span>
           <span class="git-url"
             >Git URL：<span id="url"
-              >{{domain}}/{{ repo.user?.lowerName }}/{{ repo?.lowerName }}.git</span
+              >{{ domain }}/{{ repo.user?.lowerName }}/{{ repo?.lowerName }}.git</span
             >
             <button class="btn" data-clipboard-target="#url">
               <CopyLink />

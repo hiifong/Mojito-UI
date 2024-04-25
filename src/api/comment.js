@@ -38,3 +38,11 @@ export const replyComment = (id, data) => {
     data: data
   })
 }
+
+export const commentList = (data) => {
+  return request({
+    method: 'POST',
+    url: '/comment/list',
+    data: data
+  })
+}
