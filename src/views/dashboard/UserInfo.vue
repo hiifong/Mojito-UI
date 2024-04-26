@@ -6,7 +6,7 @@ import UploadAvatar from '@/components/dashboard/UploadAvatar.vue'
 import { useUserStore } from '@/stores/user.js'
 
 const userStore = useUserStore()
-let form = reactive({
+let form = ref({
   id: 0,
   username: '',
   lowerName: '',
@@ -43,23 +43,23 @@ const GetUserInfo = async () => {
   await getUserInfo().then((resp) => {
     const data = resp.data.data.user
     userStore.user = data
-    form.id = data.id
-    form.username = data.username
-    form.lowerName = data.lowerName
-    form.bio = data.bio
-    form.avatar = data.avatar
-    form.emails = data.emails
-    form.lastLoginAt = data.lastLoginAt
-    form.defaultBranch = data.setting.defaultBranch
-    form.defaultTheme = data.setting.defaultTheme
-    form.previewTheme = data.setting.previewTheme
-    form.codeTheme = data.setting.codeTheme
-    form.showCodeRowNumber = data.setting.showCodeRowNumber
+    form.value.id = data.id
+    form.value.username = data.username
+    form.value.lowerName = data.lowerName
+    form.value.bio = data.bio
+    form.value.avatar = data.avatar
+    form.value.emails = data.emails
+    form.value.lastLoginAt = data.lastLoginAt
+    form.value.defaultBranch = data.setting.defaultBranch
+    form.value.defaultTheme = data.setting.defaultTheme
+    form.value.previewTheme = data.setting.previewTheme
+    form.value.codeTheme = data.setting.codeTheme
+    form.value.showCodeRowNumber = data.setting.showCodeRowNumber
 
     if (data.emails.length > 0) {
       data.emails.forEach((el) => {
         if (el.isPrimary) {
-          form.primaryEmail = el.email
+          form.value.primaryEmail = el.email
         }
       })
     }
@@ -72,8 +72,8 @@ const updateAvatar = (url) => {
   form.avatar = url
 }
 
-const onSubmit = async (form) => {
-  await updateUser(form)
+const onSubmit = async (data) => {
+  await updateUser(data)
   await GetUserInfo()
 }
 const resetForm = () => {

@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 import { getUserList, getUserInfo, updateUser } from '@/api/user'
 import UploadAvatar from '@/components/dashboard/UploadAvatar.vue'
 import dayjs from 'dayjs'
@@ -14,7 +14,7 @@ const paginationData = ref({
   pageSize: 10
 })
 
-let form = reactive({
+let form = ref({
   id: 0,
   username: '',
   lowerName: '',
@@ -52,24 +52,24 @@ const GetUserInfo = async (id) => {
   await getUserInfo(id).then((resp) => {
     const data = resp.data.data.user
     console.log('user: ', data)
-    form.id = data.id
-    form.username = data.username
-    form.lowerName = data.lowerName
-    form.bio = data.bio
-    form.avatar = data.avatar
-    form.emails = data.emails
-    form.disable = data.disable
-    form.lastLoginAt = data.lastLoginAt
-    form.defaultBranch = data.setting.defaultBranch
-    form.defaultTheme = data.setting.defaultTheme
-    form.previewTheme = data.setting.previewTheme
-    form.codeTheme = data.setting.codeTheme
-    form.showCodeRowNumber = data.setting.showCodeRowNumber
+    form.value.id = data.id
+    form.value.username = data.username
+    form.value.lowerName = data.lowerName
+    form.value.bio = data.bio
+    form.value.avatar = data.avatar
+    form.value.emails = data.emails
+    form.value.disable = data.disable
+    form.value.lastLoginAt = data.lastLoginAt
+    form.value.defaultBranch = data.setting.defaultBranch
+    form.value.defaultTheme = data.setting.defaultTheme
+    form.value.previewTheme = data.setting.previewTheme
+    form.value.codeTheme = data.setting.codeTheme
+    form.value.showCodeRowNumber = data.setting.showCodeRowNumber
 
     if (data.emails.length > 0) {
       data.emails.forEach((el) => {
         if (el.isPrimary) {
-          form.primaryEmail = el.email
+          form.value.primaryEmail = el.email
         }
       })
     }
@@ -117,7 +117,7 @@ const handleDisable = async (id) => {
   console.log('handleDisable:', id)
   await GetUserInfo(id)
   form.disable = !form.disable
-  await updateUser(form)
+  await updateUser(form.value)
   await GetUserList(paginationData.value)
 }
 const handleDelete = (id) => {

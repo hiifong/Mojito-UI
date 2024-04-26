@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 import { useUserStore } from '@/stores/user'
 import dayjs from 'dayjs'
 import { Delete, Edit } from '@element-plus/icons-vue'
@@ -35,7 +35,7 @@ const paginationData = ref({
   uid: userStore.user.id
 })
 
-const createForm = reactive({
+const createForm = ref({
   uid: userStore.user.id,
   parentID: 0,
   name: '',

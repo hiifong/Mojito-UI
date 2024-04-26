@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 import { useTokenStore } from '@/stores/token'
 import { useRoute, useRouter } from 'vue-router'
 import { login } from '@/api/account'
@@ -14,7 +14,7 @@ const userStore = useUserStore()
 const router = useRouter()
 const route = useRoute()
 
-const form = reactive({
+const form = ref({
   username: '',
   password: '',
   code: '',
@@ -23,7 +23,7 @@ const form = reactive({
 
 const GetCaptcha = async () => {
   await getCaptchaID().then((res) => {
-    form.id = res.data.data.captchaID
+    form.value.id = res.data.data.captchaID
     console.log('captcha id', form.id)
   })
 }
@@ -35,7 +35,7 @@ const reload = async () => {
 }
 
 // 登录事件处理
-const onSubmit = async () => {
+const onSubmit = async (data) => {
   isLoading.value = true
   // 表单校验
   await formRef.value?.validate().catch((err) => {
@@ -45,7 +45,7 @@ const onSubmit = async () => {
   })
 
   // 正式发送登录请求
-  const data = await login(form).then((res) => {
+  const result = await login(data).then((res) => {
     if (res.data.code !== 1) {
       ElMessage.error(res.data.msg)
       isLoading.value = false
@@ -54,9 +54,9 @@ const onSubmit = async () => {
     return res.data.data
   })
 
-  console.log('data: ', data)
+  console.log('result: ', result)
   // 保存token信息
-  tokenStore.setToken(data)
+  tokenStore.setToken(result)
 
   isLoading.value = false
 
@@ -135,7 +135,7 @@ const formRef = ref('')
         <el-link type="primary" @click="$router.push({ name: 'forget' })">忘记密码？ </el-link>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit" :loading="isLoading">登录</el-button>
+        <el-button type="primary" @click="onSubmit(form)" :loading="isLoading">登录</el-button>
       </el-form-item>
     </el-form>
   </div>

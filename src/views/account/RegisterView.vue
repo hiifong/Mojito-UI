@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { register } from '@/api/account'
 import { getCaptchaID } from '@/api/captcha'
@@ -9,7 +9,7 @@ const api = import.meta.env.VITE_API_URL
 const router = useRouter()
 const route = useRoute()
 
-const form = reactive({
+const form = ref({
   username: '',
   email: '',
   password: '',
@@ -19,7 +19,7 @@ const form = reactive({
 
 const GetCaptcha = async () => {
   await getCaptchaID().then((res) => {
-    form.id = res.data.data.captchaID
+    form.value.id = res.data.data.captchaID
     console.log('captcha id', form.id)
   })
 }
@@ -31,7 +31,7 @@ const reload = async () => {
 }
 
 // 注册事件处理
-const onSubmit = async () => {
+const onSubmit = async (data) => {
   isLoading.value = true
   // 表单校验
   await formRef.value?.validate().catch((err) => {
@@ -41,7 +41,7 @@ const onSubmit = async () => {
   })
 
   // 正式发送注册请求
-  const data = await register(form).then((res) => {
+  const result = await register(data).then((res) => {
     if (res.data.code !== 1) {
       ElMessage.error(res.data.msg)
       isLoading.value = false
@@ -50,7 +50,7 @@ const onSubmit = async () => {
     return res.data
   })
 
-  console.log('response:', data)
+  console.log('response:', result)
 
   isLoading.value = false
 
@@ -121,7 +121,7 @@ const formRef = ref('')
         </el-link>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit" :loading="isLoading">注册</el-button>
+        <el-button type="primary" @click="onSubmit(form)" :loading="isLoading">注册</el-button>
       </el-form-item>
     </el-form>
   </div>

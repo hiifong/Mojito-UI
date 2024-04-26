@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getCode, forgetPassword } from '@/api/account'
 import { ElMessage } from 'element-plus'
@@ -7,7 +7,7 @@ import { ElMessage } from 'element-plus'
 const router = useRouter()
 const route = useRoute()
 
-const form = reactive({
+const form = ref({
   username: '',
   password: '',
   email: '',
