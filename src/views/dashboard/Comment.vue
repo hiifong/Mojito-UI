@@ -135,7 +135,12 @@ const handleCurrentChange = async (val) => {
         <el-table-column prop="updateTime" label="更新时间" :formatter="timeFormat" />
         <el-table-column fixed="right" label="操作" min-width="130">
           <template #default="scope">
-            <el-button v-if="scope.row.user.id == userStore.user.id" size="small" type="primary" @click="handleEdit(scope.row.id)" :icon="Edit"
+            <el-button
+              v-if="scope.row.user.id == userStore.user.id"
+              size="small"
+              type="primary"
+              @click="handleEdit(scope.row.id)"
+              :icon="Edit"
               >编辑
             </el-button>
             <el-button size="small" type="danger" @click="handleDelete(scope.row.id)" :icon="Delete"

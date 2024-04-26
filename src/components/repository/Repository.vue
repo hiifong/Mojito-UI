@@ -1,6 +1,8 @@
 <script setup>
 import { inject } from 'vue'
-import { MdPreview, MdCatalog } from 'md-editor-v3'
+import { config, MdPreview, MdCatalog } from 'md-editor-v3'
+import { full as emoji } from 'markdown-it-emoji'
+import footnote_plugin from 'markdown-it-footnote'
 import Comment from '@/components/comment/Comment.vue'
 import 'md-editor-v3/lib/preview.css'
 import { useUserStore } from '@/stores/user'
@@ -9,6 +11,13 @@ import Clipboard from 'clipboard'
 import CopyLink from '@/components/icons/CopyLink.vue'
 
 const domain = import.meta.env.VITE_DOMAIN
+
+config({
+  markdownItConfig(mdit) {
+    mdit.use(emoji)
+    mdit.use(footnote_plugin)
+  }
+})
 
 const { repo } = inject('repo')
 console.log('repo-->', repo)
