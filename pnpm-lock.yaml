@@ -22,7 +22,7 @@ importers:
         version: 1.11.10
       element-plus:
         specifier: ^2.6.3
-        version: 2.7.1(vue@3.4.24)
+        version: 2.7.2(vue@3.4.24)
       md-editor-v3:
         specifier: ^4.13.0
         version: 4.13.3(@codemirror/view@6.26.3)(@lezer/common@1.2.1)(vue@3.4.24)
@@ -779,8 +779,8 @@ packages:
   delegate@3.2.0:
     resolution: {integrity: sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==}
 
-  element-plus@2.7.1:
-    resolution: {integrity: sha512-yk/vXFwJp0flMrd2kfcR0XlumhwtPjB19HJvwcf0n3DvRE7UK8LeSK14LVghSzk0TzPsFFElweMnZEEv7+MYuQ==}
+  element-plus@2.7.2:
+    resolution: {integrity: sha512-AdEzBU/A68iUleio0MkQ46JeU5SeQvFFd915GJFScJmUEo5AmYg3OQ4pVjcu+p3b3Nupg9MC5Wa4xjAiC51kUg==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -2322,7 +2322,7 @@ snapshots:
 
   delegate@3.2.0: {}
 
-  element-plus@2.7.1(vue@3.4.24):
+  element-plus@2.7.2(vue@3.4.24):
     dependencies:
       '@ctrl/tinycolor': 3.6.1
       '@element-plus/icons-vue': 2.3.1(vue@3.4.24)
@@ -2945,7 +2945,7 @@ snapshots:
 
   undraw-ui@1.0.82:
     dependencies:
-      element-plus: 2.7.1(vue@3.4.24)
+      element-plus: 2.7.2(vue@3.4.24)
       vue: 3.4.24
     transitivePeerDependencies:
       - '@vue/composition-api'
