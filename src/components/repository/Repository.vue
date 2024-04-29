@@ -2,7 +2,15 @@
 import { inject } from 'vue'
 import { config, MdPreview, MdCatalog } from 'md-editor-v3'
 import { full as emoji } from 'markdown-it-emoji'
-import footnote_plugin from 'markdown-it-footnote'
+import footnote from 'markdown-it-footnote'
+import mermaidPlugin from '@agoose77/markdown-it-mermaid'
+import MarkdownItLabel from 'markdown-it-label'
+import { alert } from '@mdit/plugin-alert'
+import { imgLazyload } from '@mdit/plugin-img-lazyload'
+import { align } from '@mdit/plugin-align'
+import { tab } from '@mdit/plugin-tab'
+import MarkdownItCollapsible from 'markdown-it-collapsible'
+import markdownItRuby from 'markdown-it-ruby'
 import Comment from '@/components/comment/Comment.vue'
 import 'md-editor-v3/lib/preview.css'
 import { useUserStore } from '@/stores/user'
@@ -15,7 +23,17 @@ const domain = import.meta.env.VITE_DOMAIN
 config({
   markdownItConfig(mdit) {
     mdit.use(emoji)
-    mdit.use(footnote_plugin)
+    mdit.use(footnote)
+    mdit.use(mermaidPlugin)
+    mdit.use(MarkdownItLabel)
+    mdit.use(alert)
+    mdit.use(imgLazyload)
+    mdit.use(align)
+    mdit.use(tab, {
+      name: 'tabs'
+    })
+    mdit.use(MarkdownItCollapsible)
+    mdit.use(markdownItRuby)
   }
 })
 
