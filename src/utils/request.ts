@@ -1,5 +1,5 @@
 import axios, { type AxiosRequestHeaders } from 'axios'
-import { useTokenStore } from '@/stores/token'
+import { useTokenStore } from '@/stores/modules/token'
 import router from '@/router'
 
 const request = axios.create({
@@ -12,8 +12,8 @@ request.interceptors.request.use((config) => {
     config.headers = {} as AxiosRequestHeaders
   }
   const token = useTokenStore().token
-  if (token.value) {
-    config.headers.Authorization = token.value
+  if (token) {
+    config.headers.Authorization = token
   }
   return config
 })
