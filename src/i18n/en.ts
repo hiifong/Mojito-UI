@@ -1,6 +1,6 @@
 export default {
   app: {
-    name: 'GitNo'
+    name: 'Mojito'
   },
   month: {
     january: 'January',

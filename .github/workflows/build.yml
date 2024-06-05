@@ -14,9 +14,9 @@
 #       - name: Checkout
 #         uses: actions/checkout@v4
 #         with:
-#           repository: hiifong/gitno
+#           repository: hiifong/mojito
 #           token: ${{ secrets.GH_PAT }}
-#           path: gitno
+#           path: mojito
 #           submodules: true
 #       - name: Import GPG key
 #         uses: crazy-max/ghaction-import-gpg@v6
@@ -26,12 +26,12 @@
 #           git_user_signingkey: true
 #           git_commit_gpgsign: true
 #           git-tag-gpgsign: true
-#           workdir: gitno
-#       - name: Update GitNo
+#           workdir: mojito
+#       - name: Update Mojito
 #         run: |
 #           git config --global user.name "hiifong"
 #           git config --global user.email "i@hiif.ong"
-#           cd gitno
+#           cd mojito
 #           cd ui
 #           git fetch
 #           git checkout release/v0.1.0

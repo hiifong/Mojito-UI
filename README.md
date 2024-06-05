@@ -1,22 +1,22 @@
-# GitNo
+# Mojito
 
 > 一个基于Git的版本控制博客系统
 
 ## Screenshot
 
-![image](https://github.com/hiifong/gitno-ui/assets/89133723/498d3623-c8f8-4da4-b941-4fe8c0c8d208)
+![image](https://github.com/hiifong/mojito-ui/assets/89133723/498d3623-c8f8-4da4-b941-4fe8c0c8d208)
 
-![image](https://github.com/hiifong/gitno-ui/assets/89133723/da021973-afcb-4884-a78f-4b04dfdb2423)
+![image](https://github.com/hiifong/mojito-ui/assets/89133723/da021973-afcb-4884-a78f-4b04dfdb2423)
 
-![image](https://github.com/hiifong/gitno-ui/assets/89133723/36cdfe30-0aac-4e17-b374-1e2930fb1292)
+![image](https://github.com/hiifong/mojito-ui/assets/89133723/36cdfe30-0aac-4e17-b374-1e2930fb1292)
 
-![image](https://github.com/hiifong/gitno-ui/assets/89133723/111de545-feeb-4273-b59e-fe875c452533)
+![image](https://github.com/hiifong/mojito-ui/assets/89133723/111de545-feeb-4273-b59e-fe875c452533)
 
-![image](https://github.com/hiifong/gitno-ui/assets/89133723/de1ce43d-7426-4dc5-b09f-973930389987)
+![image](https://github.com/hiifong/mojito-ui/assets/89133723/de1ce43d-7426-4dc5-b09f-973930389987)
 
-![image](https://github.com/hiifong/gitno-ui/assets/89133723/a16f74d1-9f30-4abb-8aae-a3c4d1c2a0ec)
+![image](https://github.com/hiifong/mojito-ui/assets/89133723/a16f74d1-9f30-4abb-8aae-a3c4d1c2a0ec)
 
-![image](https://github.com/hiifong/gitno-ui/assets/89133723/8832594b-f1a7-4789-9e1b-1c84abd8a988)
+![image](https://github.com/hiifong/mojito-ui/assets/89133723/8832594b-f1a7-4789-9e1b-1c84abd8a988)
 
 ## Git相关的功能
 
