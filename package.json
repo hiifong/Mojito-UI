@@ -1,6 +1,6 @@
 {
   "name": "mojito",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -20,7 +20,7 @@
     "element-plus": "^2.7.4",
     "markdown-it-emoji": "^3.0.0",
     "markdown-it-footnote": "^4.0.0",
-    "md-editor-v3": "^4.15.6",
+    "md-editor-v3": "^4.16.3",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "qiniu-js": "^3.4.2",
@@ -32,7 +32,7 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.3",
     "@tsconfig/node20": "^20.1.4",
-    "@types/node": "^20.13.0",
+    "@types/node": "^20.14.2",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^13.0.0",
@@ -40,7 +40,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.26.0",
     "npm-run-all2": "^6.2.0",
-    "prettier": "^3.3.0",
+    "prettier": "^3.3.1",
     "typescript": "^5.4.5",
     "unplugin-auto-import": "^0.17.6",
     "unplugin-vue-components": "^0.26.0",
