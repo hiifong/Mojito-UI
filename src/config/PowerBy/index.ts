@@ -1,4 +1,4 @@
-export default function () {
+export const setupPowerBy = () => {
   const info = `
 Name: ${import.meta.env.VITE_NAME}
 Version: ${import.meta.env.VITE_VERSION}
