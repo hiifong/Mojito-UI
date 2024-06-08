@@ -1,4 +1,4 @@
-import HomeView from '../views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
 import HomeLayout from '@/layout/HomeLayout.vue'
 import AboutView from '@/views/AboutView.vue'
 export const routes = [
