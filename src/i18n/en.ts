@@ -24,5 +24,10 @@ export default {
     friday: 'Friday',
     saturday: 'Saturday',
     sunday: 'Sunday'
+  },
+  heatmap: {
+    activity: 'activity',
+    less: 'Less',
+    more: 'More'
   }
 }

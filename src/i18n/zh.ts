@@ -24,5 +24,10 @@ export default {
     friday: '周五',
     saturday: '周六',
     sunday: '周日'
+  },
+  heatmap: {
+    activity: '活动',
+    less: '更少',
+    more: '更多'
   }
 }
