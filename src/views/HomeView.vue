@@ -19,7 +19,8 @@ main {
   background-color: #f7f9fe;
 
   .info-card {
-    padding: 100px 50px;
+    width: 90%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
