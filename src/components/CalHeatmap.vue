@@ -6,15 +6,15 @@ import LegendLite from 'cal-heatmap/plugins/LegendLite'
 import CalendarLabel from 'cal-heatmap/plugins/CalendarLabel'
 import dayjs from 'dayjs'
 import localeData from 'dayjs/plugin/localeData'
-import { useI18n } from 'vue-i18n'
 
 import 'cal-heatmap/cal-heatmap.css'
+import { i18n } from '@/config/modules/i18n'
 
 dayjs.extend(localeData)
 dayjs.localeData()
 
 const cal = new CalHeatmap()
-const { t } = useI18n()
+const { t } = i18n.global
 
 const data = [
   {

@@ -1,5 +1,5 @@
-<script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+<script lang="ts" setup>
+import { ref, onMounted, onBeforeUnmount, type Ref } from 'vue'
 import Galleria from 'primevue/galleria'
 import { useToast } from 'primevue/usetoast'
 import TerminalService from 'primevue/terminalservice'
@@ -31,7 +31,13 @@ const images = ref([
 ])
 const nodes = ref()
 const toast = useToast()
-const items = ref([
+interface item {
+  label: string
+  icon: string
+  command: Function
+}
+
+const items: Ref<item[]> = ref([
   {
     label: 'Finder',
     icon: 'https://primefaces.org/cdn/primevue//images/dock/finder.svg',
@@ -103,7 +109,7 @@ const responsiveOptions = ref([
   }
 ])
 
-const onDockItemClick = (event, item) => {
+const onDockItemClick = (event: Event, item: item) => {
   if (item.command) {
     item.command()
   }
@@ -111,7 +117,7 @@ const onDockItemClick = (event, item) => {
   event.preventDefault()
 }
 
-const commandHandler = (text) => {
+const commandHandler = (text: string) => {
   let response
   let argsIndex = text.indexOf(' ')
   let command = argsIndex !== -1 ? text.substring(0, argsIndex) : text

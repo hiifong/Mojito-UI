@@ -2,6 +2,13 @@ export default {
   app: {
     name: 'Mojito'
   },
+  router: {
+    home: 'home',
+    login: 'login',
+    register: 'register',
+    logout: 'logout',
+    notFound: '404'
+  },
   month: {
     january: 'January',
     february: 'February',

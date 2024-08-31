@@ -1,22 +1,48 @@
-import HomeView from '@/views/HomeView.vue'
-import HomeLayout from '@/layout/HomeLayout.vue'
-import AboutView from '@/views/AboutView.vue'
-export const routes = [
+import { i18n } from '@/config/modules/i18n'
+import type { RouteRecordRaw } from 'vue-router'
+
+const { t } = i18n.global
+
+export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: '',
-    component: HomeLayout,
+    component: () => import('@/layout/HomeLayout.vue'),
     children: [
       {
         path: '',
-        name: 'Home',
-        component: HomeView
+        name: 'home',
+        component: () => import('@/views/HomeView.vue')
       },
       {
         path: '/about',
         name: 'about',
-        component: AboutView
+        component: () => import('@/views/AboutView.vue')
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/user/LoginView.vue'),
+    meta: {
+      title: t('router.login')
+    }
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/user/RegisterView.vue'),
+    meta: {
+      title: '注册'
+    }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/views/NotFoundView.vue'),
+    meta: {
+      title: t('router.notFound')
+    }
   }
 ]

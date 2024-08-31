@@ -2,6 +2,13 @@ export default {
   app: {
     name: 'Mojito'
   },
+  router: {
+    home: '首页',
+    login: '登录',
+    register: '注册',
+    logout: '登出',
+    notFound: '404'
+  },
   month: {
     january: '一月',
     february: '二月',
