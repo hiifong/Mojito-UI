@@ -6,9 +6,28 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { PrimeVueResolver } from 'unplugin-vue-components/resolvers'
+import { chunkSplitPlugin } from 'vite-plugin-chunk-split'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        entryFileNames: 'js/[name].[hash].js',
+        chunkFileNames: 'js/[name].[hash].js',
+        assetFileNames(assetInfo) {
+          if (assetInfo.name?.endsWith('.css')) {
+            return 'css/[name].[hash].[ext]'
+          }
+          if (['.png', '.jpg', 'jpeg', '.webp', '.svg', '.gif'].some((ext) => assetInfo.name?.endsWith(ext))) {
+            return 'images/[name].[hash].[ext]'
+          }
+          return '[name].[hash].[ext]'
+        },
+        minifyInternalExports: true
+      }
+    }
+  },
   plugins: [
     vue(),
     AutoImport({
@@ -17,7 +36,8 @@ export default defineConfig({
     }),
     Components({
       resolvers: [ElementPlusResolver(), PrimeVueResolver()]
-    })
+    }),
+    chunkSplitPlugin()
   ],
   resolve: {
     alias: {
