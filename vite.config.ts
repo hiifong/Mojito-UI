@@ -19,16 +19,16 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        entryFileNames: 'js/[name].[hash].js',
-        chunkFileNames: 'js/[name].[hash].js',
+        entryFileNames: 'assets/js/[name].[hash].js',
+        chunkFileNames: 'assets/js/[name].[hash].js',
         assetFileNames(assetInfo) {
           if (assetInfo.name?.endsWith('.css')) {
-            return 'css/[name].[hash].[ext]'
+            return 'assets/css/[name].[hash].[ext]'
           }
           if (['.png', '.jpg', 'jpeg', '.webp', '.svg', '.gif'].some((ext) => assetInfo.name?.endsWith(ext))) {
-            return 'images/[name].[hash].[ext]'
+            return 'assets/images/[name].[hash].[ext]'
           }
-          return '[name].[hash].[ext]'
+          return 'assets/[name].[hash].[ext]'
         },
         sanitizeFileName(name: string): string {
           // 去掉无效的字符
