@@ -1,7 +1,15 @@
 import { i18n } from '@/config/modules/i18n'
 import type { RouteRecordRaw } from 'vue-router'
 
+import { type IStaticMethods } from 'flyonui/flyonui'
+
 const { t } = i18n.global
+
+declare global {
+  interface Window {
+    HSStaticMethods: IStaticMethods
+  }
+}
 
 export const routes: RouteRecordRaw[] = [
   {
