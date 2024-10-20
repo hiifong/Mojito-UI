@@ -36,7 +36,9 @@ export default defineConfig({
         },
         minifyInternalExports: true
       }
-    }
+    },
+    chunkSizeWarningLimit: 2000,
+    cssMinify: false
   },
   plugins: [
     vue(),

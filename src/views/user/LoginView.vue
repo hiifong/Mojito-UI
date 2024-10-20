@@ -17,7 +17,7 @@ init()
 <template>
   <div>
     <h1>Login</h1>
-    <img :src="image" alt="" width="90" height="30" />
+    <img :src="image" alt="" width="90" height="30" @click="init" />
     <div class="divider">or</div>
     <div class="wrap">
       <div class="avatar placeholder">

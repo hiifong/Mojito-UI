@@ -113,9 +113,9 @@ onMounted(() => paintCalendar())
 <template>
   <div class="heatmap-main">
     <div class="cal-heatmap-legend-container">
-      <span>{{ $t('heatmap.less') }}</span>
+      <span>{{ t('heatmap.less') }}</span>
       <div id="cal-heatmap-legend"></div>
-      <span>{{ $t('heatmap.more') }}</span>
+      <span>{{ t('heatmap.more') }}</span>
     </div>
     <div id="cal-heatmap"></div>
   </div>
