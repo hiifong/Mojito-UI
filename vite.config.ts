@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueDevTools from 'vite-plugin-vue-devtools'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
@@ -10,7 +11,7 @@ import { chunkSplitPlugin } from 'vite-plugin-chunk-split'
 
 // https://github.com/rollup/rollup/blob/master/src/utils/sanitizeFileName.ts
 // https://datatracker.ietf.org/doc/html/rfc2396
-// eslint-disable-next-line no-control-regex
+
 const INVALID_CHAR_REGEX = /[\u0000-\u001F"#$%&*+_,:;<=>?[\]^`{|}\u007F]/g // Add '_' char
 // const DRIVE_LETTER_REGEX = /^[a-z]:/i
 
@@ -42,6 +43,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    vueDevTools(),
     AutoImport({
       imports: ['vue'],
       resolvers: [ElementPlusResolver()]
@@ -54,6 +56,13 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler' // or "modern"
+      }
     }
   }
 })

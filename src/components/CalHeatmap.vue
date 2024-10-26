@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import CalHeatmap from 'cal-heatmap'
-import Tooltip from 'cal-heatmap/plugins/Tooltip'
-import LegendLite from 'cal-heatmap/plugins/LegendLite'
-import CalendarLabel from 'cal-heatmap/plugins/CalendarLabel'
+import CalHeatmap from 'cal-heatmap'  
+import Tooltip from 'cal-heatmap/plugins/Tooltip'  
+import LegendLite from 'cal-heatmap/plugins/LegendLite'  
+import CalendarLabel from 'cal-heatmap/plugins/CalendarLabel'  
 import dayjs from 'dayjs'
 import localeData from 'dayjs/plugin/localeData'
 

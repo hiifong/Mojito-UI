@@ -1,5 +1,4 @@
 import '@/style/main.css'
-import '@/style/tailwind.css'
 import 'element-plus/es/components/message/style/css'
 import 'floating-vue/dist/style.css'
 

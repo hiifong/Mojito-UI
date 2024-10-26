@@ -8,7 +8,12 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     CalHeatmap: typeof import('./src/components/CalHeatmap.vue')['default']
+    Dialog: typeof import('primevue/dialog')['default']
+    Dock: typeof import('primevue/dock')['default']
+    ElImage: typeof import('element-plus/es')['ElImage']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Terminal: typeof import('primevue/terminal')['default']
+    Tree: typeof import('primevue/tree')['default']
   }
 }

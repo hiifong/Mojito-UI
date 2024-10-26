@@ -69,7 +69,12 @@ const items: Ref<item[]> = ref([
     label: 'Safari',
     icon: 'https://primefaces.org/cdn/primevue//images/dock/safari.svg',
     command: () => {
-      toast.add({ severity: 'warn', summary: 'Safari has stopped working', group: 'tc', life: 3000 })
+      toast.add({
+        severity: 'warn',
+        summary: 'Safari has stopped working',
+        group: 'tc',
+        life: 3000
+      })
     }
   },
   {
@@ -119,8 +124,8 @@ const onDockItemClick = (event: Event, item: item) => {
 
 const commandHandler = (text: string) => {
   let response
-  let argsIndex = text.indexOf(' ')
-  let command = argsIndex !== -1 ? text.substring(0, argsIndex) : text
+  const argsIndex = text.indexOf(' ')
+  const command = argsIndex !== -1 ? text.substring(0, argsIndex) : text
 
   switch (command) {
     case 'date':

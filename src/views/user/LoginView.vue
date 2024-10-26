@@ -2,12 +2,14 @@
 import { getCaptcha } from '@/api/captcha'
 import { ref } from 'vue'
 
+const env = import.meta.env
+
 const image = ref('')
 
 const init = async () => {
   await getCaptcha().then((res) => {
     const data = res.data
-    image.value = `${import.meta.env.VITE_API_URL}${data.data.captcha}`
+    image.value = `${env.VITE_API_URL}${data.data.captcha}`
   })
 }
 
