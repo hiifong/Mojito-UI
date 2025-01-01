@@ -1,15 +1,13 @@
 import request from '@/utils/request'
 import type { response } from './response'
 
-interface registerData {
-  id: string
-  code: string
-  email: string
+export interface registerReq {
   username: string
+  email: string
   password: string
 }
 
-export const register = (data: registerData) => {
+export const register = (data: registerReq) => {
   return request<response<string>>({
     method: 'POST',
     url: '/register',
@@ -18,8 +16,6 @@ export const register = (data: registerData) => {
 }
 
 interface loginData {
-  id: string
-  code: string
   username: string
   password: string
 }
